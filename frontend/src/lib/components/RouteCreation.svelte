@@ -8,7 +8,7 @@
 
 <button
 	type="button"
-	class="rounded-md bg-green-300 px-4 py-2 text-sm font-medium text-black transition hover:bg-green-500 hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
+	class="rounded-md bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
 	onclick={dialog.open}>Create route</button
 >
 <div class="relative z-20">
@@ -50,11 +50,11 @@
 						<div class="flex space-x-6">
 							<div class="w-1/2">
 								<h4 class="text-md font-medium text-gray-800">
-									<span class="container flex items-center"><ListTodo />&nbsp;Prefefined Route</span
+									<span class="container flex items-center"><ListTodo />&nbsp;Predefined Route</span
 									>
 								</h4>
 								<p class="text-sm text-gray-500">
-									Selct from the list of prefefined routes and see the most popular places!
+									Select from the list of predefined routes and see the most popular places!
 								</p>
 								<a
 									href="/route/select"

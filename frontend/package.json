@@ -35,7 +35,7 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
-		"@rollup/rollup-linux-x64-gnu": "^4.34.8",
+		"@rollup/rollup-win32-x64-msvc": "^4.34.8",
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/package": "^2.0.0",
@@ -58,6 +58,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"axios": "^1.8.3",
 		"svelte-headlessui": "^0.0.46",
 		"svelte-transition": "^0.0.17"
 	}
