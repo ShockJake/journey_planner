@@ -1,16 +1,23 @@
 package io.jp.services;
 
 import io.jp.database.entities.User;
+import io.jp.database.entities.UserType;
 import io.jp.database.repositories.UserRepository;
 import io.jp.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static io.jp.database.entities.UserType.USER;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -20,6 +27,8 @@ public class UserService {
             throw new UserAlreadyRegisteredException();
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUserType(USER);
+        user.setRoutesCreated(0);
         userRepository.save(user);
     }
 
@@ -29,10 +38,7 @@ public class UserService {
     }
 
     public String loginUser(String username, String password) {
-        var user = findUserByUsername(username);
-        if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new UserUnauthorizedException();
-        }
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         return jwtUtil.generateToken(username);
     }
 
@@ -40,6 +46,18 @@ public class UserService {
         var user = findUserByUsername(username);
         //todo: remove all routes connected to user.
         userRepository.delete(user);
+    }
+
+    public void changeUsername(String username, String newUsername) {
+        var user = findUserByUsername(username);
+        user.setUsername(newUsername);
+        userRepository.save(user);
+    }
+
+    public void changePassword(String username, String newPassword) {
+        var user = findUserByUsername(username);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 
     public static class UserAlreadyRegisteredException extends RuntimeException {}

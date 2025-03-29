@@ -1,0 +1,55 @@
+package io.jp.api;
+
+import io.jp.api.dto.ChangeUserDataDto;
+import io.jp.api.dto.ChangeUserDataInfoType;
+import io.jp.security.GlobalExceptionsHandler.BadDataException;
+import io.jp.services.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
+import static io.jp.api.WebConstants.MESSAGE_KEY;
+import static io.jp.api.dto.ChangeUserDataInfoType.PASSWORD;
+import static io.jp.api.dto.ChangeUserDataInfoType.USERNAME;
+
+@RestController
+@RequestMapping("/user")
+@RequiredArgsConstructor
+public class UserController {
+    private final UserService userService;
+
+    @PatchMapping
+    public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataDto changeUserDataDto) {
+        ChangeUserDataInfoType infoType = changeUserDataDto.infoType();
+        if (USERNAME.equals(infoType)) {
+            userService.changeUsername(authentication.getName(), changeUserDataDto.value());
+            return ResponseEntity.ok(Map.of(MESSAGE_KEY, "Login is changed successfully!"));
+        }
+        if (PASSWORD.equals(infoType)) {
+            userService.changePassword(authentication.getName(), changeUserDataDto.value());
+            return ResponseEntity.ok(Map.of(MESSAGE_KEY, "Password is changed successfully!"));
+        }
+        throw new BadDataException("Unknown data type for change");
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.ok(Map.of(MESSAGE_KEY, "User deleted successfully"));
+
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getUserInfo(Authentication authentication) {
+        var user = userService.findUserByUsername(authentication.getName());
+        return ResponseEntity.ok(Map.of("username", user.getUsername(), "routesCreated", user.getRoutesCreated()));
+    }
+}
