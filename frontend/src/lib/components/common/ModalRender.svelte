@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { CircleUserRound } from '$lib/components/Icons.ts';
-	import { createDialog } from 'svelte-headlessui';
+	import { type Component } from 'svelte';
 	import Transition from 'svelte-transition';
+	const { body, dialog } = $props();
 
-	const dialog = createDialog({ label: 'authDialog' });
+	interface ModalBody extends Component {
+		dialog: any;
+	}
 </script>
 
-<button class="rounded-lg px-3 py-3 transition hover:bg-white/30" onclick={dialog.open}>
-	<div class="container mx-1 flex items-center">
-		<CircleUserRound />
-	</div>
-</button>
+{#snippet modalBody(body: () => ModalBody, dialog: any)}
+	{@const ModalBody = body()}
+	<ModalBody {dialog} />
+{/snippet}
 
 <div class="relative z-20">
 	<Transition show={$dialog.expanded}>
@@ -36,14 +37,10 @@
 					leaveTo="opacity-0 scale-95"
 				>
 					<div
-						class="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+						class="w-full max-w-80 min-w-64 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
 						use:dialog.modal
 					>
-						<div class="container mx-2 flex items-center justify-center">
-							<h3 class="text-lg leading-6 font-medium text-gray-900">
-								<span class="container mx-2 flex items-center">Login</span>
-							</h3>
-						</div>
+						{@render modalBody(body, dialog)}
 					</div>
 				</Transition>
 			</div>

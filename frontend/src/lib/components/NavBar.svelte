@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { toggleMenu } from '$lib/component_scripts/navbar.ts';
-	import AuthenticationModal from './AuthenticationModal.svelte';
 	import {
 		MapPinned,
 		PhoneCall,
@@ -9,34 +7,24 @@
 		Menu,
 		CircleX,
 		CircleUserRound
-	} from '$lib/components/Icons.ts';
+	} from '$lib/components/common/Icons.ts';
+	import UserNavbarComponent from './user/UserNavbarComponent.svelte';
 
-	let isAuthenticated = false;
 	let isOpen: boolean = false;
-
-	onMount(() => {
-		isAuthenticated = localStorage.getItem('token') == null;
-	});
 </script>
 
 <nav class="bg-gradient-to-r from-green-500 to-orange-500 p-2 text-white shadow-md transition">
 	<div class="container mx-auto flex items-center justify-between">
 		<a href="/" class="rounded-lg px-3 py-2 text-2xl font-bold transition hover:bg-white/30">
-			<div class="container mx-1 flex items-center justify-between">
+			<div class="container mr-1 flex items-center justify-between">
 				<MapPinned />Journey Planner
 			</div>
 		</a>
 
-		<div class="hidden space-x-1 md:flex">
-			<a href="/info" class="rounded-lg px-3 py-3 transition hover:bg-white/30"><Info /></a>
+		<div class="hidden md:flex">
+			<UserNavbarComponent />
 			<a href="/contact" class="rounded-lg px-3 py-3 transition hover:bg-white/30"><PhoneCall /></a>
-			{#if isAuthenticated}
-				<AuthenticationModal />
-			{:else}
-				<a href="/account" class="rounded-lg px-3 py-3 transition hover:bg-white/30"
-					><CircleUserRound /></a
-				>
-			{/if}
+			<a href="/info" class="rounded-lg px-3 py-3 transition hover:bg-white/30"><Info /></a>
 		</div>
 
 		<button

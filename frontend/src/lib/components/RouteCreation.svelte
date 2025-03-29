@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { createDialog } from 'svelte-headlessui';
 	import Transition from 'svelte-transition';
-	import { ListTodo, MapPlus, Route } from '$lib/components/Icons.ts';
+	import { ListTodo, MapPlus, Route } from '$lib/components/common/Icons.ts';
 
 	const dialog = createDialog({ label: 'routeCreationDialog' });
 </script>
 
 <button
 	type="button"
-	class="rounded-md bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
-	onclick={dialog.open}>Create route</button
+	class="rounded-md bg-green-100 px-4 py-2 text-lg font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
+	onclick={dialog.open}>Start</button
 >
 <div class="relative z-20">
 	<Transition show={$dialog.expanded}>
