@@ -16,6 +16,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.List;
 
+
 import static org.springframework.http.HttpMethod.OPTIONS;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -27,7 +28,8 @@ public class SecurityConfig {
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
     private final List<String> allowedOrigins = List.of("http://localhost:5173");
-    private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS");
+    private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
+    private final String[] publicEndpoints = {"/routes"};
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
@@ -43,6 +45,7 @@ public class SecurityConfig {
                         cors.configurationSource(request -> corsConfiguration()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(OPTIONS, "/**").permitAll()
+                        .requestMatchers(publicEndpoints).permitAll()
                         .requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

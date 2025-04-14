@@ -14,26 +14,28 @@ repositories {
 }
 
 dependencies {
-    implementation libs.guava
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
+    implementation libs.guava
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "commons-io:commons-io:${apacheCommonsIOVersion}"
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    implementation "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
+
+    jmh 'org.openjdk.jmh:jmh-core'
     runtimeOnly("io.jsonwebtoken:jjwt-impl:${jjwtVersion}")
     runtimeOnly("io.jsonwebtoken:jjwt-orgjson:${jjwtVersion}")
-    implementation "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
-    jmh 'org.openjdk.jmh:jmh-core'
-    annotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
 
     testImplementation libs.groovy
     testImplementation libs.spock.core
     testImplementation libs.junit
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
 
 java {

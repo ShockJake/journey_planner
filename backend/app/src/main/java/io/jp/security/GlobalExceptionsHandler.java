@@ -5,11 +5,13 @@ import io.jp.services.UserService.UserUnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Map;
+
 
 import static io.jp.api.WebConstants.MESSAGE_KEY;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -20,7 +22,7 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @RestControllerAdvice
 public class GlobalExceptionsHandler {
     private Map<String, String> buildResponse(final String message, final HttpStatus code) {
-        return Map.of("errorCode", String.valueOf(code.value()), "reason", code.getReasonPhrase() ,
+        return Map.of("errorCode", String.valueOf(code.value()), "reason", code.getReasonPhrase(),
                 "errorType", code.series().name(), MESSAGE_KEY, message);
     }
 
@@ -46,6 +48,12 @@ public class GlobalExceptionsHandler {
     public ResponseEntity<Map<String, String>> handleUsernameNotFoundException(final UsernameNotFoundException e) {
         log.error(e.getMessage(), e);
         return new ResponseEntity<>(buildResponse("User not found", BAD_REQUEST), BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Map<String, String>> handleAccessDeniedException(final AccessDeniedException e) {
+        log.error(e.getMessage(), e);
+        return new ResponseEntity<>(buildResponse("Access denied", UNAUTHORIZED), UNAUTHORIZED);
     }
 
     @ExceptionHandler(BadDataException.class)

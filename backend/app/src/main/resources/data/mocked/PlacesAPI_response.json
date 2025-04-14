@@ -1,0 +1,1687 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kościół pw. Świętego Wojciecha Biskupa i Męczennika",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.93774373235741,
+        "lat": 50.060888399999996,
+        "formatted": "St. Adalbert's church, Main Square, 31-042 Krakow, Poland",
+        "address_line1": "St. Adalbert's church",
+        "address_line2": "Main Square, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "building.place_of_worship",
+          "building.tourism",
+          "heritage",
+          "religion",
+          "religion.place_of_worship",
+          "religion.place_of_worship.christianity",
+          "tourism",
+          "tourism.attraction",
+          "tourism.sights",
+          "tourism.sights.place_of_worship",
+          "tourism.sights.place_of_worship.church"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.heritage",
+          "details.place_of_worship",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "url": "http://www.diecezja.pl/parafie/lista-parafii/krakow-centrum/kosciolsw-wojciecha-bm.html",
+            "name": "Kościół pw. Świętego Wojciecha Biskupa i Męczennika",
+            "image": "http://commons.wikimedia.org/wiki/File:Church_of_St_Adalbert,_2_Main_Market_square,Old_Town,Krakow,Poland.jpg",
+            "osm_id": 29271113,
+            "amenity": "place_of_worship",
+            "diocese": "Archidiecezja krakowska",
+            "name:be": "Касцёл Святога Войцеха",
+            "name:en": "St. Adalbert's church",
+            "name:es": "Iglesia de San Adalberto",
+            "name:hu": "Prágai Szent Adalbert templom",
+            "name:ko": "성 보치에하 성당",
+            "ref:nid": "A-79;A-208/M",
+            "tourism": "attraction",
+            "website": "http://www.kosciolwojciecha.pl/",
+            "building": "church",
+            "heritage": 2,
+            "historic": "church",
+            "osm_type": "w",
+            "religion": "christian",
+            "wikidata": "Q898260",
+            "wikipedia": "pl:Kościół św. Wojciecha w Krakowie (Rynek Główny)",
+            "denomination": "roman_catholic",
+            "opening_hours": "Mo-Sa 09:00-17:00; Su 13:30-18:00",
+            "roof:material": "copper",
+            "service_times": "08:00; Tu 15:30; Su 10:30,12:15",
+            "building:colour": "silver",
+            "heritage:operator": "nid"
+          }
+        },
+        "website": "http://www.kosciolwojciecha.pl/",
+        "website_other": [
+          "http://www.diecezja.pl/parafie/lista-parafii/krakow-centrum/kosciolsw-wojciecha-bm.html"
+        ],
+        "opening_hours": "Mo-Sa 09:00-17:00; Su 13:30-18:00",
+        "name_international": {
+          "be": "Касцёл Святога Войцеха",
+          "en": "St. Adalbert's church",
+          "es": "Iglesia de San Adalberto",
+          "hu": "Prágai Szent Adalbert templom",
+          "ko": "성 보치에하 성당"
+        },
+        "ref_other": {
+          "nid": "A-79;A-208/M"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q898260",
+          "wikipedia": "pl:Kościół św. Wojciecha w Krakowie (Rynek Główny)",
+          "image": "http://commons.wikimedia.org/wiki/File:Church_of_St_Adalbert,_2_Main_Market_square,Old_Town,Krakow,Poland.jpg"
+        },
+        "historic": {
+          "type": "church"
+        },
+        "heritage": {
+          "level": 2,
+          "operator": "nid",
+          "ref": "A-79;A-208/M"
+        },
+        "building": {
+          "type": "church",
+          "color": "silver"
+        },
+        "place_of_worship": {
+          "religion": "christian",
+          "denomination": "roman_catholic"
+        },
+        "place_id": "51098126f90ff0334059ae25ea30cb074940f00102f90149a4be01000000009203394b6fc59b6369c3b3c5822070772e20c59a7769c4997465676f20576f6a636965636861204269736b7570612069204dc499637a656e6e696b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.937743732357408,
+          50.060888399438554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Historyczne centrum Krakowa",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "district": "Old Town",
+        "iso3166_2": "PL-12",
+        "lon": 19.937330736723247,
+        "lat": 50.0560438,
+        "formatted": "Historic Centre of Kraków, Krakow, Old Town, Poland",
+        "address_line1": "Historic Centre of Kraków",
+        "address_line2": "Krakow, Old Town, Poland",
+        "categories": [
+          "heritage",
+          "heritage.unesco",
+          "natural",
+          "natural.protected_area",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details",
+          "details.heritage",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "url": "https://zabytek.pl/pl/obiekty/zabytek?inspire_id=PL.1.9.ZIPOZ.NID_N_12_UN.29&rejestr=swiatowe-dziedzictwo",
+            "name": "Historyczne centrum Krakowa",
+            "osm_id": -14348348,
+            "name:ar": "وسط كراكوفيا التاريخي",
+            "name:de": "Historisches Zentrum von Krakau",
+            "name:en": "Historic Centre of Kraków",
+            "name:es": "Centro histórico de Cracovia",
+            "name:fr": "Centre historique de Kraków",
+            "name:hu": "Krakkói óváros",
+            "name:ja": "クラクフ歴史地区",
+            "name:nl": "Historisch centrum van Krakau",
+            "name:pl": "Historyczne centrum Krakowa",
+            "name:ru": "Исторический центр Кракова",
+            "name:zh": "克拉科夫历史中心",
+            "ref:whc": "29bis",
+            "boundary": "protected_area",
+            "heritage": 1,
+            "historic": "district",
+            "osm_type": "r",
+            "wikidata": "Q652634",
+            "wikipedia": "pl:Stare Miasto w Krakowie",
+            "ref:inspire": "PL.1.9.ZIPOZ.NID_N_12_UN.29",
+            "whc:criteria": "(iv)",
+            "protect_class": 98,
+            "heritage:since": 1978,
+            "heritage:website": "https://whc.unesco.org/en/list/29/",
+            "heritage:operator": "whc",
+            "whc:inscription_date": 1978
+          }
+        },
+        "website": "https://zabytek.pl/pl/obiekty/zabytek?inspire_id=PL.1.9.ZIPOZ.NID_N_12_UN.29&rejestr=swiatowe-dziedzictwo",
+        "name_international": {
+          "ar": "وسط كراكوفيا التاريخي",
+          "de": "Historisches Zentrum von Krakau",
+          "en": "Historic Centre of Kraków",
+          "es": "Centro histórico de Cracovia",
+          "fr": "Centre historique de Kraków",
+          "hu": "Krakkói óváros",
+          "ja": "クラクフ歴史地区",
+          "nl": "Historisch centrum van Krakau",
+          "pl": "Historyczne centrum Krakowa",
+          "ru": "Исторический центр Кракова",
+          "zh": "克拉科夫历史中心"
+        },
+        "ref_other": {
+          "whc": "29bis",
+          "inspire": "PL.1.9.ZIPOZ.NID_N_12_UN.29"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q652634",
+          "wikipedia": "pl:Stare Miasto w Krakowie"
+        },
+        "historic": {
+          "type": "district"
+        },
+        "heritage": {
+          "level": 1,
+          "operator": "whc",
+          "website": "https://whc.unesco.org/en/list/29/",
+          "ref": "29bis",
+          "since": 1978,
+          "inscription_date": 1978
+        },
+        "place_id": "510ec33be8f4ef3340594ede76712c074940f00101f9013cf0da000000000092031b486973746f7279637a6e652063656e7472756d204b72616b6f7761"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.937330736723247,
+          50.05604379943962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rynek Główny",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-144",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "iso3166_2": "PL-12",
+        "lon": 19.937106905856538,
+        "lat": 50.0615174,
+        "formatted": "Main Square, 31-144 Krakow, Poland",
+        "address_line1": "Main Square",
+        "address_line2": "31-144 Krakow, Poland",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.sights",
+          "tourism.sights.square"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Rynek Główny",
+            "place": "square",
+            "osm_id": 201133718,
+            "name:be": "Галоўны рынак",
+            "name:de": "Hauptmarkt",
+            "name:en": "Main Square",
+            "name:es": "Plaza del Mercado",
+            "name:hu": "Főpiac tér (Rynek Główny)",
+            "name:ko": "리네크 글루프니",
+            "name:pl": "Rynek Główny",
+            "name:tr": "ana meydan",
+            "name:uk": "Площа Ринок",
+            "name:zh": "中央集市廣場",
+            "tourism": "attraction",
+            "historic": "square",
+            "osm_type": "w",
+            "wikidata": "Q770631",
+            "wikipedia": "pl:Rynek Główny w Krakowie",
+            "short_name": "Rynek",
+            "wikimedia_commons": "Category:Old Town Market Square in Kraków"
+          }
+        },
+        "name_other": {
+          "short_name": "Rynek"
+        },
+        "name_international": {
+          "be": "Галоўны рынак",
+          "de": "Hauptmarkt",
+          "en": "Main Square",
+          "es": "Plaza del Mercado",
+          "hu": "Főpiac tér (Rynek Główny)",
+          "ko": "리네크 글루프니",
+          "pl": "Rynek Główny",
+          "tr": "ana meydan",
+          "uk": "Площа Ринок",
+          "zh": "中央集市廣場"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q770631",
+          "wikipedia": "pl:Rynek Główny w Krakowie",
+          "wikimedia_commons": "Category:Old Town Market Square in Kraków"
+        },
+        "historic": {
+          "type": "square"
+        },
+        "place_id": "517382f93ce6ef3340598a5c59cddf074940f00102f901960efd0b0000000092030e52796e656b2047c582c3b3776e79"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.937106905856535,
+          50.061517399438415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Pod Jaszczurką",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.938299384512618,
+        "lat": 50.06073605,
+        "formatted": "Kamienica Pod Jaszczurką, Pasaż Bielaka, 31-042 Krakow, Poland",
+        "address_line1": "Kamienica Pod Jaszczurką",
+        "address_line2": "Pasaż Bielaka, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Pod Jaszczurką",
+            "height": 25,
+            "osm_id": 39365377,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734150",
+            "wikipedia": "pl:Kamienica Pod Jaszczurką w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#faf0e6",
+            "building:levels": 4,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "Category:Pod Jaszczurami House in Kraków"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734150",
+          "wikipedia": "pl:Kamienica Pod Jaszczurką w Krakowie",
+          "wikimedia_commons": "Category:Pod Jaszczurami House in Kraków"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 4,
+          "material": "plaster",
+          "color": "#faf0e6",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 30,
+        "place_id": "51b456726334f03340597303e932c6074940f00102f90101ab5802000000009203194b616d69656e69636120506f64204a61737a637a75726bc485"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938299384512632,
+          50.06073604943858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Bonerowska",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-006",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.938244852464784,
+        "lat": 50.06067365,
+        "formatted": "Kamienica Bonerowska, Pasaż Bielaka, 31-006 Krakow, Poland",
+        "address_line1": "Kamienica Bonerowska",
+        "address_line2": "Pasaż Bielaka, 31-006 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Bonerowska",
+            "height": 25,
+            "osm_id": 39365378,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734004",
+            "wikipedia": "pl:Kamienica Bonerowska w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 4,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:KamienicaBonerowska-RynekGłówny-POL, Kraków.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734004",
+          "wikipedia": "pl:Kamienica Bonerowska w Krakowie",
+          "wikimedia_commons": "File:KamienicaBonerowska-RynekGłówny-POL, Kraków.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 4,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 31,
+        "place_id": "51f4f98cd030f0334059ae087627c4074940f00102f90102ab5802000000009203144b616d69656e69636120426f6e65726f77736b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938244852464734,
+          50.06067364943861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Pod Złotym Karpiem",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.93817542786247,
+        "lat": 50.060583550000004,
+        "formatted": "Kamienica Pod Złotym Karpiem, Pasaż Bielaka, 31-042 Krakow, Poland",
+        "address_line1": "Kamienica Pod Złotym Karpiem",
+        "address_line2": "Pasaż Bielaka, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Pod Złotym Karpiem",
+            "osm_id": 858335310,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734170",
+            "wikipedia": "pl:Kamienica Pod Złotym Karpiem w Krakowie",
+            "wikimedia_commons": "File:KamienicaPodZłotymKarpiem-POL, Kraków.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734170",
+          "wikipedia": "pl:Kamienica Pod Złotym Karpiem w Krakowie",
+          "wikimedia_commons": "File:KamienicaPodZłotymKarpiem-POL, Kraków.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "distance": 32,
+        "place_id": "518194cc432cf0334059d8c1a533c1074940f00102f9014e2829330000000092031d4b616d69656e69636120506f64205ac5826f74796d204b61727069656d"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938175427862465,
+          50.060583549438604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dom Włoski",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "housenumber": "7",
+        "iso3166_2": "PL-12",
+        "lon": 19.938632117910778,
+        "lat": 50.0608326,
+        "formatted": "Dom Włoski, Main Square 7, 31-042 Krakow, Poland",
+        "address_line1": "Dom Włoski",
+        "address_line2": "Main Square 7, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Dom Włoski",
+            "height": 25,
+            "osm_id": 39365376,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q6092791",
+            "addr:city": "Kraków",
+            "wikipedia": "pl:Dom Włoski w Krakowie",
+            "roof:shape": "gabled",
+            "addr:street": "Rynek Główny",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "addr:country": "PL",
+            "addr:postcode": "31-042",
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 4,
+            "addr:housenumber": 7,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Dom Włoski.JPG"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q6092791",
+          "wikipedia": "pl:Dom Włoski w Krakowie",
+          "wikimedia_commons": "File:Dom Włoski.JPG"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 4,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 35,
+        "place_id": "51e866c9314af0334059428fd45cc9074940f00102f90100ab58020000000092030b446f6d2057c5826f736b69"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.93863211791077,
+          50.06083259943854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dom Wenecki",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.938307658224208,
+        "lat": 50.060474549999995,
+        "formatted": "Dom Wenecki, Pasaż Bielaka, 31-042 Krakow, Poland",
+        "address_line1": "Dom Wenecki",
+        "address_line2": "Pasaż Bielaka, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "building.residential",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Dom Wenecki",
+            "osm_id": 858335311,
+            "alt_name": "Pod Karpiem Szarym",
+            "building": "house",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q9209454",
+            "wikipedia": "pl:Dom Wenecki w Krakowie",
+            "wikimedia_commons": "File:Dom Wenecki.JPG"
+          }
+        },
+        "name_other": {
+          "alt_name": "Pod Karpiem Szarym"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q9209454",
+          "wikipedia": "pl:Dom Wenecki w Krakowie",
+          "wikimedia_commons": "File:Dom Wenecki.JPG"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "type": "house"
+        },
+        "distance": 37,
+        "place_id": "51c6a841ee34f0334059250a4aa1bd074940f00102f9014f2829330000000092030b446f6d2057656e65636b69"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938307658224197,
+          50.06047454943863
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Teatr 38",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "housenumber": "8",
+        "iso3166_2": "PL-12",
+        "lon": 19.9382486,
+        "lat": 50.0608041,
+        "formatted": "Teatr 38, Main Square 8, 31-042 Krakow, Poland",
+        "address_line1": "Teatr 38",
+        "address_line2": "Main Square 8, 31-042 Krakow, Poland",
+        "categories": [
+          "entertainment",
+          "entertainment.culture",
+          "entertainment.culture.theatre"
+        ],
+        "details": [
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Teatr 38",
+            "osm_id": 475613660,
+            "amenity": "theatre",
+            "osm_type": "n",
+            "wikidata": "Q9356004",
+            "addr:city": "Kraków",
+            "wikipedia": "pl:Teatr 38",
+            "addr:street": "Rynek Główny",
+            "addr:country": "PL",
+            "addr:housenumber": 8
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q9356004",
+          "wikipedia": "pl:Teatr 38"
+        },
+        "distance": 42,
+        "place_id": "518e846c0f31f03340599246c16dc8074940f00103f901dc49591c000000009203085465617472203338"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.9382486,
+          50.060804099438556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Hetmańska",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-005",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.937153410238945,
+        "lat": 50.060513799999995,
+        "formatted": "Kamienica Hetmańska, Main Square, 31-005 Krakow, Poland",
+        "address_line1": "Kamienica Hetmańska",
+        "address_line2": "Main Square, 31-005 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Hetmańska",
+            "height": 25,
+            "osm_id": 39365389,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734076",
+            "wikipedia": "pl:Kamienica Hetmańska w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 3.5,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Hetmańska House, 17 Main Market square, Old Town, Kraków, Poland.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734076",
+          "wikipedia": "pl:Kamienica Hetmańska w Krakowie",
+          "wikimedia_commons": "File:Hetmańska House, 17 Main Market square, Old Town, Kraków, Poland.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 3.5,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 44,
+        "place_id": "51a84f3049e9ef334059d5c58aeabe074940f00102f9010dab5802000000009203144b616d69656e696361204865746d61c584736b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.93715341023895,
+          50.06051379943862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Pod Obrazem",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-005",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.936945667089198,
+        "lat": 50.06065045,
+        "formatted": "Kamienica Pod Obrazem, Main Square, 31-005 Krakow, Poland",
+        "address_line1": "Kamienica Pod Obrazem",
+        "address_line2": "Main Square, 31-005 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Pod Obrazem",
+            "height": 25,
+            "osm_id": 39365387,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734158",
+            "wikipedia": "pl:Kamienica Pod Obrazem w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 5,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "Category:Wentzl Hotel and Restaurant in Kraków"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734158",
+          "wikipedia": "pl:Kamienica Pod Obrazem w Krakowie",
+          "wikimedia_commons": "Category:Wentzl Hotel and Restaurant in Kraków"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 5,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 44,
+        "place_id": "51e846d6abdbef334059c969d864c3074940f00102f9010bab5802000000009203154b616d69656e69636120506f64204f6272617a656d"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.93694566708919,
+          50.06065044943859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Szara Kamienica",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Sienna",
+        "iso3166_2": "PL-12",
+        "lon": 19.938527867391027,
+        "lat": 50.0610704,
+        "formatted": "Szara Kamienica, Sienna, 31-042 Krakow, Poland",
+        "address_line1": "Szara Kamienica",
+        "address_line2": "Sienna, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details",
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Szara Kamienica",
+            "height": 20,
+            "osm_id": 39365375,
+            "website": "https://www.szarakamienica.pl/",
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q9350825",
+            "wikipedia": "pl:Szara Kamienica w Krakowie",
+            "roof:shape": "flat",
+            "roof:colour": "grey",
+            "building:colour": "#f5f5f5",
+            "building:levels": 4,
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Szara (Grey) house, 6 Main Market Square,Old Town, Krakow,Poland.jpg"
+          }
+        },
+        "website": "https://www.szarakamienica.pl/",
+        "wiki_and_media": {
+          "wikidata": "Q9350825",
+          "wikipedia": "pl:Szara Kamienica w Krakowie",
+          "wikimedia_commons": "File:Szara (Grey) house, 6 Main Market Square,Old Town, Krakow,Poland.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 4,
+          "material": "plaster",
+          "color": "#f5f5f5",
+          "height": 20,
+          "roof": {
+            "shape": "flat",
+            "color": "grey"
+          }
+        },
+        "distance": 45,
+        "place_id": "513fd4c05c43f0334059c82ba427d1074940f00102f901ffaa58020000000092030f537a617261204b616d69656e696361"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938527867391027,
+          50.061070399438506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Fontanowska",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.938117969189655,
+        "lat": 50.060367850000006,
+        "formatted": "Kamienica Fontanowska, Pasaż Bielaka, 31-042 Krakow, Poland",
+        "address_line1": "Kamienica Fontanowska",
+        "address_line2": "Pasaż Bielaka, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Fontanowska",
+            "height": 25,
+            "osm_id": 39365381,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734051",
+            "wikipedia": "pl:Kamienica Fontanowska w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#faf0e6",
+            "building:levels": 5,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Fontanowska House, 12 Main Market Square, Old Town, Krakow, Poland.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734051",
+          "wikipedia": "pl:Kamienica Fontanowska w Krakowie",
+          "wikimedia_commons": "File:Fontanowska House, 12 Main Market Square, Old Town, Krakow, Poland.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 5,
+          "material": "plaster",
+          "color": "#faf0e6",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 46,
+        "place_id": "51a075cd7f28f0334059d2883922ba074940f00102f90105ab5802000000009203154b616d69656e69636120466f6e74616e6f77736b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938117969189648,
+          50.06036784943866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CONNAISSEUR Salon Dzieł Sztuki",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-041",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Pasaż Bielaka",
+        "iso3166_2": "PL-12",
+        "lon": 19.9383329,
+        "lat": 50.0608531,
+        "formatted": "CONNAISSEUR Art Gallery, Pasaż Bielaka, 31-041 Krakow, Poland",
+        "address_line1": "CONNAISSEUR Art Gallery",
+        "address_line2": "Pasaż Bielaka, 31-041 Krakow, Poland",
+        "categories": [
+          "entertainment",
+          "entertainment.culture",
+          "entertainment.culture.gallery"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "CONNAISSEUR Salon Dzieł Sztuki",
+            "osm_id": 10995246106,
+            "name:en": "CONNAISSEUR Art Gallery",
+            "tourism": "gallery",
+            "website": "https://koneser.krakow.pl/pl",
+            "osm_type": "n",
+            "addr:postcode": "31-041",
+            "opening_hours": "Mo-Fr 10:00-18:00; Sa 11:00-14:00"
+          }
+        },
+        "website": "https://koneser.krakow.pl/pl",
+        "opening_hours": "Mo-Fr 10:00-18:00; Sa 11:00-14:00",
+        "name_international": {
+          "en": "CONNAISSEUR Art Gallery"
+        },
+        "distance": 47,
+        "place_id": "51c542be9536f03340596ff9cb08ca074940f00103f9011a245e8f0200000092031f434f4e4e414953534555522053616c6f6e20447a6965c58220537a74756b69"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938332899999995,
+          50.060853099438525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pałac Zbaraskich",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-005",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Bracka",
+        "iso3166_2": "PL-12",
+        "lon": 19.93671602684276,
+        "lat": 50.0607024,
+        "formatted": "Pałac Zbaraskich, Bracka, 31-005 Krakow, Poland",
+        "address_line1": "Pałac Zbaraskich",
+        "address_line2": "Bracka, 31-005 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.castle"
+        ],
+        "details": [
+          "details.building",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Pałac Zbaraskich",
+            "height": 22,
+            "osm_id": -2702585,
+            "building": "yes",
+            "historic": "castle",
+            "osm_type": "r",
+            "wikidata": "Q11814892",
+            "wikipedia": "pl:Pałac Zbaraskich w Krakowie",
+            "roof:shape": "gabled",
+            "castle_type": "stately",
+            "roof:colour": "grey",
+            "roof:height": 2,
+            "roof:material": "tiles",
+            "building:colour": "#faf0e6",
+            "building:levels": 4,
+            "roof:orientation": "along",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Pałac Zbaraskich, Kraków.JPG"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11814892",
+          "wikipedia": "pl:Pałac Zbaraskich w Krakowie",
+          "wikimedia_commons": "File:Pałac Zbaraskich, Kraków.JPG"
+        },
+        "historic": {
+          "type": "castle",
+          "castle_type": "stately"
+        },
+        "building": {
+          "levels": 4,
+          "material": "plaster",
+          "color": "#faf0e6",
+          "height": 22,
+          "roof": {
+            "shape": "gabled",
+            "height": 2,
+            "color": "grey",
+            "orientation": "along"
+          }
+        },
+        "distance": 56,
+        "place_id": "51b6ed1c9fccef3340595230a218c5074940f00101f901f93c2900000000009203115061c5826163205a62617261736b696368"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.936716026842724,
+          50.0607023994386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Pinocińska",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-006",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.93728484641791,
+        "lat": 50.060233249999996,
+        "formatted": "Kamienica Pinocińska, Main Square, 31-006 Krakow, Poland",
+        "address_line1": "Kamienica Pinocińska",
+        "address_line2": "Main Square, 31-006 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Pinocińska",
+            "height": 25,
+            "osm_id": 39365391,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734137",
+            "wikipedia": "pl:Kamienica Pinocińska w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 4,
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 6,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Kamienica Pinocińska, Kraków.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734137",
+          "wikipedia": "pl:Kamienica Pinocińska w Krakowie",
+          "wikimedia_commons": "File:Kamienica Pinocińska, Kraków.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 6,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 4,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 61,
+        "place_id": "51be6652e6f1ef334059493c1eb9b5074940f00102f9010fab5802000000009203154b616d69656e6963612050696e6f6369c584736b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.937284846417917,
+          50.06023324943869
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Adam Mickiewicz",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.93799022,
+        "lat": 50.0614663,
+        "formatted": "Adam Mickiewicz Monument, Main Square, 31-042 Krakow, Poland",
+        "address_line1": "Adam Mickiewicz Monument",
+        "address_line2": "Main Square, 31-042 Krakow, Poland",
+        "categories": [
+          "tourism",
+          "tourism.sights",
+          "tourism.sights.memorial"
+        ],
+        "details": [
+          "details",
+          "details.artwork",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Adam Mickiewicz",
+            "height": 10,
+            "osm_id": 374515883,
+            "name:be": "Адам Міцкевіч",
+            "name:de": "Adam-Mickiewicz-Denkmal",
+            "name:en": "Adam Mickiewicz Monument",
+            "name:hu": "Adam Mickiewicz-emlékmű",
+            "name:pl": "Adam Mickiewicz",
+            "name:ru": "Адам Мицкевич",
+            "historic": "memorial",
+            "loc_name": "Adaś",
+            "material": "metal",
+            "memorial": "statue",
+            "monument": "statue",
+            "osm_type": "w",
+            "wikidata": "Q348381",
+            "wikipedia": "pl:Pomnik Adama Mickiewicza w Krakowie",
+            "start_date": 1898,
+            "artist_name": "Teodor Rygier",
+            "inscription": "Adamowi Mickiewiczowi Naród.",
+            "subject:wikidata": "Q79822",
+            "subject:wikipedia": "pl:Adam Mickiewicz",
+            "wikimedia_commons": "File:Kraków - Pomnik Adama Mickiewicza.jpg"
+          }
+        },
+        "name_other": {
+          "loc_name": "Adaś"
+        },
+        "name_international": {
+          "be": "Адам Міцкевіч",
+          "de": "Adam-Mickiewicz-Denkmal",
+          "en": "Adam Mickiewicz Monument",
+          "hu": "Adam Mickiewicz-emlékmű",
+          "pl": "Adam Mickiewicz",
+          "ru": "Адам Мицкевич"
+        },
+        "wiki_and_media": {
+          "wikidata": "Q348381",
+          "wikipedia": "pl:Pomnik Adama Mickiewicza w Krakowie",
+          "wikimedia_commons": "File:Kraków - Pomnik Adama Mickiewicza.jpg"
+        },
+        "historic": {
+          "type": "memorial",
+          "start_date": 1898,
+          "memorial": "statue",
+          "inscription": "Adamowi Mickiewiczowi Naród."
+        },
+        "artwork": {
+          "artist_name": "Teodor Rygier",
+          "start_date": 1898
+        },
+        "distance": 61,
+        "place_id": "512ade862020f033405970f2b020de074940f00102f901aba852160000000092030f4164616d204d69636b69657769637a"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.937990219999996,
+          50.06146629943839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Płyta upamiętniająca Hołd Pruski 1525 roku",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-005",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Main Square",
+        "iso3166_2": "PL-12",
+        "lon": 19.936887163470512,
+        "lat": 50.061145749999994,
+        "formatted": "Płyta upamiętniająca Hołd Pruski 1525 roku, Main Square, 31-005 Krakow, Poland",
+        "address_line1": "Płyta upamiętniająca Hołd Pruski 1525 roku",
+        "address_line2": "Main Square, 31-005 Krakow, Poland",
+        "categories": [
+          "tourism",
+          "tourism.attraction",
+          "tourism.sights",
+          "tourism.sights.memorial",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities",
+          "details.historic",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Płyta upamiętniająca Hołd Pruski 1525 roku",
+            "osm_id": 243382726,
+            "name:hu": "Az 1525-ös porosz hűbéreskü emléklapja",
+            "tourism": "attraction",
+            "historic": "memorial",
+            "memorial": "plaque",
+            "osm_type": "w",
+            "wheelchair": "yes",
+            "opening_hours": "24/7",
+            "subject:wikidata": "Q7253161",
+            "subject:wikipedia": "pl:Hołd pruski 1525",
+            "wikimedia_commons": "File:Hołd Pruski 1525.jpg"
+          }
+        },
+        "opening_hours": "24/7",
+        "name_international": {
+          "hu": "Az 1525-ös porosz hűbéreskü emléklapja"
+        },
+        "facilities": {
+          "wheelchair": true
+        },
+        "wiki_and_media": {
+          "wikimedia_commons": "File:Hołd Pruski 1525.jpg"
+        },
+        "historic": {
+          "type": "memorial",
+          "memorial": "plaque"
+        },
+        "distance": 63,
+        "place_id": "51e8254fd6d7ef3340595a10b99fd3074940f00102f901c6b9810e0000000092032e50c582797461207570616d69c499746e69616ac485636120486fc5826420507275736b69203135323520726f6b75"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.936887163470516,
+          50.061145749438495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Pod Złotą Głową",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-006",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Grodzka",
+        "iso3166_2": "PL-12",
+        "lon": 19.93828606154225,
+        "lat": 50.06012445,
+        "formatted": "Kamienica Pod Złotą Głową, Grodzka, 31-006 Krakow, Poland",
+        "address_line1": "Kamienica Pod Złotą Głową",
+        "address_line2": "Grodzka, 31-006 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Pod Złotą Głową",
+            "height": 25,
+            "osm_id": 39365382,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "w",
+            "wikidata": "Q11734172",
+            "wikipedia": "pl:Kamienica Pod Złotą Głową w Krakowie",
+            "roof:shape": "gabled",
+            "roof:colour": "grey",
+            "roof:height": 3,
+            "roof:material": "tiles",
+            "building:colour": "#ffe4c4",
+            "building:levels": 5,
+            "roof:orientation": "across",
+            "building:material": "plaster",
+            "wikimedia_commons": "File:Pod Zlota Glowa house, 13 Main Market Square,Old Town, Krakow,Poland.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734172",
+          "wikipedia": "pl:Kamienica Pod Złotą Głową w Krakowie",
+          "wikimedia_commons": "File:Pod Zlota Glowa house, 13 Main Market Square,Old Town, Krakow,Poland.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 5,
+          "material": "plaster",
+          "color": "#ffe4c4",
+          "height": 25,
+          "roof": {
+            "shape": "gabled",
+            "height": 3,
+            "color": "grey",
+            "orientation": "across"
+          }
+        },
+        "distance": 65,
+        "place_id": "51d59dec8333f0334059c1037028b2074940f00102f90106ab58020000000092031d4b616d69656e69636120506f64205ac5826f74c4852047c5826f77c485"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.938286061542232,
+          50.060124449438725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamienica Bidermanowska",
+        "country": "Poland",
+        "country_code": "pl",
+        "state": "Lesser Poland Voivodeship",
+        "city": "Krakow",
+        "postcode": "31-042",
+        "district": "Old Town",
+        "suburb": "Stare Miasto",
+        "quarter": "Old Town",
+        "street": "Sienna",
+        "iso3166_2": "PL-12",
+        "lon": 19.93881931937622,
+        "lat": 50.061249450000005,
+        "formatted": "Kamienica Bidermanowska, Sienna, 31-042 Krakow, Poland",
+        "address_line1": "Kamienica Bidermanowska",
+        "address_line2": "Sienna, 31-042 Krakow, Poland",
+        "categories": [
+          "building",
+          "building.historic",
+          "tourism",
+          "tourism.sights"
+        ],
+        "details": [
+          "details.building",
+          "details.wiki_and_media"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database License",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Kamienica Bidermanowska",
+            "height": 20,
+            "osm_id": -3278345,
+            "building": "yes",
+            "historic": "house",
+            "osm_type": "r",
+            "wikidata": "Q11734003",
+            "wikipedia": "pl:Kamienica Bidermanowska w Krakowie",
+            "roof:material": "copper",
+            "building:colour": "#f5f5f5",
+            "building:levels": 6,
+            "building:material": "stone",
+            "wikimedia_commons": "File:Bidermanowska house, 5 Main Market Square,Old Town, Krakow,Poland.jpg"
+          }
+        },
+        "wiki_and_media": {
+          "wikidata": "Q11734003",
+          "wikipedia": "pl:Kamienica Bidermanowska w Krakowie",
+          "wikimedia_commons": "File:Bidermanowska house, 5 Main Market Square,Old Town, Krakow,Poland.jpg"
+        },
+        "historic": {
+          "type": "house"
+        },
+        "building": {
+          "levels": 6,
+          "material": "stone",
+          "color": "#f5f5f5",
+          "height": 20
+        },
+        "distance": 75,
+        "place_id": "51ea92817656f03340593c1e9f05d7074940f00101f90109063200000000009203174b616d69656e6963612042696465726d616e6f77736b61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.93881931937623,
+          50.06124944943846
+        ]
+      }
+    }
+  ]
+}
