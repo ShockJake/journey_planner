@@ -2,18 +2,14 @@ import axios, { AxiosError } from "axios";
 import { writable } from "svelte/store";
 import { baseUrl } from "./server.ts";
 import { logout } from "./authentication.ts";
+import type UserDataResult from "$lib/types/UserDataResult.ts";
 
 export const username = writable("");
 
-export interface UserDataResult {
-    username: string,
-    routesCreated: number,
-    error: string | null;
-}
-
 export async function getUserData(): Promise<UserDataResult> {
     try {
-        const response = await axios.get(`${baseUrl()}/user`)
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${baseUrl()}/user`, { headers: { "Authorization": `Bearer ${token}` } });
         if (response.status !== 200) {
             return { username: "", routesCreated: 0, error: response.data.message }
         }

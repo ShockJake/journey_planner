@@ -52,7 +52,6 @@ export async function login(username: string, password: string): Promise<string>
             }
         }
     } catch (error: AxiosError | any) {
-        console.log(error);
         if (error.status === 404) {
             return "Cannot login, try again...";
         }
