@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     @Override
-    public PlacesResponse getData(Map<String, String> input) {
+    public PlacesResponse getData(Map<String, Object> input) {
         return null;
     }
 }

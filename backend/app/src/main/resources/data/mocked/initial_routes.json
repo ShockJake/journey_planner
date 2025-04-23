@@ -1,0 +1,588 @@
+{
+  "routes": [
+    {
+      "city": "Kraków",
+      "name": "Royal Kraków: Tracing the Kings’ Steps",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/20091114_Krakow_Wawel_7770.jpg/2880px-20091114_Krakow_Wawel_7770.jpg",
+      "description": "This classic route takes you along Kraków’s Royal Road — a ceremonial path once used by kings for coronations, parades, and funerals. It highlights the architectural grandeur and rich medieval history of the former capital of Poland.",
+      "places": [
+        {
+          "name": "Barbakan Krakowski",
+          "type": "CASTLE",
+          "coordinates": [
+            50.0653,
+            19.9402
+          ]
+        },
+        {
+          "name": "St. Florian’s Gate",
+          "type": "OLD",
+          "coordinates": [
+            50.0646,
+            19.943
+          ]
+        },
+        {
+          "name": "Floriańska Street",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0645,
+            19.9445
+          ]
+        },
+        {
+          "name": "Main Market Square (Rynek Główny)",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0617,
+            19.9379
+          ]
+        },
+        {
+          "name": "St. Mary’s Basilica",
+          "type": "CHURCH",
+          "coordinates": [
+            50.0615,
+            19.9382
+          ]
+        },
+        {
+          "name": "Cloth Hall (Sukiennice)",
+          "type": "STORE",
+          "coordinates": [
+            50.0616,
+            19.9373
+          ]
+        },
+        {
+          "name": "Collegium Maius",
+          "type": "UNIVERSITY",
+          "coordinates": [
+            50.061,
+            19.9339
+          ]
+        },
+        {
+          "name": "Grodzka Street",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0588,
+            19.9365
+          ]
+        },
+        {
+          "name": "Church of Saints Peter and Paul",
+          "type": "CHURCH",
+          "coordinates": [
+            50.0573,
+            19.9373
+          ]
+        },
+        {
+          "name": "Wawel Castle & Cathedral",
+          "type": "CASTLE",
+          "coordinates": [
+            50.0543,
+            19.9366
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Kraków",
+      "name": "Mystical Kraków: Legends and Hidden Corners",
+      "imageUrl": "https://notesfrompoland.com/wp-content/uploads/2023/03/smok-wawelski-dragon-in-krakowa-980x562.jpg",
+      "description": "Dive into Kraków’s folklore, exploring eerie legends, alchemical tales, and hidden magical sites that give the city its mystical soul — perfect for those who love myths and secrets.",
+      "places": [
+        {
+          "name": "Dragon’s Den (Smocza Jama)",
+          "type": "OLD",
+          "coordinates": [
+            50.0533,
+            19.9355
+          ]
+        },
+        {
+          "name": "Wawel Chakra Stone",
+          "type": "MAGICK",
+          "coordinates": [
+            50.0544,
+            19.9364
+          ]
+        },
+        {
+          "name": "Kanonicza Street",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0565,
+            19.9374
+          ]
+        },
+        {
+          "name": "Church of St. Andrew",
+          "type": "CHURCH",
+          "coordinates": [
+            50.0576,
+            19.9372
+          ]
+        },
+        {
+          "name": "The Alchemist’s House",
+          "type": "BUILDING",
+          "coordinates": [
+            50.0619,
+            19.9388
+          ]
+        },
+        {
+          "name": "Eros Bendato Sculpture",
+          "type": "OLD",
+          "coordinates": [
+            50.0619,
+            19.9379
+          ]
+        },
+        {
+          "name": "Plac Szczepański",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0633,
+            19.9338
+          ]
+        },
+        {
+          "name": "Józefa Street (Kazimierz)",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.0503,
+            19.9441
+          ]
+        },
+        {
+          "name": "Old Synagogue (Kazimierz)",
+          "type": "MUSEUM",
+          "coordinates": [
+            50.0512,
+            19.948
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Wrocław",
+      "name": "Wrocław’s Gnome Hunt",
+      "imageUrl": "https://images.squarespace-cdn.com/content/v1/521b01b3e4b0d3a6b0c90db0/1423518653389-37F682D033SMZNI0KJCL/Three+blind+gnomes",
+      "description": "Get to know Wrocław in a playful way by hunting for its famous gnomes (krasnale). These tiny bronze sculptures are scattered throughout the city and reflect local life, humor, and history.",
+      "places": [
+        {
+          "name": "Papa Krasnal",
+          "type": "OLD",
+          "coordinates": [
+            51.1096,
+            17.0312
+          ]
+        },
+        {
+          "name": "Prisoner Gnome",
+          "type": "OLD",
+          "coordinates": [
+            51.1073,
+            17.0328
+          ]
+        },
+        {
+          "name": "Firefighter Gnomes",
+          "type": "OLD",
+          "coordinates": [
+            51.1076,
+            17.0336
+          ]
+        },
+        {
+          "name": "Arcik and W-skers",
+          "type": "OLD",
+          "coordinates": [
+            51.1089,
+            17.0322
+          ]
+        },
+        {
+          "name": "Banking Gnome",
+          "type": "OLD",
+          "coordinates": [
+            51.1081,
+            17.0311
+          ]
+        },
+        {
+          "name": "Tourist Gnome Info Point",
+          "type": "INFO",
+          "coordinates": [
+            51.1092,
+            17.0306
+          ]
+        },
+        {
+          "name": "Bookworm Gnome",
+          "type": "OLD",
+          "coordinates": [
+            51.114,
+            17.0332
+          ]
+        },
+        {
+          "name": "Sisyphus Gnomes",
+          "type": "OLD",
+          "coordinates": [
+            51.1095,
+            17.0309
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Wrocław",
+      "name": "Bridges and Islands: Waterworld Wrocław",
+      "imageUrl": "https://prezentokracja.pl/media/catalog/category/Wroclaw-prezenty-atrakcje_3.jpg",
+      "description": "Explore Wrocław’s intimate relationship with the Oder River as you cross historic bridges, walk riverbanks, and visit islands rich in history and nature.",
+      "places": [
+        {
+          "name": "Tumski Bridge",
+          "type": "DEFAULT",
+          "coordinates": [
+            51.1152,
+            17.0467
+          ]
+        },
+        {
+          "name": "Ostrów Tumski",
+          "type": "DEFAULT",
+          "coordinates": [
+            51.1165,
+            17.0465
+          ]
+        },
+        {
+          "name": "Botanical Garden",
+          "type": "PARK",
+          "coordinates": [
+            51.1173,
+            17.0476
+          ]
+        },
+        {
+          "name": "Piasek Island",
+          "type": "DEFAULT",
+          "coordinates": [
+            51.1139,
+            17.0458
+          ]
+        },
+        {
+          "name": "University Bridge",
+          "type": "DEFAULT",
+          "coordinates": [
+            51.115,
+            17.039
+          ]
+        },
+        {
+          "name": "Sand Bridge (Most Piaskowy)",
+          "type": "DEFAULT",
+          "coordinates": [
+            51.1144,
+            17.044
+          ]
+        },
+        {
+          "name": "Nadodrze District Street Art",
+          "type": "OLD",
+          "coordinates": [
+            51.1193,
+            17.042
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Warszawa",
+      "name": "Chopin’s Warsaw: Music and Memory",
+      "imageUrl": "https://warsawconvention.pl/wp-content/uploads/2020/04/NIFC_20200608_0191.jpeg",
+      "description": "Discover Warsaw through the lens of its musical genius, Frédéric Chopin. This route traces his footsteps from childhood to legacy in the city that shaped him.",
+      "places": [
+        {
+          "name": "Chopin Museum",
+          "type": "MUSEUM",
+          "coordinates": [
+            52.2414,
+            21.0234
+          ]
+        },
+        {
+          "name": "Holy Cross Church",
+          "type": "CHURCH",
+          "coordinates": [
+            52.2396,
+            21.0156
+          ]
+        },
+        {
+          "name": "Saxon Garden",
+          "type": "PARK",
+          "coordinates": [
+            52.2405,
+            21.0086
+          ]
+        },
+        {
+          "name": "Palace on the Isle (Łazienki Park)",
+          "type": "PARK",
+          "coordinates": [
+            52.2144,
+            21.0385
+          ]
+        },
+        {
+          "name": "Kazimierzowski Palace",
+          "type": "CASTLE",
+          "coordinates": [
+            52.2404,
+            21.0189
+          ]
+        },
+        {
+          "name": "University of Warsaw Gate",
+          "type": "UNIVERSITY",
+          "coordinates": [
+            52.2402,
+            21.0176
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Warszawa",
+      "name": "Warsaw Uprising: A Path of Resistance",
+      "imageUrl": "https://cdn.britannica.com/68/194568-050-28909058/monument-Warsaw-Uprising-Poland.jpg",
+      "description": "Follow the trail of the brave resistance fighters of the Warsaw Uprising of 1944. This emotional and educational route takes you through important sites of courage, remembrance, and tragedy from WWII.",
+      "places": [
+        {
+          "name": "Warsaw Uprising Museum",
+          "type": "MUSEUM",
+          "coordinates": [
+            52.2326,
+            20.9824
+          ]
+        },
+        {
+          "name": "Monument to the Warsaw Uprising",
+          "type": "OLD",
+          "coordinates": [
+            52.2473,
+            21.0082
+          ]
+        },
+        {
+          "name": "Krasinski Square",
+          "type": "DEFAULT",
+          "coordinates": [
+            52.2472,
+            21.0089
+          ]
+        },
+        {
+          "name": "Field Cathedral of the Polish Army",
+          "type": "CHURCH",
+          "coordinates": [
+            52.2461,
+            21.0084
+          ]
+        },
+        {
+          "name": "Pawiak Prison Museum",
+          "type": "MUSEUM",
+          "coordinates": [
+            52.2456,
+            20.9934
+          ]
+        },
+        {
+          "name": "Saxon Garden Tomb of the Unknown Soldier",
+          "type": "OLD",
+          "coordinates": [
+            52.2407,
+            21.0081
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Gdańsk",
+      "name": "Maritime Gdańsk: A Port Through the Ages",
+      "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/e2/4f/76/img-20180929-135311-largejpg.jpg?w=1200&h=-1&s=1",
+      "description": "Explore Gdańsk’s seafaring legacy through historic port architecture, shipyards, and maritime culture that played a pivotal role in Poland’s economy and identity.",
+      "places": [
+        {
+          "name": "Gdańsk Crane (Żuraw)",
+          "type": "WATER",
+          "coordinates": [
+            54.3496,
+            18.6584
+          ]
+        },
+        {
+          "name": "Maritime Museum",
+          "type": "MUSEUM",
+          "coordinates": [
+            54.3493,
+            18.66
+          ]
+        },
+        {
+          "name": "St. Mary’s Church",
+          "type": "CHURCH",
+          "coordinates": [
+            54.3499,
+            18.6522
+          ]
+        },
+        {
+          "name": "Long Market (Długi Targ)",
+          "type": "STORE",
+          "coordinates": [
+            54.3489,
+            18.6533
+          ]
+        },
+        {
+          "name": "Motława River Embankment",
+          "type": "VIEW",
+          "coordinates": [
+            54.3492,
+            18.6589
+          ]
+        },
+        {
+          "name": "Shipyard Gate and Monument to the Fallen Shipyard Workers",
+          "type": "OLD",
+          "coordinates": [
+            54.3601,
+            18.6491
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Gdańsk",
+      "name": "Solidarity and Freedom: Modern Polish History",
+      "imageUrl": "https://bartekwpodrozy.pl/wp-content/uploads/2024/06/gdansk-atrakcje-co-warto-zobaczyc-co-zwiedzic4-scaled.jpg",
+      "description": "Walk through modern Polish history and the birth of the Solidarity movement, exploring the roots of peaceful resistance that helped bring down communism in Eastern Europe.",
+      "places": [
+        {
+          "name": "European Solidarity Centre",
+          "type": "MUSEUM",
+          "coordinates": [
+            54.3602,
+            18.6466
+          ]
+        },
+        {
+          "name": "Monument to the Fallen Shipyard Workers",
+          "type": "OLD",
+          "coordinates": [
+            54.3601,
+            18.6491
+          ]
+        },
+        {
+          "name": "Gate No. 2 of Gdańsk Shipyard",
+          "type": "WATER",
+          "coordinates": [
+            54.3598,
+            18.6485
+          ]
+        },
+        {
+          "name": "BHP Hall",
+          "type": "BUILDING",
+          "coordinates": [
+            54.3593,
+            18.646
+          ]
+        },
+        {
+          "name": "Solidarity Square",
+          "type": "DEFAULT",
+          "coordinates": [
+            54.3601,
+            18.6476
+          ]
+        },
+        {
+          "name": "Nowy Port Lighthouse (optional extension)",
+          "type": "WATER",
+          "coordinates": [
+            54.4084,
+            18.6481
+          ]
+        }
+      ]
+    },
+    {
+      "city": "Katowice",
+      "name": "Industrial Soul of Katowice",
+      "imageUrl": "https://weekendowka.pl/wp-content/uploads/2022/04/DSC_1339.jpg",
+      "description": "Discover the industrial roots and modern transformation of Katowice — a city that evolved from coal and steel into a cultural and technological hub.",
+      "places": [
+        {
+          "name": "Nikiszowiec",
+          "type": "DEFAULT",
+          "coordinates": [
+            50.2412,
+            19.0718
+          ]
+        },
+        {
+          "name": "Silesian Museum",
+          "type": "MUSEUM",
+          "coordinates": [
+            50.2591,
+            19.0219
+          ]
+        },
+        {
+          "name": "Spodek Arena",
+          "type": "BUILDING",
+          "coordinates": [
+            50.2636,
+            19.0212
+          ]
+        },
+        {
+          "name": "Culture Zone (NOSPR, MCK)",
+          "type": "VIEW",
+          "coordinates": [
+            50.2632,
+            19.0228
+          ]
+        },
+        {
+          "name": "Valley of Three Ponds",
+          "type": "PARK",
+          "coordinates": [
+            50.2396,
+            19.0434
+          ]
+        },
+        {
+          "name": "Katowice Main Railway Station",
+          "type": "TRAIN",
+          "coordinates": [
+            50.2597,
+            19.0178
+          ]
+        }
+      ]
+    }
+  ]
+}

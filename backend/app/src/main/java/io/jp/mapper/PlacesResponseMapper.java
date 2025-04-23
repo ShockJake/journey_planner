@@ -3,8 +3,8 @@ package io.jp.mapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.database.entities.Place;
-import io.jp.database.entities.PlaceType;
+import io.jp.database.entities.route.PlaceJpa;
+import io.jp.database.entities.route.PlaceType;
 import io.jp.rest.response.PlacesResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -35,7 +35,7 @@ public class PlacesResponseMapper {
         }
     }
 
-    private Place mapToPlace(JsonNode node) {
+    private PlaceJpa mapToPlace(JsonNode node) {
         JsonNode properties = node.get("properties");
         var name = properties.get("name").asText();
         var longitude = properties.get("lon").asDouble();
@@ -48,12 +48,12 @@ public class PlacesResponseMapper {
         } catch (NullPointerException e) {
             log.error("Cannot find type for {}", name);
         }
-        return Place.builder()
+        return PlaceJpa.builder()
                 .name(name)
                 .longitude(longitude)
                 .latitude(latitude)
-                .firstAddressLine(firstAddressLine)
-                .secondAddressLine(secondAddressLine)
+//                .firstAddressLine(firstAddressLine)
+//                .secondAddressLine(secondAddressLine)
                 .type(PlaceType.valueOf(type))
                 .build();
     }

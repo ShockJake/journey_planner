@@ -1,31 +1,41 @@
 package io.jp.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.rest.provider.DataProvider;
-import io.jp.rest.response.PlacesResponse;
+import io.jp.api.dto.RouteOptimizationRequest;
+import io.jp.core.domain.OptimizedRoute;
+import io.jp.core.domain.Route;
+import io.jp.services.RouteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Map;
+
+import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/routes")
 @RequiredArgsConstructor
 public class RoutesAPI {
-    private final DataProvider<PlacesResponse> dataProvider;
-    private final ObjectMapper objectMapper;
+    private final RouteService routeService;
 
-    @GetMapping
-    public ResponseEntity<String> getRoutes() throws JsonProcessingException {
-        var places = dataProvider.getData(Map.of()).getPlaces();
-        log.info(places.toString());
-        var result = objectMapper.writeValueAsString(places);
-        log.info(result);
-        return ResponseEntity.ok(result);
+    @GetMapping("/predefined")
+    public ResponseEntity<List<Route>> getPredefinedRoutes() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(routeService.getPredefinedRoutes());
+    }
+
+    @PostMapping("/optimize")
+    public ResponseEntity<OptimizedRoute> optimizedRoute(@RequestBody RouteOptimizationRequest routeOptimizationRequest) {
+        var optimizedRoute = routeService.optimizeRoute(routeOptimizationRequest);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(optimizedRoute);
     }
 }

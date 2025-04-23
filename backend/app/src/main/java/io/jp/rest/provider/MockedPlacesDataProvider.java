@@ -19,7 +19,7 @@ public class MockedPlacesDataProvider implements DataProvider<PlacesResponse> {
     private final PlacesResponseMapper mapper;
 
     @Override
-    public PlacesResponse getData(Map<String, String> _ignored) {
+    public PlacesResponse getData(Map<String, Object> _ignored) {
         String data = Optional.ofNullable(this.getClass().getResourceAsStream("/data/mocked/PlacesAPI_response.json"))
                 .flatMap(this::readDataFromResource)
                 .orElseThrow(() -> new RuntimeException("No response from Places API "));

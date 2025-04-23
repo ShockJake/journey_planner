@@ -1,0 +1,29 @@
+package io.jp.services;
+
+import io.jp.core.domain.Route;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class CachedRouteProvider {
+    private static final Map<String, Route> CACHED_ROUTES = new HashMap<>();
+    private static final Object LOCK = new Object();
+
+    public static Route getCachedRoute(String routeName) {
+        synchronized (LOCK) {
+            return CACHED_ROUTES.get(routeName);
+        }
+    }
+
+    public static void putCachedRoute(String routeName, Route route) {
+        synchronized (LOCK) {
+            CACHED_ROUTES.put(routeName, route);
+        }
+    }
+
+    public static boolean isRouteCached(String routeName) {
+        synchronized (LOCK) {
+            return CACHED_ROUTES.containsKey(routeName);
+        }
+    }
+}

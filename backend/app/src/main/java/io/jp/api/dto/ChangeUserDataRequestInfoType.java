@@ -1,5 +1,5 @@
 package io.jp.api.dto;
 
-public enum ChangeUserDataInfoType {
+public enum ChangeUserDataRequestInfoType {
     USERNAME, PASSWORD
 }
