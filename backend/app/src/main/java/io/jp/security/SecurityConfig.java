@@ -29,7 +29,7 @@ public class SecurityConfig {
 
     private final List<String> allowedOrigins = List.of("http://localhost:5173");
     private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
-    private final String[] publicEndpoints = {"/routes"};
+    private final String[] publicEndpoints = {"/routes/**"};
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
