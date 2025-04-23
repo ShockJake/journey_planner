@@ -43,7 +43,7 @@
 				<button
 					on:click={action}
 					use:menu.item
-					class="group flex w-full items-center {color} rounded-md px-4 py-4 text-lg transition {active
+					class="group flex w-full items-center {color} rounded-md px-4 py-4 text-sm font-medium transition {active
 						? 'bg-gray-100'
 						: 'text-gray-900'}"
 				>

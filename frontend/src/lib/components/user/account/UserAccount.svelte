@@ -1,15 +1,41 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import InfoSection from './InfoSection.svelte';
+	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
+	import { CircleAlert } from '$lib/components/common/Icons.ts';
 	import RoutesSection from './RoutesSection.svelte';
+	import type UserDataResult from '$lib/types/UserDataResult.ts';
+	import { onMount } from 'svelte';
+	import { getUserData, username } from '$lib/component_scripts/user.ts';
+
+	let routesCreated = 0;
+	let errorMsg = '';
+
+	onMount(async () => {
+		const userdata: UserDataResult = await getUserData();
+		if (userdata.error !== null) {
+			errorMsg = userdata.error;
+			return;
+		}
+		username.set(userdata.username);
+		routesCreated = userdata.routesCreated;
+	});
 </script>
 
 <div class="flex h-9/10 w-9/10 items-center justify-center rounded-lg bg-white/65">
 	<div class="flex h-full w-full flex-col">
 		<Header />
-		<InfoSection />
-		<div class="flex min-h-0 w-full grow flex-row space-y-3 px-3 pb-3">
-			<RoutesSection />
-		</div>
+		{#if errorMsg.length !== 0}
+			<div class="flex h-full w-full items-center justify-center">
+				<div class="my-4 rounded-md bg-red-600 py-2 pr-2 pl-1 font-medium text-white">
+					<TextWithIcon text={errorMsg} icon={() => CircleAlert} />
+				</div>
+			</div>
+		{:else}
+			<InfoSection username={$username} {routesCreated} />
+			<div class="flex min-h-0 w-full grow flex-row space-y-3 px-3 pb-3">
+				<RoutesSection />
+			</div>
+		{/if}
 	</div>
 </div>

@@ -2,7 +2,7 @@
 	const { icon, text } = $props();
 </script>
 
-<div class="container mx-1 flex items-center">
+<div class="mx-1 flex items-center">
 	{#if icon}
 		{@const IconObj = icon()}
 		<IconObj />

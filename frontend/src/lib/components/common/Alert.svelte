@@ -17,6 +17,8 @@
 	}
 </script>
 
-<div class="my-2 rounded-md {resolveAlertType()} px-2 py-2 font-medium text-white">
+<div
+	class=" flex rounded-md {resolveAlertType()} items-center justify-center px-2 py-2 text-sm font-medium text-white"
+>
 	<TextWithIcon text={message} icon={iconSupplier} />
 </div>

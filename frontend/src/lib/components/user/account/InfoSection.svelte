@@ -1,24 +1,16 @@
 <script lang="ts">
 	import ChangeLoginModal from './change/ChangeLoginModal.svelte';
-	import { type UserDataResult, getUserData, username } from '$lib/component_scripts/user.ts';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
-	import { Info, User, Route, CircleAlert } from '$lib/components/common/Icons.ts';
+	import { Info, User, Route } from '$lib/components/common/Icons.ts';
 	import ChangePasswordModal from './change/ChangePasswordModal.svelte';
 	import DeleteUserModal from './delete/DeleteUserModal.svelte';
-	import { onMount } from 'svelte';
 
-	let routesCreated = 0;
-	let errorMsg = '';
+	interface Props {
+		username: string;
+		routesCreated: number;
+	}
 
-	onMount(async () => {
-		const userdata: UserDataResult = await getUserData();
-		if (userdata.error !== null) {
-			errorMsg = userdata.error;
-			return;
-		}
-		username.set(userdata.username);
-		routesCreated = userdata.routesCreated;
-	});
+	const { username, routesCreated }: Props = $props();
 </script>
 
 <div class="w-full p-3">
@@ -30,28 +22,20 @@
 				<TextWithIcon text="Info" icon={() => Info} />
 			</div>
 		</h2>
-		{#if errorMsg.length === 0}
-			<div class="flex w-full items-center justify-center p-3 text-xl text-gray-800">
-				<div class="w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 shadow-2xs">
-					<TextWithIcon text="Login: {$username}" icon={() => User} />
-				</div>
-				<div class="ml-1 w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 shadow-2xs">
-					<TextWithIcon text="Routes: {routesCreated}" icon={() => Route} />
-				</div>
+		<div class="flex w-full items-center justify-center p-3 text-gray-800">
+			<div class="text-md w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 font-medium shadow-2xs">
+				<TextWithIcon text="Login: {username}" icon={() => User} />
 			</div>
-			<div class="flex flex-col justify-items-center gap-2 p-2 text-gray-800 lg:flex-row">
-				<div class="w-full items-center justify-items-center lg:w-auto"><ChangeLoginModal /></div>
-				<div class="w-full items-center justify-items-center lg:w-auto">
-					<ChangePasswordModal />
-				</div>
-				<div class="w-full items-center justify-items-center lg:w-auto"><DeleteUserModal /></div>
+			<div class="text-md ml-1 w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 font-medium shadow-2xs">
+				<TextWithIcon text="Routes: {routesCreated}" icon={() => Route} />
 			</div>
-		{:else}
-			<div class="flex w-full items-center justify-center">
-				<div class="my-4 rounded-md bg-red-600 py-2 pr-2 pl-1 font-medium text-white">
-					<TextWithIcon text={errorMsg} icon={() => CircleAlert} />
-				</div>
+		</div>
+		<div class="flex flex-col justify-items-center gap-2 p-2 text-gray-800 lg:flex-row">
+			<div class="w-full items-center justify-items-center lg:w-auto"><ChangeLoginModal /></div>
+			<div class="w-full items-center justify-items-center lg:w-auto">
+				<ChangePasswordModal />
 			</div>
-		{/if}
+			<div class="w-full items-center justify-items-center lg:w-auto"><DeleteUserModal /></div>
+		</div>
 	</div>
 </div>

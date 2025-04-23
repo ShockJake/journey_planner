@@ -8,7 +8,7 @@
 
 <button
 	type="button"
-	class="rounded-md bg-green-100 px-4 py-2 text-lg font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
+	class="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
 	onclick={dialog.open}>Start</button
 >
 <div class="relative z-20">
