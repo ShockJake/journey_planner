@@ -1,6 +1,6 @@
 package io.jp.database.repositories;
 
-import io.jp.database.entities.User;
+import io.jp.database.entities.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

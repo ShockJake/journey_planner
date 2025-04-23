@@ -1,18 +1,16 @@
 package io.jp.services;
 
-import io.jp.database.entities.User;
-import io.jp.database.entities.UserType;
+import io.jp.database.entities.user.User;
 import io.jp.database.repositories.UserRepository;
 import io.jp.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static io.jp.database.entities.UserType.USER;
+import static io.jp.database.entities.user.UserType.USER;
 
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package io.jp.database.entities;
+package io.jp.database.entities.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

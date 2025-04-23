@@ -1,6 +1,6 @@
 package io.jp.database.init;
 
-import io.jp.database.entities.User;
+import io.jp.database.entities.user.User;
 import io.jp.database.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
@@ -8,7 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import static io.jp.database.entities.UserType.USER;
+import static io.jp.database.entities.user.UserType.USER;
 
 @Component
 @RequiredArgsConstructor

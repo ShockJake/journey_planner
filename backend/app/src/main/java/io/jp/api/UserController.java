@@ -1,7 +1,7 @@
 package io.jp.api;
 
-import io.jp.api.dto.ChangeUserDataDto;
-import io.jp.api.dto.ChangeUserDataInfoType;
+import io.jp.api.dto.ChangeUserDataRequest;
+import io.jp.api.dto.ChangeUserDataRequestInfoType;
 import io.jp.security.GlobalExceptionsHandler.BadDataException;
 import io.jp.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 import static io.jp.api.WebConstants.MESSAGE_KEY;
-import static io.jp.api.dto.ChangeUserDataInfoType.PASSWORD;
-import static io.jp.api.dto.ChangeUserDataInfoType.USERNAME;
+import static io.jp.api.dto.ChangeUserDataRequestInfoType.PASSWORD;
+import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
 
 @RestController
 @RequestMapping("/user")
@@ -27,14 +27,14 @@ public class UserController {
     private final UserService userService;
 
     @PatchMapping
-    public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataDto changeUserDataDto) {
-        ChangeUserDataInfoType infoType = changeUserDataDto.infoType();
+    public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
+        ChangeUserDataRequestInfoType infoType = changeUserDataRequest.infoType();
         if (USERNAME.equals(infoType)) {
-            userService.changeUsername(authentication.getName(), changeUserDataDto.value());
+            userService.changeUsername(authentication.getName(), changeUserDataRequest.value());
             return ResponseEntity.ok(Map.of(MESSAGE_KEY, "Login is changed successfully!"));
         }
         if (PASSWORD.equals(infoType)) {
-            userService.changePassword(authentication.getName(), changeUserDataDto.value());
+            userService.changePassword(authentication.getName(), changeUserDataRequest.value());
             return ResponseEntity.ok(Map.of(MESSAGE_KEY, "Password is changed successfully!"));
         }
         throw new BadDataException("Unknown data type for change");
