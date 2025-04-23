@@ -34,4 +34,4 @@
 	</div>
 </div>
 
-<ModalRenderSized body={() => MoreModalBody} {dialog} height="h-full" width="w-9/10" />
+<ModalRenderSized body={() => MoreModalBody} {dialog} height="h-full" width="w-8/10" />
