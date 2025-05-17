@@ -38,7 +38,7 @@ public class WeatherForecastMapper {
                     .rainHourly(getHourlyData(hourlyInfoNode, "rain", JsonNode::asDouble))
                     .cloudCoverHourly(getHourlyData(hourlyInfoNode, "cloud_cover", JsonNode::asInt))
                     .temperatureHourly(getHourlyData(hourlyInfoNode, "temperature_2m", JsonNode::asDouble))
-                    .windSpeedHourly(getHourlyData(hourlyInfoNode, "wind_speed_120m", JsonNode::asDouble))
+                    .windSpeedHourly(getHourlyData(hourlyInfoNode, "wind_speed_10m", JsonNode::asDouble))
                     .build();
         } catch (JsonProcessingException e) {
             log.error("Cannot map Weather Forecast: {}", e.getMessage());

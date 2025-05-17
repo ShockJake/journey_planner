@@ -2,14 +2,18 @@ package io.jp.core.optimizer.weather;
 
 import io.jp.core.domain.weather.RainData;
 import io.jp.core.domain.weather.RainIntensity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import static io.jp.core.domain.weather.RainIntensity.LIGHT;
 import static java.util.stream.IntStream.range;
 
+@Slf4j
 @Component
 public class RainInfoProvider {
     public boolean shouldInclude(LocalDateTime startDateTime, Integer rainEndHour) {
@@ -52,7 +56,10 @@ public class RainInfoProvider {
 
     private void markEndOfRain(RainData currentRain, int hour, List<Double> rainHourly, List<RainData> result) {
         currentRain.setEndHour(hour);
-        var rainIntensity = getRainIntensity(rainHourly.subList(currentRain.getStartHour(), currentRain.getEndHour()));
+
+        var rainIntensity = Objects.equals(currentRain.getEndHour(), currentRain.getStartHour()) ?
+                RainIntensity.fromValue(currentRain.getMaxAmount()) :
+                getRainIntensity(rainHourly.subList(currentRain.getStartHour(), currentRain.getEndHour()));
         currentRain.setRainIntensity(rainIntensity.name());
         currentRain.setRainDescription(rainIntensity.description());
         result.add(currentRain.copy());
@@ -69,7 +76,8 @@ public class RainInfoProvider {
         var meanRain = rainHourly.stream()
                 .mapToDouble(d -> d)
                 .average()
-                .orElseThrow(() -> new RuntimeException("Cannot calculate mean rain value"));
+                .orElseThrow(() ->
+                        new RuntimeException("Cannot calculate mean rain value for: %s".formatted(rainHourly)));
         return RainIntensity.fromValue(meanRain);
     }
 }

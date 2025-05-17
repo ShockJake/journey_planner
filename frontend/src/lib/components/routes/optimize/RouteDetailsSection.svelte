@@ -42,8 +42,8 @@
 		setTimeout(
 			() =>
 				optimizeRoute(route.name, startDate, startHour).then((r) => {
-					if (r == null) {
-						displayError('No response from the server...');
+					if (typeof r === 'string') {
+						displayError(r);
 					} else {
 						optimizedRoute = r;
 						finishOptimization();

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+import static io.jp.utils.DateTimeUtils.getDate;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -23,7 +25,7 @@ public class WeatherOptimizer {
     public WeatherInfo getWeatherInfo(final Route route, LocalDateTime startDateTime) {
         var routeCenter = route.center();
         var weatherForecast = weatherForecastDataProvider.getData(Map.of("latitude", routeCenter.lat(),
-                "longitude", routeCenter.lng(), "time", startDateTime));
+                "longitude", routeCenter.lng(), "date", getDate(startDateTime)));
         var rainInfo = rainInfoProvider.getRainStartEnd(weatherForecast.rainHourly())
                 .stream()
                 .filter(rainData -> rainInfoProvider.shouldInclude(startDateTime, rainData.getEndHour()))

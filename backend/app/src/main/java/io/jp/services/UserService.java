@@ -22,7 +22,7 @@ public class UserService {
 
     public void registerUser(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new UserAlreadyRegisteredException();
+            throw new UserAlreadyRegisteredException(user.getUsername());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserType(USER);
@@ -58,6 +58,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public static class UserAlreadyRegisteredException extends RuntimeException {}
+    public static class UserAlreadyRegisteredException extends RuntimeException {
+        public UserAlreadyRegisteredException(String username) {
+            super("User with name '" + username + "' already exists");
+        }
+    }
     public static class UserUnauthorizedException extends RuntimeException {}
 }

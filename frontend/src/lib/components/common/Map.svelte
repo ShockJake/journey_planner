@@ -1,6 +1,6 @@
 <script lang="ts">
 	import 'leaflet/dist/leaflet.css';
-	import { Map, TileLayer, Marker, Popup } from 'sveaflet';
+	import { Map, TileLayer, Marker, Popup, Polyline } from 'sveaflet';
 	import type { LatLngExpression } from 'leaflet';
 	import type Place from '$lib/types/Place.ts';
 	import { currentRouteState } from '$lib/component_scripts/currentRoute.svelte.ts';
@@ -18,6 +18,10 @@
 	function getLatLng(place: Place): LatLngExpression {
 		return [place.position.lat, place.position.lng];
 	}
+
+	function getAllLatLngs(places: Place[]): LatLngExpression[] {
+		return places.map((item) => getLatLng(item));
+	}
 </script>
 
 <Map bind:instance={mapRef} options={{ center, zoom }} style="height: 500px; width: 500px">
@@ -32,4 +36,5 @@
 			<Popup>{index + 1}. {place.name}</Popup>
 		</Marker>
 	{/each}
+	<Polyline latLngs={getAllLatLngs(places)} options={{ color: 'blue', weight: 4 }} />
 </Map>

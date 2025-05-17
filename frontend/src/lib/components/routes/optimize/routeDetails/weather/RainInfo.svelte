@@ -18,7 +18,7 @@
 		</h4>
 	</div>
 	<div class="border-black-300 mt-1 mb-2 border-t"></div>
-	<div class="flex flex-col items-center justify-center gap-2 lg:flex-row">
+	<div class="flex h-full flex-col items-center justify-center gap-2 lg:flex-row">
 		{#if rainData.length === 0}
 			<TextWithIcon text="No rain detected" icon={() => Laugh} />
 		{:else}

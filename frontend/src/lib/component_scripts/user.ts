@@ -3,6 +3,7 @@ import { writable } from "svelte/store";
 import { baseUrl } from "./server.ts";
 import { logout } from "./authentication.ts";
 import type UserDataResult from "$lib/types/UserDataResult.ts";
+import mapErrorFromCode from "./errorMapper.ts";
 
 export const username = writable("");
 
@@ -27,7 +28,7 @@ export async function changeLogin(newLogin: string): Promise<string> {
     try {
         const response = await axios.patch(`${baseUrl()}/user`, { infoType: "USERNAME", value: newLogin })
         if (response.status !== 200) {
-            return "Bad response";
+            return mapErrorFromCode(response.status);
         }
         logout();
         return "";
@@ -43,7 +44,7 @@ export async function changePassword(password: string): Promise<string> {
     try {
         const response = await axios.patch(`${baseUrl()}/user`, { infoType: "PASSOWRD", value: password })
         if (response.status !== 200)
-            return "Cannot change password...";
+            return mapErrorFromCode(response.status);
         logout();
         return "";
     } catch (error: AxiosError | any) {
@@ -55,9 +56,9 @@ export async function deleteAccount(): Promise<string> {
     try {
         const response = await axios.delete(`${baseUrl()}/user`);
         if (response.status !== 200) {
-            logout();
-            return "Cannot delete account";
+            return mapErrorFromCode(response.status);
         }
+        logout();
         return "";
     } catch (error: AxiosError | any) {
         return "Cannot delete account";

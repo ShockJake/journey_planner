@@ -11,7 +11,7 @@
     "temperature_2m": "°C",
     "rain": "mm",
     "cloud_cover": "%",
-    "wind_speed_120m": "km/h"
+    "wind_speed_10m": "km/h"
   },
   "hourly": {
     "time": [
@@ -118,7 +118,7 @@
       100,
       100
     ],
-    "wind_speed_120m": [
+    "wind_speed_10m": [
       15.1,
       22.0,
       23.9,
