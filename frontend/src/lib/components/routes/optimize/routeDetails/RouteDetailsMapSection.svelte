@@ -1,14 +1,21 @@
 <script lang="ts">
 	import Map from '$lib/components/common/Map.svelte';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
-	import { LandPlot, List } from '$lib/components/common/Icons.ts';
+	import { LandPlot, List, Footprints, Timer } from '$lib/components/common/Icons.ts';
 	import type Route from '$lib/types/Route.ts';
 	import { getIcon } from '$lib/component_scripts/placeIconMapper.ts';
+	import { isAdditionalPlace } from '$lib/component_scripts/routeOptimization.ts';
+	import type Path from '$lib/types/Path.ts';
 
 	interface Props {
 		route: Route;
+		path: Path;
 	}
-	const { route }: Props = $props();
+	const { route, path }: Props = $props();
+
+	function getTime(seconds: number) {
+		return seconds / 60;
+	}
 </script>
 
 <div class="flex w-full flex-col gap-3 rounded-lg bg-white/90 p-3">
@@ -22,18 +29,34 @@
 		>
 			<Map />
 		</div>
-		<div class="px-2 lg:flex-2/3">
+		<div class="flex flex-col px-2 lg:flex-2/3">
 			<h3 class="text-md pt-2 pb-1 font-bold">
 				<TextWithIcon text="Key Points:" icon={() => List} />
 			</h3>
 			<div class="pt-1 pl-1 text-sm font-medium text-gray-600">
 				<ul class="flex flex-col gap-1">
 					{#each route.places as place}
-						<li>
-							<TextWithIcon text={place.name} icon={() => getIcon(place.placeType)} />
-						</li>
+						{#if !isAdditionalPlace(place.name, route.additionalPlaces)}
+							<li>
+								<TextWithIcon text={place.name} icon={() => getIcon(place.placeType)} />
+							</li>
+						{:else}
+							<li class="text-blue-400">
+								<TextWithIcon
+									text={`${place.name} - added due to weather conditions`}
+									icon={() => getIcon(place.placeType)}
+								/>
+							</li>
+						{/if}
 					{/each}
 				</ul>
+			</div>
+			<div class="flex min-h-0 w-full grow items-end justify-end">
+				<div class="flex flex-row gap-1 rounded-lg bg-green-200 py-2 pr-2 pl-1">
+					<TextWithIcon text="{getTime(path.time)} minutes" icon={() => Timer} />
+					<div class="border-black-300 h-auto border-l"></div>
+					<TextWithIcon text="{path.distance} meters" icon={() => Footprints} />
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,18 +1,22 @@
-import type Route from "$lib/types/Route.ts";
+import type Route from '$lib/types/Route.ts';
 
-let currentRoute = $state<Route>({
-    name: "",
-    description: "",
-    imageUrl: "",
-    center: { lat: 0.0, lng: 0.0 },
-    places: []
-});
+let initialRoute: Route = {
+	name: '',
+	description: '',
+	imageUrl: '',
+	center: { lat: 0.0, lng: 0.0 },
+	places: [],
+	municipality: '',
+	additionalPlaces: []
+};
+
+let currentRoute = $state<Route>(initialRoute);
 
 export const currentRouteState = {
-    get value() {
-        return currentRoute;
-    },
-    set value(newState) {
-        currentRoute = newState;
-    }
-}
+	get value() {
+		return currentRoute;
+	},
+	set value(newState) {
+		currentRoute = newState;
+	}
+};

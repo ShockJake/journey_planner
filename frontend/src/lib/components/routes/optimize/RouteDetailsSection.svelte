@@ -10,6 +10,7 @@
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
 	import Loader from '$lib/components/common/Loader.svelte';
 	import { currentRouteState } from '$lib/component_scripts/currentRoute.svelte.ts';
+	import { currentPathState } from '$lib/component_scripts/currentPath.svelte.ts';
 	import RouteDetailsMapSection from './routeDetails/RouteDetailsMapSection.svelte';
 	import WeatherSection from './routeDetails/WeatherSection.svelte';
 	import type OptimizedRoute from '$lib/types/OptimizedRoute.ts';
@@ -46,6 +47,9 @@
 						displayError(r);
 					} else {
 						optimizedRoute = r;
+						currentRouteState.value = optimizedRoute.route;
+						currentPathState.value = optimizedRoute.path;
+						console.log(optimizedRoute);
 						finishOptimization();
 					}
 				}),
@@ -138,7 +142,7 @@
 	{/if}
 	{#if optimizationFinished}
 		<div transition:fade={{ delay: 100, duration: 800 }} class="m-3 flex flex-col gap-3">
-			<RouteDetailsMapSection {route} />
+			<RouteDetailsMapSection route={optimizedRoute.route} path={optimizedRoute.path} />
 			<WeatherSection weatherInfo={optimizedRoute.weatherInfo} />
 		</div>
 	{/if}
