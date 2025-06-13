@@ -17,10 +17,14 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
+
 
 import static io.jp.database.entities.route.RouteType.PREDEFINED;
 import static java.util.stream.IntStream.range;
+import static java.util.stream.Stream.concat;
 import static java.util.stream.StreamSupport.stream;
 
 @Slf4j
@@ -59,27 +63,26 @@ public class RouteDataInit implements ApplicationRunner {
 
     private RouteJpa parseRoute(JsonNode routeNode) {
         var placesData = routeNode.get("places");
+        var additionalPlacesData = routeNode.get("additionalPlaces");
         if (!placesData.isArray()) {
             throw new RuntimeException("No places found");
         }
-        var places = stream(placesData.spliterator(), false).map(this::parsePlace).toList();
-        placeRepository.saveAll(places);
+        var places = stream(placesData.spliterator(), false)
+                .map(place -> parsePlace(place, false))
+                .toList();
+        var additionalPlaces = stream(additionalPlacesData.spliterator(), false)
+                .map(place -> parsePlace(place, true))
+                .toList();
+        var allPlaces = concat(places.stream(), additionalPlaces.stream()).toList();
+        placeRepository.saveAll(allPlaces);
 
         var centerData = GeometricMedian.calculate(places.stream()
                 .map(place -> new GeometricMedian.Point(place.getLatitude(), place.getLongitude()))
                 .toList());
 
-        var route = RouteJpa.builder()
-                .name(routeNode.get("name").asText())
-                .municipality(routeNode.get("city").asText())
-                .description(routeNode.get("description").asText())
-                .imageUrl(routeNode.get("imageUrl").asText())
-                .centerLatitude(centerData.getX())
-                .centerLongitude(centerData.getY())
-                .routeType(PREDEFINED)
-                .build();
-        var routePlaceData = range(0, places.size()).mapToObj(index -> {
-                    var place = places.get(index);
+        var route = mapRoute(routeNode, centerData);
+        var routePlaceData = range(0, allPlaces.size()).mapToObj(index -> {
+                    var place = allPlaces.get(index);
                     return RoutePlace.builder().placeIndex(index).place(place).route(route).build();
                 })
                 .toList();
@@ -88,12 +91,25 @@ public class RouteDataInit implements ApplicationRunner {
         return route;
     }
 
-    private PlaceJpa parsePlace(JsonNode placeNode) {
+    private RouteJpa mapRoute(JsonNode routeNode, GeometricMedian.Point centerData) {
+        return RouteJpa.builder()
+                .name(routeNode.get("name").asText())
+                .municipality(routeNode.get("city").asText())
+                .description(routeNode.get("description").asText())
+                .imageUrl(routeNode.get("imageUrl").asText())
+                .centerLatitude(centerData.getX())
+                .centerLongitude(centerData.getY())
+                .routeType(PREDEFINED)
+                .build();
+    }
+
+    private PlaceJpa parsePlace(JsonNode placeNode, boolean isAdditional) {
         return PlaceJpa.builder()
                 .name(placeNode.get("name").asText())
                 .latitude(placeNode.get("coordinates").get(0).asDouble())
                 .longitude(placeNode.get("coordinates").get(1).asDouble())
                 .type(PlaceType.valueOf(placeNode.get("type").asText()))
+                .isAdditional(isAdditional)
                 .build();
     }
 }

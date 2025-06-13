@@ -14,7 +14,7 @@ public class CachedRouteProvider {
     public static Route getCachedRoute(String routeName) {
         synchronized (LOCK) {
             log.info("Getting cached route: {}", routeName);
-            return CACHED_ROUTES.get(routeName);
+            return CACHED_ROUTES.get(routeName).copy();
         }
     }
 

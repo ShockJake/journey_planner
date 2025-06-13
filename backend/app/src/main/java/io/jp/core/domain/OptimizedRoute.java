@@ -5,5 +5,5 @@ import io.jp.core.domain.weather.WeatherInfo;
 import lombok.Builder;
 
 @Builder
-public record OptimizedRoute(Route route, WeatherInfo weatherInfo) {
+public record OptimizedRoute(Route route, Path path, WeatherInfo weatherInfo) {
 }

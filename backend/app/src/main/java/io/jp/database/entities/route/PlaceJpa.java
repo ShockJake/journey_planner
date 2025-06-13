@@ -34,6 +34,7 @@ public class PlaceJpa {
     private Double latitude;
     @Enumerated(STRING)
     private PlaceType type;
+    private boolean isAdditional;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "place", cascade = ALL, orphanRemoval = true)

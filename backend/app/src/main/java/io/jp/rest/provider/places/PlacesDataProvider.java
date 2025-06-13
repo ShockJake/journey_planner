@@ -1,5 +1,6 @@
-package io.jp.rest.provider;
+package io.jp.rest.provider.places;
 
+import io.jp.rest.provider.DataProvider;
 import io.jp.rest.response.PlacesResponse;
 import java.util.Map;
 

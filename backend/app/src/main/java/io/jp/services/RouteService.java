@@ -49,11 +49,11 @@ public class RouteService {
     public OptimizedRoute optimizeRoute(RouteOptimizationRequest request) {
         var routeName = request.routeName();
         if (isRouteCached(routeName)) {
-            return routeOptimizer.optimizeRoute(getCachedRoute(routeName), request.startDateTime());
+            return routeOptimizer.optimizeRoute(getCachedRoute(routeName).copy(), request.startDateTime());
         }
         var route = getJpaRouteByName(routeName);
         putCachedRoute(routeName, route);
-        return routeOptimizer.optimizeRoute(route, request.startDateTime());
+        return routeOptimizer.optimizeRoute(route.copy(), request.startDateTime());
     }
 
     private Route getJpaRouteByName(String routeName) {

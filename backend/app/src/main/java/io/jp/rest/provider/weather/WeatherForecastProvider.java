@@ -1,11 +1,11 @@
-package io.jp.rest.provider;
+package io.jp.rest.provider.weather;
 
 import io.jp.core.domain.weather.WeatherForecast;
 import io.jp.mapper.WeatherForecastMapper;
+import io.jp.rest.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 
