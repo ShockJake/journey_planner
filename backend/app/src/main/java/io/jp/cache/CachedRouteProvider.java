@@ -1,4 +1,4 @@
-package io.jp.services;
+package io.jp.cache;
 
 import io.jp.core.domain.Route;
 import lombok.extern.slf4j.Slf4j;

@@ -27,7 +27,7 @@
 					leaveTo="opacity-0 scale-95"
 				>
 					<div
-						class="w-full max-w-80 min-w-64 transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+						class="transform overflow-hidden rounded-2xl bg-white px-6 py-6 text-left align-middle shadow-xl transition-all"
 						use:dialog.modal
 					>
 						{#if modalBody}

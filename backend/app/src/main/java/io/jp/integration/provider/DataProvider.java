@@ -1,4 +1,4 @@
-package io.jp.rest.provider;
+package io.jp.integration.provider;
 
 import java.util.Map;
 

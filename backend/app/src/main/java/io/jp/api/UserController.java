@@ -3,6 +3,7 @@ package io.jp.api;
 import io.jp.api.dto.ChangeUserDataRequest;
 import io.jp.api.dto.ChangeUserDataRequestInfoType;
 import io.jp.security.GlobalExceptionsHandler.BadDataException;
+import io.jp.services.UserRouteAssociationService;
 import io.jp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final UserRouteAssociationService userRouteAssociationService;
 
     @PatchMapping
     public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
@@ -50,6 +52,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         var user = userService.findUserByUsername(authentication.getName());
-        return ResponseEntity.ok(Map.of("username", user.getUsername(), "routesCreated", user.getRoutesCreated()));
+        var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
+        return ResponseEntity.ok(Map.of("username", user.getUsername(),
+                "routesCreated", user.getRoutesCreated(),
+                "routes", routes));
     }
 }
