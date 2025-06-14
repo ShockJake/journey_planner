@@ -18,7 +18,7 @@ class GeometricMedianTest extends Specification {
                                               new GeometricMedian.Point(50.0543, 19.9366)]
 
         when:
-        GeometricMedian.Point result = GeometricMedian.calculate(points)
+        GeometricMedian.Point result = GeometricMedian.calculateGeometricMedian(points)
 
         then:
         result != null
