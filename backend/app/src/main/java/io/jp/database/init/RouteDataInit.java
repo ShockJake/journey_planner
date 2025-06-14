@@ -7,7 +7,6 @@ import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.database.entities.route.RouteJpa;
-import io.jp.database.entities.route.RoutePlace;
 import io.jp.database.repositories.MunicipalityRepository;
 import io.jp.database.repositories.PlaceRepository;
 import io.jp.database.repositories.RouteRepository;
@@ -113,10 +112,8 @@ public class RouteDataInit implements ApplicationRunner {
         var municipality = municipalities.get(routeNode.get("city").asText());
 
         var route = mapRoute(routeNode, centerData, municipality);
-        var routePlaceData = range(0, allPlaces.size()).mapToObj(index -> {
-                    var place = allPlaces.get(index);
-                    return RoutePlace.builder().placeIndex(index).place(place).route(route).build();
-                })
+        var routePlaceData = range(0, allPlaces.size()).mapToObj(index ->
+                        routePlaceMapper.mapToRoutePlace(route, allPlaces.get(index), index))
                 .toList();
         route.setPlaces(routePlaceData);
 

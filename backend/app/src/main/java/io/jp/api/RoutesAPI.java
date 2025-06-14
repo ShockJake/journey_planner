@@ -52,7 +52,9 @@ public class RoutesAPI {
 
     @PostMapping("/optimize")
     public ResponseEntity<OptimizedRoute> optimizedRoute(@RequestBody RouteOptimizationRequest routeOptimizationRequest) {
+        log.info("Optimizing route: {}", routeOptimizationRequest);
         var optimizedRoute = routeOptimizationService.optimizeRoute(routeOptimizationRequest);
+        log.info("Optimized route: {}", optimizedRoute.route());
         return ResponseEntity.status(OK)
                 .contentType(APPLICATION_JSON)
                 .body(optimizedRoute);
@@ -60,6 +62,7 @@ public class RoutesAPI {
 
     @GetMapping("/generate/metadata")
     public ResponseEntity<RouteGenerationMetadata> getRouteGenerationMetadata() {
+        log.info("Getting route generation metadata");
         return ResponseEntity.status(OK)
                 .contentType(APPLICATION_JSON)
                 .body(routeGenerationService.getRouteGenerationMetadata());
@@ -68,9 +71,11 @@ public class RoutesAPI {
     @PostMapping("/generate")
     public ResponseEntity<String> generateRoute(@RequestBody RouteGenerationRequest routeGenerationRequest,
                                                 Authentication authentication) throws JsonProcessingException {
+        log.info("Generating route: {}", routeGenerationRequest);
         var route = routeGenerationService.generateRoute(routeGenerationRequest);
         if (routeGenerationRequest.saveToAccount()) {
             if (authentication == null) {
+                log.error("Cannot save generated route to nonexistent account");
                 throw new UserService.UserUnauthorizedException();
             }
             routeService.saveRouteToAccount(route, authentication.getName());
@@ -84,8 +89,10 @@ public class RoutesAPI {
     @PostMapping("associate-with-user")
     public ResponseEntity<String> associateRouteWithUser(Authentication authentication, @RequestBody UserRouteAssociationRequest userRouteAssociationRequest) throws JsonProcessingException {
         if (authentication == null) {
+            log.error("Cannot assign route to nonexistent user");
             throw new UserService.UserUnauthorizedException();
         }
+        log.info("Associating route with user: {}", userRouteAssociationRequest);
         var user = userService.findUserByUsername(authentication.getName());
         log.info("Associating route ({}) with user ({})", userRouteAssociationRequest.routeName(), user.getUsername());
         userRouteAssociationService.associateRouteWithUser(user, userRouteAssociationRequest.routeName());

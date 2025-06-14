@@ -30,7 +30,8 @@ public class GlobalExceptionsHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handle(final Exception ex) {
-        log.error(ex.getMessage(), ex);
+        log.error(ex.getMessage());
+        log.debug("Stacktrace:", ex);
         return new ResponseEntity<>(buildResponse("Internal Server Error", INTERNAL_SERVER_ERROR), INTERNAL_SERVER_ERROR);
     }
 

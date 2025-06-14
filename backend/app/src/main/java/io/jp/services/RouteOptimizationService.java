@@ -21,10 +21,12 @@ public class RouteOptimizationService {
     public OptimizedRoute optimizeRoute(RouteOptimizationRequest request) {
         var routeName = request.routeName();
         if (isRouteCached(routeName)) {
-            return routeOptimizer.optimizeRoute(getCachedRoute(routeName), request.startDateTime());
+            log.info("Getting route '{}' from cache", routeName);
+            return routeOptimizer.optimizeRoute(getCachedRoute(routeName).copy(), request.startDateTime());
         }
+        log.info("Getting route '{}' from database", routeName);
         var route = routeService.getJpaRouteByName(routeName);
         putCachedRoute(routeName, route);
-        return routeOptimizer.optimizeRoute(route, request.startDateTime());
+        return routeOptimizer.optimizeRoute(route.copy(), request.startDateTime());
     }
 }

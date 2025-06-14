@@ -11,6 +11,7 @@ import io.jp.integration.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
 import java.awt.geom.Point2D.Double;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -62,8 +63,9 @@ public class WeatherOptimizer {
         if (rainData.isEmpty()) {
             return;
         }
-        var startHour = startDateTime.getHour();
 
+        log.debug("Optimizing route {} with weather data", route.name());
+        var startHour = startDateTime.getHour();
         var optimizedPlaces = new ArrayList<>(route.places());
         var additionalPlaces = new ArrayList<>(route.additionalPlaces());
 
@@ -73,6 +75,7 @@ public class WeatherOptimizer {
                 if (isOverlappingWithRain(data, i) && !coveredPlaceTypes.contains(optimizedPlaces.get(placeIndex).placeType())) {
                     var place = optimizedPlaces.get(placeIndex);
                     var closestPlace = findClosestAdditionalPlace(place, additionalPlaces);
+                    log.debug("Found place {} to replace with {}", place.name(), closestPlace.name());
                     optimizedPlaces.add(placeIndex, closestPlace);
                     additionalPlaces.remove(closestPlace);
                     break;

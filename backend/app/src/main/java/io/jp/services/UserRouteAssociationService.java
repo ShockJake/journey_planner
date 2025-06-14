@@ -10,11 +10,13 @@ import io.jp.mapper.RouteJpaMapper;
 import io.jp.mapper.RoutePlaceMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserRouteAssociationService {
@@ -24,6 +26,7 @@ public class UserRouteAssociationService {
     private final RoutePlaceMapper routePlaceJpaMapper;
 
     public List<Route> getRoutesConnectedToUser(User user) {
+        log.debug("Getting routes connected to user {}", user.getUsername());
         return userRouteRepository.findAllByUser(user).stream()
                 .map(UserRoute::getRoute)
                 .map(routeJpa ->
@@ -33,6 +36,7 @@ public class UserRouteAssociationService {
 
     @Transactional
     public void associateRouteWithUser(User user, String routeName) {
+        log.debug("Associating route {} to user {}", routeName, user.getUsername());
         var userRoutes = userRouteRepository.findAllByUser(user)
                 .stream()
                 .filter(userRoute -> routeName.equals(userRoute.getRoute().getName()))

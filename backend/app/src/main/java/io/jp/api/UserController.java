@@ -6,6 +6,7 @@ import io.jp.security.GlobalExceptionsHandler.BadDataException;
 import io.jp.services.UserRouteAssociationService;
 import io.jp.services.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +22,7 @@ import static io.jp.api.WebConstants.MESSAGE_KEY;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.PASSWORD;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
 
+@Slf4j
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -31,6 +33,7 @@ public class UserController {
     @PatchMapping
     public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
         ChangeUserDataRequestInfoType infoType = changeUserDataRequest.infoType();
+        log.debug("Changing used info ({})", infoType.name());
         if (USERNAME.equals(infoType)) {
             userService.changeUsername(authentication.getName(), changeUserDataRequest.value());
             return ResponseEntity.ok(Map.of(MESSAGE_KEY, "Login is changed successfully!"));
@@ -44,6 +47,7 @@ public class UserController {
 
     @DeleteMapping
     public ResponseEntity<?> delete(@RequestBody String username) {
+        log.error("Deleting user {}", username);
         userService.deleteUser(username);
         return ResponseEntity.ok(Map.of(MESSAGE_KEY, "User deleted successfully"));
 
@@ -53,6 +57,7 @@ public class UserController {
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         var user = userService.findUserByUsername(authentication.getName());
         var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
+        log.debug("Getting user info for user {}", user.getUsername());
         return ResponseEntity.ok(Map.of("username", user.getUsername(),
                 "routesCreated", user.getRoutesCreated(),
                 "routes", routes));
