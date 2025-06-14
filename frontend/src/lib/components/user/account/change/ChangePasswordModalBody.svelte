@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class="transition">
+<div class="px-6 transition">
 	<div class="container mb-4 flex items-center justify-center">
 		<h1 class="text-lg leading-6 font-bold text-gray-900">
 			<span class="flex items-center">Change password</span>
@@ -43,7 +43,7 @@
 				id="newPassword"
 				placeholder="New password"
 				bind:value={newPassword}
-				class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-sm text-[#6B7280] transition outline-none focus:border-green-500"
+				class="w-70 rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-sm text-[#6B7280] transition outline-none focus:border-green-500"
 			/>
 		</div>
 		<div class="flex flex-col gap-1">

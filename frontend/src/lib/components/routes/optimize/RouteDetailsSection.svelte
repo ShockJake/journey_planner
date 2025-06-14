@@ -62,7 +62,7 @@
 	}
 
 	onMount(() => {
-		if (!route) {
+		if (route.name === '') {
 			goto('/route/select');
 		}
 	});

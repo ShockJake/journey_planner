@@ -8,6 +8,12 @@
 	import type Point from '$lib/types/Point.ts';
 	import type Path from '$lib/types/Path.ts';
 
+	interface Props {
+		showLine: boolean;
+	}
+
+	const { showLine }: Props = $props();
+
 	let mapRef: any = $state();
 	let center: LatLngExpression = $state([0.0, 0, 0]);
 	let places: Place[] = $state([]);
@@ -46,5 +52,7 @@
 			<Popup>{index + 1}. {place.name}</Popup>
 		</Marker>
 	{/each}
-	<Polyline latLngs={getAllLatLngs(path)} options={{ color: '#3d8ac9', weight: 4 }} />
+	{#if showLine}
+		<Polyline latLngs={getAllLatLngs(path)} options={{ color: '#3d8ac9', weight: 4 }} />
+	{/if}
 </Map>

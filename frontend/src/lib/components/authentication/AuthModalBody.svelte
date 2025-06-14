@@ -51,7 +51,7 @@
 				id="Login"
 				placeholder="Login"
 				bind:value={username}
-				class="w-full rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-sm font-light text-[#6B7280] transition outline-none focus:border-green-500"
+				class=" w-70 rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-sm font-light text-[#6B7280] transition outline-none focus:border-green-500"
 			/>
 		</div>
 		<div class="mb-2">

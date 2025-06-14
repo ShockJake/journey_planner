@@ -12,12 +12,12 @@ export async function getUserData(): Promise<UserDataResult> {
         const token = localStorage.getItem('token');
         const response = await axios.get(`${baseUrl()}/user`, { headers: { "Authorization": `Bearer ${token}` } });
         if (response.status !== 200) {
-            return { username: "", routesCreated: 0, error: response.data.message }
+            return { username: "", routesCreated: 0, error: response.data.message, routes: [] }
         }
         const result = response.data;
-        return { username: result.username, routesCreated: result.routesCreated, error: null }
+        return { username: result.username, routesCreated: result.routesCreated, error: null, routes: result.routes }
     } catch (error: AxiosError | any) {
-        return { username: "", routesCreated: 0, error: error.message }
+        return { username: "", routesCreated: 0, error: error.message, routes: [] }
     }
 }
 
