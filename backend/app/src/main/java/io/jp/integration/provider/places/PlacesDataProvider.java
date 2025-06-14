@@ -1,7 +1,7 @@
 package io.jp.integration.provider.places;
 
-import io.jp.rest.provider.DataProvider;
-import io.jp.rest.response.PlacesResponse;
+import io.jp.integration.provider.DataProvider;
+import io.jp.integration.response.PlacesResponse;
 import java.util.Map;
 
 public class PlacesDataProvider implements DataProvider<PlacesResponse> {

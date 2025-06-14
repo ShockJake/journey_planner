@@ -2,7 +2,7 @@ package io.jp.integration.provider.weather;
 
 import io.jp.core.domain.weather.WeatherForecast;
 import io.jp.mapper.WeatherForecastMapper;
-import io.jp.rest.provider.DataProvider;
+import io.jp.integration.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import org.springframework.web.client.RestClient;
 
 import java.util.Map;
 
-import static io.jp.rest.common.RestClientProvider.getRestClient;
+import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Slf4j

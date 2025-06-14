@@ -7,7 +7,7 @@ import io.jp.core.domain.weather.RainData;
 import io.jp.core.domain.weather.WeatherForecast;
 import io.jp.core.domain.weather.WeatherInfo;
 import io.jp.database.entities.route.PlaceType;
-import io.jp.rest.provider.DataProvider;
+import io.jp.integration.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,6 @@ import static io.jp.database.entities.route.PlaceType.MUSEUM;
 import static io.jp.database.entities.route.PlaceType.STORE;
 import static io.jp.utils.DateTimeUtils.getDate;
 import static java.lang.Double.MAX_VALUE;
-import static java.util.stream.IntStream.range;
 
 @Slf4j
 @Component

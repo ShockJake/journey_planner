@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
-import io.jp.rest.response.PlacesResponse;
+import io.jp.integration.response.PlacesResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,7 @@ package io.jp.integration.provider.routing;
 
 import io.jp.core.domain.Path;
 import io.jp.mapper.PathMapper;
-import io.jp.rest.provider.DataProvider;
+import io.jp.integration.provider.DataProvider;
 import io.jp.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

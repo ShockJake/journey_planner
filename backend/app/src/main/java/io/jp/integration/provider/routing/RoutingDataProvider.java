@@ -3,7 +3,7 @@ package io.jp.integration.provider.routing;
 import io.jp.core.domain.Path;
 import io.jp.core.domain.Place;
 import io.jp.mapper.PathMapper;
-import io.jp.rest.provider.DataProvider;
+import io.jp.integration.provider.DataProvider;
 import io.jp.utils.PropertiesProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-import static io.jp.rest.common.RestClientProvider.getRestClient;
+import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 

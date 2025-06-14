@@ -1,8 +1,8 @@
 package io.jp.integration.provider.places;
 
 import io.jp.mapper.PlacesResponseMapper;
-import io.jp.rest.provider.DataProvider;
-import io.jp.rest.response.PlacesResponse;
+import io.jp.integration.provider.DataProvider;
+import io.jp.integration.response.PlacesResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
