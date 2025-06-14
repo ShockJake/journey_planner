@@ -3,18 +3,13 @@ package io.jp.mapper;
 import io.jp.core.domain.Place;
 import io.jp.core.domain.Point;
 import io.jp.core.domain.Route;
-import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RouteJpa;
-import io.jp.database.entities.route.RoutePlace;
-import io.jp.database.entities.route.RouteType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static io.jp.database.entities.route.RouteType.CREATED;
 
 @Component
 @RequiredArgsConstructor
@@ -33,24 +28,12 @@ public class RouteJpaMapper {
         });
         return Route.builder()
                 .name(routeJpa.getName())
-                .municipality(routeJpa.getMunicipality().getName())
+                .municipality(routeJpa.getMunicipality())
                 .description(routeJpa.getDescription())
                 .center(Point.of(routeJpa.getCenterLatitude(), routeJpa.getCenterLongitude()))
                 .imageUrl(routeJpa.getImageUrl())
                 .places(places)
                 .additionalPlaces(additionalPlaces)
-                .build();
-    }
-
-    public RouteJpa mapToJpa(Route route, Municipality municipality) {
-        return RouteJpa.builder()
-                .name(route.name())
-                .description(route.description())
-                .centerLatitude(route.center().lat())
-                .centerLongitude(route.center().lng())
-                .imageUrl(route.imageUrl())
-                .routeType(CREATED)
-                .municipality(municipality)
                 .build();
     }
 }

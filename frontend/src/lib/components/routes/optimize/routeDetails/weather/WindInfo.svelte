@@ -31,7 +31,7 @@
 	</div>
 	<div class="border-black-300 mt-1 mb-2 border-t"></div>
 	<div
-		class="flex h-full flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 p-2 text-sm font-medium text-white"
+		class="flex h-full flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 p-1 text-sm font-medium text-white"
 	>
 		<div class="text-2xl font-bold">
 			<TextWithIcon text="{prepateWindAvgSpeed(windData.averageSpeed)} km/h" icon={() => Wind} />

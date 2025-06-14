@@ -2,14 +2,14 @@ package io.jp.database.init;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.database.entities.route.Municipality;
+import io.jp.core.GeometricMedian;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.database.entities.route.RouteJpa;
-import io.jp.database.repositories.MunicipalityRepository;
+import io.jp.database.entities.route.RoutePlace;
+import io.jp.database.entities.route.RouteType;
 import io.jp.database.repositories.PlaceRepository;
 import io.jp.database.repositories.RouteRepository;
-import io.jp.mapper.RoutePlaceMapper;
 import io.jp.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import static io.jp.core.GeometricMedian.calculateGeometricMedian;
 import static io.jp.database.entities.route.RouteType.PREDEFINED;
-import static io.jp.utils.MappingUtils.mapToPointsFromJpa;
 import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.StreamSupport.stream;
@@ -37,22 +33,18 @@ import static java.util.stream.StreamSupport.stream;
 public class RouteDataInit implements ApplicationRunner {
     private final RouteRepository routeRepository;
     private final PlaceRepository placeRepository;
-    private final MunicipalityRepository municipalityRepository;
     private final ObjectMapper objectMapper;
     private final FileUtils fileUtils = new FileUtils();
-    private final RoutePlaceMapper routePlaceMapper;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if (routeRepository.count() == 0) {
             log.info("Populating routes");
-            Map<String, Municipality> municipalities = prepareMunicipalities();
-            routeRepository.saveAll(prepareRoutes(municipalities));
-            log.info("{} Routes populated", routeRepository.count());
+            routeRepository.saveAll(prepareRoutes());
         }
     }
 
-    private List<RouteJpa> prepareRoutes(Map<String, Municipality> municipalities) {
+    private List<RouteJpa> prepareRoutes() {
         try {
             var inputData = fileUtils.readFile("/data/mocked/initial_routes.json");
             var rootNode = objectMapper.readTree(inputData);
@@ -61,7 +53,7 @@ public class RouteDataInit implements ApplicationRunner {
                 throw new RuntimeException("No routes found");
             }
             return stream(routesNode.spliterator(), false)
-                    .map(node -> parseRoute(node, municipalities))
+                    .map(this::parseRoute)
                     .toList();
         } catch (Exception e) {
             log.error("Cannot populate routes: {}", e.getMessage());
@@ -69,33 +61,7 @@ public class RouteDataInit implements ApplicationRunner {
         return List.of();
     }
 
-    private Map<String, Municipality> prepareMunicipalities() {
-        try {
-            var inputData = fileUtils.readFile("/data/initial-data/municipalities.json");
-            var rootNode = objectMapper.readTree(inputData);
-            if (!rootNode.isArray()) {
-                throw new RuntimeException("Not an array node");
-            }
-
-            var municipalities = stream(rootNode.spliterator(), false)
-                    .map(item -> Municipality.builder()
-                            .name(item.get("name").asText())
-                            .latitude(item.get("lat").asDouble())
-                            .longitude(item.get("lng").asDouble())
-                            .build())
-                    .toList();
-
-            var municipalitiesWithId = municipalityRepository.saveAll(municipalities);
-
-            return municipalitiesWithId.stream()
-                    .collect(Collectors.toMap(Municipality::getName, item -> item));
-        } catch (Exception e) {
-            log.error("Cannot parse municipalities: {}", e.getMessage());
-        }
-        return Map.of();
-    }
-
-    private RouteJpa parseRoute(JsonNode routeNode, Map<String, Municipality> municipalities) {
+    private RouteJpa parseRoute(JsonNode routeNode) {
         var placesData = routeNode.get("places");
         var additionalPlacesData = routeNode.get("additionalPlaces");
         if (!placesData.isArray()) {
@@ -110,8 +76,9 @@ public class RouteDataInit implements ApplicationRunner {
         var allPlaces = concat(places.stream(), additionalPlaces.stream()).toList();
         placeRepository.saveAll(allPlaces);
 
-        var centerData = calculateGeometricMedian(mapToPointsFromJpa(places));
-        var municipality = municipalities.get(routeNode.get("city").asText());
+        var centerData = GeometricMedian.calculate(places.stream()
+                .map(place -> new GeometricMedian.Point(place.getLatitude(), place.getLongitude()))
+                .toList());
 
         var route = mapRoute(routeNode, centerData);
         var routePlaceData = range(0, allPlaces.size()).mapToObj(index -> {
@@ -127,19 +94,13 @@ public class RouteDataInit implements ApplicationRunner {
     private RouteJpa mapRoute(JsonNode routeNode, GeometricMedian.Point centerData) {
         return RouteJpa.builder()
                 .name(routeNode.get("name").asText())
-                .municipality(municipality)
+                .municipality(routeNode.get("city").asText())
                 .description(routeNode.get("description").asText())
                 .imageUrl(routeNode.get("imageUrl").asText())
                 .centerLatitude(centerData.getX())
                 .centerLongitude(centerData.getY())
                 .routeType(PREDEFINED)
                 .build();
-        var routePlaceData = range(0, places.size()).mapToObj(index ->
-                        routePlaceMapper.mapToRoutePlace(route, places.get(index), index))
-                .toList();
-        route.setPlaces(routePlaceData);
-
-        return route;
     }
 
     private PlaceJpa parsePlace(JsonNode placeNode, boolean isAdditional) {

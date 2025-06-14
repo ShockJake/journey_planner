@@ -15,7 +15,6 @@ import static io.jp.database.entities.user.UserType.USER;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRouteAssociationService userRouteAssociationService;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -44,7 +43,6 @@ public class UserService {
     public void deleteUser(String username) {
         var user = findUserByUsername(username);
         //todo: remove all routes connected to user.
-        userRouteAssociationService.deleteAssociatedRoutesOfUser(user);
         userRepository.delete(user);
     }
 
@@ -65,7 +63,5 @@ public class UserService {
             super("User with name '" + username + "' already exists");
         }
     }
-
-    public static class UserUnauthorizedException extends RuntimeException {
-    }
+    public static class UserUnauthorizedException extends RuntimeException {}
 }

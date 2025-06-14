@@ -14,13 +14,4 @@ public class PlaceJpaMapper {
                 .position(Point.of(placeJpa.getLatitude(), placeJpa.getLongitude()))
                 .build();
     }
-
-    public PlaceJpa mapToJpa(Place place) {
-        return PlaceJpa.builder()
-                .name(place.name())
-                .type(place.placeType())
-                .latitude(place.position().lat())
-                .longitude(place.position().lng())
-                .build();
-    }
 }

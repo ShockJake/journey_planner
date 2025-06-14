@@ -7,11 +7,9 @@
 	import type UserDataResult from '$lib/types/UserDataResult.ts';
 	import { onMount } from 'svelte';
 	import { getUserData, username } from '$lib/component_scripts/user.ts';
-	import type Route from '$lib/types/Route.ts';
 
 	let routesCreated = 0;
 	let errorMsg = '';
-	let routes: Route[] = [];
 
 	onMount(async () => {
 		const userdata: UserDataResult = await getUserData();
@@ -21,8 +19,6 @@
 		}
 		username.set(userdata.username);
 		routesCreated = userdata.routesCreated;
-		console.log(userdata);
-		routes = userdata.routes;
 	});
 </script>
 
@@ -38,7 +34,7 @@
 		{:else}
 			<InfoSection username={$username} {routesCreated} />
 			<div class="flex min-h-0 w-full grow flex-row space-y-3 px-3 pb-3">
-				<RoutesSection {routes} />
+				<RoutesSection />
 			</div>
 		{/if}
 	</div>

@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { Mails, PhoneCall, CircleUserRound } from '$lib/components/common/Icons.ts';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
-	import { fade } from 'svelte/transition';
 </script>
 
 <svelte:head>
 	<title>Contact</title>
 </svelte:head>
 
-<div in:fade class="relative z-10 flex h-full flex-col items-center justify-center text-center">
+<div class="relative z-10 flex h-full flex-col items-center justify-center text-center">
 	<div class="flex h-9/10 w-9/10 flex-col items-center justify-center rounded-lg bg-white/65">
 		<div class="flex h-full w-full flex-col">
 			<h1

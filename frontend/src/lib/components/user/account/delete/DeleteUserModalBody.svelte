@@ -11,7 +11,7 @@
 	}
 </script>
 
-<div class="px-6 transition">
+<div class="transition">
 	<div class="container mb-4 flex items-center justify-center">
 		<h1 class="text-lg leading-6 font-bold text-gray-900">
 			<span class="flex items-center">Delete account</span>

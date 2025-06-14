@@ -1,7 +1,7 @@
 package io.jp.api;
 
 import io.jp.core.domain.weather.WeatherForecast;
-import io.jp.integration.provider.DataProvider;
+import io.jp.rest.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

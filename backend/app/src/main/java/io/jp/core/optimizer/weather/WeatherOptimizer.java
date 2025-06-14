@@ -8,7 +8,6 @@ import io.jp.core.domain.weather.WeatherForecast;
 import io.jp.core.domain.weather.WeatherInfo;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.rest.provider.DataProvider;
-import io.jp.integration.provider.DataProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

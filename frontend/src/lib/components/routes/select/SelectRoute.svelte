@@ -10,23 +10,18 @@
 	import MoreModalBody from './MoreModalBody.svelte';
 	import type Route from '$lib/types/Route.ts';
 	import { retrievePredefinedRoutes } from '$lib/component_scripts/routesRetriever.ts';
-	import Loader from '$lib/components/common/Loader.svelte';
-	import { fade } from 'svelte/transition';
 
 	export let dialog: DialogInterface = createDialog({ label: 'moreInfoModal' });
 	let routes: Route[] = [];
-	let loading = false;
 	let error: string = '';
 
 	onMount(() => {
-		loading = true;
 		retrievePredefinedRoutes().then((result) => {
 			if (typeof result === 'string') {
 				error = result;
 			} else {
 				routes = result;
 			}
-			loading = false;
 		});
 	});
 </script>
@@ -34,14 +29,9 @@
 <div class="flex h-full w-full flex-col">
 	<Header />
 	<div class="flex min-h-0 w-full grow flex-row">
-		{#if loading}
-			<div in:fade class="flex grow items-center justify-center">
-				<Loader />
-			</div>
-		{:else if error.length === 0}
+		{#if error.length === 0}
 			{#if routes.length !== 0}
 				<div
-					in:fade
 					class="grid w-full grid-cols-1 gap-2 overflow-scroll p-3 md:grid-cols-2 lg:grid-cols-3"
 				>
 					{#each routes as route}
@@ -49,12 +39,12 @@
 					{/each}
 				</div>
 			{:else}
-				<div in:fade class="flex h-full w-full flex-col items-center justify-center">
+				<div class="flex h-full w-full flex-col items-center justify-center">
 					<h1 class="mb-6 text-3xl font-bold text-gray-800">Nothing to show</h1>
 				</div>
 			{/if}
 		{:else}
-			<div in:fade class="flex grow items-center justify-center">
+			<div class="flex grow items-center justify-center">
 				<Alert message={error} type="danger" iconSupplier={() => CircleAlert} />
 			</div>
 		{/if}

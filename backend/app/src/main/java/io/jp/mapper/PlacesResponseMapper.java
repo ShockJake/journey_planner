@@ -3,11 +3,9 @@ package io.jp.mapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.core.domain.Place;
-import io.jp.core.domain.Point;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
-import io.jp.integration.response.PlacesResponse;
+import io.jp.rest.response.PlacesResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -37,23 +35,26 @@ public class PlacesResponseMapper {
         }
     }
 
-    private Place mapToPlace(JsonNode node) {
+    private PlaceJpa mapToPlace(JsonNode node) {
         JsonNode properties = node.get("properties");
         var name = properties.get("name").asText();
         var longitude = properties.get("lon").asDouble();
         var latitude = properties.get("lat").asDouble();
-        var position = Point.of(latitude,longitude);
-        String type;
+        var firstAddressLine = properties.get("address_line1").asText();
+        var secondAddressLine = properties.get("address_line2").asText();
+        var type = "";
         try {
-            type = properties.get("historic").get("type").asText().toUpperCase();
+            type = properties.get("historic").get("type").asText();
         } catch (NullPointerException e) {
-            log.error("Cannot find type for {}, using default value", name);
-            type = "DEFAULT";
+            log.error("Cannot find type for {}", name);
         }
-        return Place.builder()
+        return PlaceJpa.builder()
                 .name(name)
-                .position(position)
-                .placeType(PlaceType.valueOf(type))
+                .longitude(longitude)
+                .latitude(latitude)
+//                .firstAddressLine(firstAddressLine)
+//                .secondAddressLine(secondAddressLine)
+                .type(PlaceType.valueOf(type))
                 .build();
     }
 }

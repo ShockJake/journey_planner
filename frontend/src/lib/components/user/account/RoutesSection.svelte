@@ -1,13 +1,6 @@
 <script lang="ts">
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
-	import { Route as RouteIcon } from '$lib/components/common/Icons.ts';
-	import type Route from '$lib/types/Route.ts';
-	import { fade } from 'svelte/transition';
-
-	interface Props {
-		routes: Route[];
-	}
-	const { routes }: Props = $props();
+	import { Route } from '$lib/components/common/Icons.ts';
 </script>
 
 <div class="min-h-0 grow rounded-lg bg-white/70">
@@ -15,23 +8,10 @@
 		class="flex w-full items-center justify-center rounded-lg bg-white/80 py-2 text-2xl font-bold text-gray-800 drop-shadow-md"
 	>
 		<div class="w-auto">
-			<TextWithIcon text="Routes" icon={() => RouteIcon} />
+			<TextWithIcon text="Routes" icon={() => Route} />
 		</div>
 	</h2>
-	{#if routes.length === 0}
-		<div
-			class="flex h-9/10 w-full items-center justify-center p-3 text-center text-xl text-gray-800"
-		>
-			Nothing to show.
-		</div>
-	{:else}
-		<div
-			in:fade
-			class="grid w-full grid-cols-1 gap-2 overflow-scroll p-3 md:grid-cols-2 lg:grid-cols-3"
-		>
-			{#each routes as route}
-				<div>{route.name}</div>
-			{/each}
-		</div>
-	{/if}
+	<div class="flex h-9/10 w-full items-center justify-center p-3 text-center text-xl text-gray-800">
+		Nothing to show.
+	</div>
 </div>

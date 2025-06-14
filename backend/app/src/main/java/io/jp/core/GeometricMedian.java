@@ -19,7 +19,7 @@ public class GeometricMedian {
         }
     }
 
-    public static Point calculateGeometricMedian(List<Point> points) {
+    public static Point calculate(List<Point> points) {
         var result = centroid(points);
         for (int i = 0; i < MAX_ITERATIONS; i++) {
             var values = calculateValues(points, result);
