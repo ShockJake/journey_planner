@@ -1,4 +1,4 @@
-package io.jp.rest.common;
+package io.jp.integration.common;
 
 import org.springframework.web.client.RestClient;
 

@@ -1,4 +1,4 @@
-package io.jp.rest.response;
+package io.jp.integration.response;
 
 import io.jp.database.entities.route.PlaceJpa;
 import lombok.Builder;

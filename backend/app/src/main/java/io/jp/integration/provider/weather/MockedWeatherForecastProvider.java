@@ -1,4 +1,4 @@
-package io.jp.rest.provider.weather;
+package io.jp.integration.provider.weather;
 
 import io.jp.core.domain.weather.WeatherForecast;
 import io.jp.mapper.WeatherForecastMapper;

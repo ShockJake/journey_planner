@@ -1,4 +1,4 @@
-package io.jp.rest.provider.places;
+package io.jp.integration.provider.places;
 
 import io.jp.rest.provider.DataProvider;
 import io.jp.rest.response.PlacesResponse;

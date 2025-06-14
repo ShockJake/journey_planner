@@ -1,4 +1,4 @@
-package io.jp.rest.provider.routing;
+package io.jp.integration.provider.routing;
 
 import io.jp.core.domain.Path;
 import io.jp.mapper.PathMapper;

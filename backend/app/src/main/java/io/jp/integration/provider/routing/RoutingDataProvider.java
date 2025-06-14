@@ -1,4 +1,4 @@
-package io.jp.rest.provider.routing;
+package io.jp.integration.provider.routing;
 
 import io.jp.core.domain.Path;
 import io.jp.core.domain.Place;
@@ -8,7 +8,6 @@ import io.jp.utils.PropertiesProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import java.util.List;
