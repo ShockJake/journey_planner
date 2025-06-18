@@ -28,4 +28,13 @@ public class RainData {
                 .maxAmount(maxAmount)
                 .build();
     }
+
+    public void resetData() {
+        setStartHour(null);
+        setEndHour(null);
+        setRainIntensity(null);
+        setRainDescription(null);
+        setMaxHour(null);
+        setMaxAmount(null);
+    }
 }

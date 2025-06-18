@@ -3,7 +3,11 @@ package io.jp.mapper;
 import io.jp.core.domain.Place;
 import io.jp.core.domain.Point;
 import io.jp.database.entities.route.PlaceJpa;
+import io.jp.database.entities.route.RoutePlace;
 import org.springframework.stereotype.Component;
+
+import java.util.Comparator;
+import java.util.List;
 
 @Component
 public class PlaceJpaMapper {
@@ -22,5 +26,12 @@ public class PlaceJpaMapper {
                 .latitude(place.position().lat())
                 .longitude(place.position().lng())
                 .build();
+    }
+
+    public List<PlaceJpa> mapJpaFromRoutePlaces(List<RoutePlace> routePlaces) {
+        return routePlaces.stream()
+                .sorted(Comparator.comparing(RoutePlace::getPlaceIndex))
+                .map(RoutePlace::getPlace)
+                .toList();
     }
 }

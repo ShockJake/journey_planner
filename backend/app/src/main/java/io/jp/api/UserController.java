@@ -3,6 +3,7 @@ package io.jp.api;
 import io.jp.api.dto.ChangeUserDataRequest;
 import io.jp.api.dto.ChangeUserDataRequestInfoType;
 import io.jp.security.GlobalExceptionsHandler.BadDataException;
+import io.jp.services.RouteOptimizationService;
 import io.jp.services.UserRouteAssociationService;
 import io.jp.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 import static io.jp.api.WebConstants.MESSAGE_KEY;
+import static io.jp.api.WebConstants.OPTIMIZED_ROUTES_KEY;
+import static io.jp.api.WebConstants.ROUTES_CREATED_KEY;
+import static io.jp.api.WebConstants.ROUTES_KEY;
+import static io.jp.api.WebConstants.USERNAME_KEY;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.PASSWORD;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
 
@@ -29,6 +34,7 @@ import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
 public class UserController {
     private final UserService userService;
     private final UserRouteAssociationService userRouteAssociationService;
+    private final RouteOptimizationService routeOptimizationService;
 
     @PatchMapping
     public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
@@ -47,19 +53,20 @@ public class UserController {
 
     @DeleteMapping
     public ResponseEntity<?> delete(@RequestBody String username) {
-        log.error("Deleting user {}", username);
+        log.info("Deleting user {}", username);
         userService.deleteUser(username);
         return ResponseEntity.ok(Map.of(MESSAGE_KEY, "User deleted successfully"));
-
     }
 
     @GetMapping
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         var user = userService.findUserByUsername(authentication.getName());
         var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
+        var optimizedRoutes = routeOptimizationService.getOptimizedRoutesByUser(user);
         log.debug("Getting user info for user {}", user.getUsername());
-        return ResponseEntity.ok(Map.of("username", user.getUsername(),
-                "routesCreated", user.getRoutesCreated(),
-                "routes", routes));
+        return ResponseEntity.ok(Map.of(USERNAME_KEY, user.getUsername(),
+                ROUTES_CREATED_KEY, user.getRoutesCreated(),
+                OPTIMIZED_ROUTES_KEY, optimizedRoutes,
+                ROUTES_KEY, routes));
     }
 }

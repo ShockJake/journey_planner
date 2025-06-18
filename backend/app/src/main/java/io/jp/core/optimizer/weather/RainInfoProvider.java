@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static io.jp.core.domain.weather.RainIntensity.LIGHT;
 import static java.util.stream.IntStream.range;
 
 @Slf4j
@@ -60,16 +59,13 @@ public class RainInfoProvider {
         var rainIntensity = Objects.equals(currentRain.getEndHour(), currentRain.getStartHour()) ?
                 RainIntensity.fromValue(currentRain.getMaxAmount()) :
                 getRainIntensity(rainHourly.subList(currentRain.getStartHour(), currentRain.getEndHour()));
+
         currentRain.setRainIntensity(rainIntensity.name());
         currentRain.setRainDescription(rainIntensity.description());
+
         result.add(currentRain.copy());
 
-        currentRain.setStartHour(null);
-        currentRain.setEndHour(null);
-        currentRain.setRainIntensity(null);
-        currentRain.setRainDescription(null);
-        currentRain.setMaxHour(null);
-        currentRain.setMaxAmount(null);
+        currentRain.resetData();
     }
 
     private RainIntensity getRainIntensity(final List<Double> rainHourly) {

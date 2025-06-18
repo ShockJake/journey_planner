@@ -1,0 +1,43 @@
+package io.jp.database.entities.route;
+
+import io.jp.database.entities.user.User;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.GenerationType.AUTO;
+
+@Entity
+@Table(name = "optimizedRoutes")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@ToString
+public class OptimizedRouteJpa {
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    private Long id;
+
+    @OneToOne(cascade = ALL)
+    private RouteJpa route;
+    private String placesOverrides;
+    private String path;
+    private String weatherInfo;
+    @ManyToOne(cascade = ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+}

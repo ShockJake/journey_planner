@@ -3,38 +3,38 @@ package io.jp.cache;
 import io.jp.database.entities.route.Municipality;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CachedMunicipalitiesProvider {
-    private static final Set<Municipality> cachedMunicipalities = new HashSet<>();
+    private static final Map<String, Municipality> cachedMunicipalities = new HashMap<>();
     private static final Object LOCK = new Object();
 
-    public static Set<Municipality> getCachedMunicipalities() {
+    public static Collection<Municipality> getCachedMunicipalities() {
         synchronized (LOCK) {
-            return cachedMunicipalities;
+            return cachedMunicipalities.values();
         }
     }
 
     public static Municipality getCachedMunicipality(String name) {
         synchronized (LOCK) {
-           return cachedMunicipalities.stream()
-                    .filter(item -> item.getName().equals(name))
-                    .findFirst()
-                    .orElseThrow(() ->
-                            new IllegalStateException("No municipality '%s' found".formatted(name)));
+            if (!cachedMunicipalities.containsKey(name)) {
+                throw new IllegalStateException("No municipality '%s' found".formatted(name));
+            }
+            return cachedMunicipalities.get(name);
         }
     }
 
     public static void putCachedMunicipalities(Collection<Municipality> municipalities) {
         synchronized (LOCK) {
-            cachedMunicipalities.addAll(municipalities);
+            municipalities.forEach(municipality ->
+                    cachedMunicipalities.put(municipality.getName(), municipality));
         }
     }
 
     public static void putCachedMunicipality(Municipality municipality) {
         synchronized (LOCK) {
-            cachedMunicipalities.add(municipality);
+            cachedMunicipalities.put(municipality.getName(), municipality);
         }
     }
 

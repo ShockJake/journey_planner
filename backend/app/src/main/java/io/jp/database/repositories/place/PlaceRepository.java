@@ -1,4 +1,4 @@
-package io.jp.database.repositories;
+package io.jp.database.repositories.place;
 
 import io.jp.database.entities.route.PlaceJpa;
 import org.springframework.data.jpa.repository.JpaRepository;

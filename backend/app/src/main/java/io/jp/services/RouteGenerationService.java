@@ -6,7 +6,7 @@ import io.jp.core.domain.Point;
 import io.jp.core.domain.Route;
 import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceType;
-import io.jp.database.repositories.MunicipalityRepository;
+import io.jp.database.repositories.place.MunicipalityRepository;
 import io.jp.integration.provider.DataProvider;
 import io.jp.integration.response.PlacesResponse;
 import lombok.RequiredArgsConstructor;

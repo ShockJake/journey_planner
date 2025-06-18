@@ -4,10 +4,10 @@ import io.jp.core.domain.Route;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.entities.route.RoutePlace;
-import io.jp.database.repositories.MunicipalityRepository;
-import io.jp.database.repositories.PlaceRepository;
-import io.jp.database.repositories.RouteRepository;
-import io.jp.database.repositories.UserRouteRepository;
+import io.jp.database.repositories.place.MunicipalityRepository;
+import io.jp.database.repositories.place.PlaceRepository;
+import io.jp.database.repositories.route.RouteRepository;
+import io.jp.database.repositories.user.UserRouteRepository;
 import io.jp.mapper.PlaceJpaMapper;
 import io.jp.mapper.RouteJpaMapper;
 import io.jp.mapper.RoutePlaceMapper;
@@ -44,13 +44,13 @@ public class RouteService {
 
     public List<Route> getPredefinedRoutes() {
         var jpaRoutes = routeRepository.findAllByRouteType(PREDEFINED);
+        log.info("Found {} predefined routes", jpaRoutes.size());
         if (jpaRoutes.isEmpty()) {
             return List.of();
         }
 
         Map<Long, List<PlaceJpa>> placesByRouteId = jpaRoutes.stream()
                 .collect(Collectors.toMap(RouteJpa::getRouteId, this::getJpaPlaces));
-        log.info("Found {} predefined routes", placesByRouteId.size());
 
         return jpaRoutes.stream()
                 .map(jpaRoute -> routeJpaMapper.mapFromJpa(jpaRoute, placesByRouteId.get(jpaRoute.getRouteId())))
@@ -79,11 +79,15 @@ public class RouteService {
         userRouteRepository.save(userRouteMapper.mapToUserRoute(user, savedRoute));
     }
 
-    public Route getJpaRouteByName(String routeName) {
-        var jpaRoute = routeRepository.findRouteJpaByName(routeName)
-                .orElseThrow(() -> new RuntimeException("Route not found"));
+    public Route getRouteByName(String routeName) {
+        var jpaRoute = getJpaRouteByName(routeName);
         var places = getJpaPlaces(jpaRoute);
         return routeJpaMapper.mapFromJpa(jpaRoute, places);
+    }
+
+    public RouteJpa getJpaRouteByName(String routeName) {
+        return routeRepository.findRouteJpaByName(routeName)
+                .orElseThrow(() -> new RuntimeException("Route not found"));
     }
 
     private List<PlaceJpa> getJpaPlaces(RouteJpa routeJpa) {

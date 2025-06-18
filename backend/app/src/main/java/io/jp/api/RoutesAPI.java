@@ -2,6 +2,7 @@ package io.jp.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jp.api.dto.OptimizedRoutePersistenceRequest;
 import io.jp.api.dto.RouteGenerationMetadata;
 import io.jp.api.dto.RouteGenerationRequest;
 import io.jp.api.dto.RouteOptimizationRequest;
@@ -27,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 
 import static io.jp.api.WebConstants.MESSAGE_KEY;
+import static io.jp.api.WebConstants.OPTIMIZED_ROUTE_ID;
+import static io.jp.cache.CachedOptimizedRouteProvider.getOptimizedRouteFromCache;
+import static io.jp.cache.CachedOptimizedRouteProvider.putOptimizedRouteToCache;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -54,10 +58,28 @@ public class RoutesAPI {
     public ResponseEntity<OptimizedRoute> optimizedRoute(@RequestBody RouteOptimizationRequest routeOptimizationRequest) {
         log.info("Optimizing route: {}", routeOptimizationRequest);
         var optimizedRoute = routeOptimizationService.optimizeRoute(routeOptimizationRequest);
+        putOptimizedRouteToCache(optimizedRoute);
         log.info("Optimized route: {}", optimizedRoute.route());
         return ResponseEntity.status(OK)
                 .contentType(APPLICATION_JSON)
                 .body(optimizedRoute);
+    }
+
+    @PostMapping("/save-optimized-route")
+    public ResponseEntity<?> saveOptimizedRoute(@RequestBody OptimizedRoutePersistenceRequest optimizedRoutePersistenceRequest, Authentication authentication) {
+        if (authentication == null) {
+            log.error("Cannot save optimized route for nonexistent user");
+            throw new UserService.UserUnauthorizedException();
+        }
+        var user = userService.findUserByUsername(authentication.getName());
+        log.info("Saving optimized route '{}' for user {}", optimizedRoutePersistenceRequest.routeName(), user.getUsername());
+        var optimizedRoute = getOptimizedRouteFromCache(optimizedRoutePersistenceRequest.optimizationId());
+        var result = routeOptimizationService.saveOptimizedRoute(optimizedRoute, user);
+
+        var response = Map.of(MESSAGE_KEY, "Optimized route saved successfully", OPTIMIZED_ROUTE_ID, result.getId());
+        return ResponseEntity.status(CREATED)
+                .contentType(APPLICATION_JSON)
+                .body(response);
     }
 
     @GetMapping("/generate/metadata")
@@ -92,7 +114,6 @@ public class RoutesAPI {
             log.error("Cannot assign route to nonexistent user");
             throw new UserService.UserUnauthorizedException();
         }
-        log.info("Associating route with user: {}", userRouteAssociationRequest);
         var user = userService.findUserByUsername(authentication.getName());
         log.info("Associating route ({}) with user ({})", userRouteAssociationRequest.routeName(), user.getUsername());
         userRouteAssociationService.associateRouteWithUser(user, userRouteAssociationRequest.routeName());

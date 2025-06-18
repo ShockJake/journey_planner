@@ -1,6 +1,6 @@
 package io.jp.security;
 
-import io.jp.database.repositories.UserRepository;
+import io.jp.database.repositories.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
