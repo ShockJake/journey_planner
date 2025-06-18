@@ -1,4 +1,4 @@
-package io.jp.database.repositories;
+package io.jp.database.repositories.user;
 
 import io.jp.database.entities.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

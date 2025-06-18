@@ -1,7 +1,7 @@
 package io.jp.services;
 
 import io.jp.database.entities.user.User;
-import io.jp.database.repositories.UserRepository;
+import io.jp.database.repositories.user.UserRepository;
 import io.jp.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

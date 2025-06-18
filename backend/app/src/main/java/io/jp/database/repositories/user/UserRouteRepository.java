@@ -1,4 +1,4 @@
-package io.jp.database.repositories;
+package io.jp.database.repositories.user;
 
 import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.entities.user.User;

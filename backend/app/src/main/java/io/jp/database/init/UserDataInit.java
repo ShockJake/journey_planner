@@ -1,7 +1,7 @@
 package io.jp.database.init;
 
 import io.jp.database.entities.user.User;
-import io.jp.database.repositories.UserRepository;
+import io.jp.database.repositories.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
