@@ -13,7 +13,11 @@
 			leaveFrom="opacity-100"
 			leaveTo="opacity-0"
 		>
-			<button class="fixed inset-0 bg-black/25" aria-label="close" onclick={dialog.close}></button>
+			<button
+				class="fixed inset-0 bg-black/25 backdrop-blur-xs"
+				aria-label="close"
+				onclick={dialog.close}
+			></button>
 		</Transition>
 
 		<div class="fixed inset-0 overflow-y-auto">

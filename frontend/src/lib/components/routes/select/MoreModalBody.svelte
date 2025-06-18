@@ -7,7 +7,8 @@
 		MapPinHouse,
 		Save,
 		ShieldAlert,
-		Check
+		Check,
+		CircleX
 	} from '$lib/components/common/Icons.ts';
 	import type DialogInterface from '$lib/components/common/DialogInterface.ts';
 	import Map from '$lib/components/common/Map.svelte';
@@ -110,6 +111,12 @@
 					class="flex justify-center rounded-md border border-transparent bg-green-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
 				>
 					<TextWithIcon text="Select" icon={() => SquareCheck} />
+				</button>
+				<button
+					onclick={dialog.close}
+					class="flex justify-center rounded-md border border-transparent bg-gray-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-gray-900 transition hover:bg-gray-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+				>
+					<TextWithIcon text="Close" icon={() => CircleX} />
 				</button>
 			</div>
 		</div>

@@ -81,7 +81,7 @@
 			transition:fade={{ duration: 100 }}
 			class="flex h-9/10 w-full flex-col items-center justify-center p-3 text-center text-gray-800"
 		>
-			<div class="rounded-lg bg-white/70 p-3">
+			<div class="rounded-lg bg-white/70 p-3 transition hover:bg-white">
 				<div class="mb-3">
 					<label for="date" class="mb-1 block text-sm font-medium text-[#07074D]">
 						<TextWithIcon text="Start Date" icon={() => CalendarDays} />

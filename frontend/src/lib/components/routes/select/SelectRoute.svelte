@@ -21,6 +21,7 @@
 
 	onMount(() => {
 		loading = true;
+		resetCurrentRouteState();
 		retrievePredefinedRoutes().then((result) => {
 			if (typeof result === 'string') {
 				error = result;

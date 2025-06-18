@@ -14,7 +14,7 @@
 </script>
 
 <nav class="bg-gradient-to-r from-green-500 to-orange-500 p-2 text-white shadow-md transition">
-	<div class="container mx-auto flex items-center justify-between">
+	<div class="container mx-auto flex items-center justify-between px-2">
 		<a href="/" class="rounded-lg px-3 py-2 text-2xl font-bold transition hover:bg-white/30">
 			<div class="container mr-1 flex items-center justify-between">
 				<MapPinned />Journey Planner
