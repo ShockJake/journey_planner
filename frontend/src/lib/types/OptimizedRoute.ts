@@ -3,7 +3,8 @@ import type Route from './Route.ts';
 import type WeatherInfo from './WeatherInfo.ts';
 
 export default interface OptimizedRoute {
-	route: Route;
-	path: Path;
-	weatherInfo: WeatherInfo;
+    optimizationId: string
+    route: Route;
+    path: Path;
+    weatherInfo: WeatherInfo;
 }

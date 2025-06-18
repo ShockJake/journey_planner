@@ -8,10 +8,13 @@
 	import { onMount } from 'svelte';
 	import { getUserData, username } from '$lib/component_scripts/user.ts';
 	import type Route from '$lib/types/Route.ts';
+	import type OptimizedRoute from '$lib/types/OptimizedRoute.ts';
+	import OptimizedRoutesSection from './OptimizedRoutesSection.svelte';
 
 	let routesCreated = 0;
 	let errorMsg = '';
 	let routes: Route[] = [];
+	let optimizedRoutes: OptimizedRoute[] = [];
 
 	onMount(async () => {
 		const userdata: UserDataResult = await getUserData();
@@ -21,8 +24,8 @@
 		}
 		username.set(userdata.username);
 		routesCreated = userdata.routesCreated;
-		console.log(userdata);
 		routes = userdata.routes;
+		optimizedRoutes = userdata.optimizedRoutes;
 	});
 </script>
 
@@ -37,8 +40,9 @@
 			</div>
 		{:else}
 			<InfoSection username={$username} {routesCreated} />
-			<div class="flex min-h-0 w-full grow flex-row space-y-3 px-3 pb-3">
+			<div class="flex min-h-0 w-full grow flex-col space-y-3 px-3 pb-3">
 				<RoutesSection {routes} />
+				<OptimizedRoutesSection {optimizedRoutes} />
 			</div>
 		{/if}
 	</div>
