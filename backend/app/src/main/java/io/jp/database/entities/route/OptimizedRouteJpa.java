@@ -2,6 +2,7 @@ package io.jp.database.entities.route;
 
 import io.jp.database.entities.user.User;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -31,11 +32,15 @@ public class OptimizedRouteJpa {
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long id;
+    private String optimizationId;
 
     @OneToOne(cascade = ALL)
     private RouteJpa route;
+    @Column(columnDefinition = "json")
     private String placesOverrides;
+    @Column(columnDefinition = "json")
     private String path;
+    @Column(columnDefinition = "json")
     private String weatherInfo;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "user_id")

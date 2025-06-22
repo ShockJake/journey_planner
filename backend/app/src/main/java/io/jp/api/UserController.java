@@ -26,6 +26,8 @@ import static io.jp.api.WebConstants.ROUTES_KEY;
 import static io.jp.api.WebConstants.USERNAME_KEY;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.PASSWORD;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Slf4j
 @RestController
@@ -61,12 +63,19 @@ public class UserController {
     @GetMapping
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         var user = userService.findUserByUsername(authentication.getName());
+        log.debug("Getting user info for user {}", user.getUsername());
+
         var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
         var optimizedRoutes = routeOptimizationService.getOptimizedRoutesByUser(user);
-        log.debug("Getting user info for user {}", user.getUsername());
-        return ResponseEntity.ok(Map.of(USERNAME_KEY, user.getUsername(),
+
+        var response = Map.of(USERNAME_KEY, user.getUsername(),
                 ROUTES_CREATED_KEY, user.getRoutesCreated(),
                 OPTIMIZED_ROUTES_KEY, optimizedRoutes,
-                ROUTES_KEY, routes));
+                ROUTES_KEY, routes);
+
+        log.debug("Returning user info: {}", response.keySet());
+        return ResponseEntity.status(OK)
+                .contentType(APPLICATION_JSON)
+                .body(response);
     }
 }

@@ -35,6 +35,7 @@ public class MappingUtils {
 
     public static <T> T readObjectFromString(ObjectMapper mapper, String input, Class<T> clazz) {
         try {
+            log.debug("Deserializing object to {}", clazz.getSimpleName());
             return mapper.readValue(input, clazz);
         } catch (JsonProcessingException e) {
             log.error("Cannot map {}", clazz.getSimpleName(), e);
@@ -44,6 +45,7 @@ public class MappingUtils {
 
     public static String writeObjectToString(ObjectMapper mapper, Object object) {
         try {
+            log.debug("Serializing object to {}", object.getClass().getSimpleName());
             return mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             log.error("Cannot serialize {}", object, e);

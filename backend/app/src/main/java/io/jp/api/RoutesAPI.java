@@ -59,7 +59,7 @@ public class RoutesAPI {
         log.info("Optimizing route: {}", routeOptimizationRequest);
         var optimizedRoute = routeOptimizationService.optimizeRoute(routeOptimizationRequest);
         putOptimizedRouteToCache(optimizedRoute);
-        log.info("Optimized route: {}", optimizedRoute.route());
+        log.info("Optimized route ({}) successfully", optimizedRoute.route().name());
         return ResponseEntity.status(OK)
                 .contentType(APPLICATION_JSON)
                 .body(optimizedRoute);
