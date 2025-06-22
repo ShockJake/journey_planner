@@ -7,25 +7,46 @@
 		Footprints,
 		Timer,
 		MapPinPlusInside,
-		Save
+		Save,
+		ShieldAlert,
+		Check
 	} from '$lib/components/common/Icons.ts';
 	import type Route from '$lib/types/Route.ts';
 	import { getIcon } from '$lib/component_scripts/placeIconMapper.ts';
-	import { isAdditionalPlace } from '$lib/component_scripts/routeOptimization.ts';
+	import {
+		isAdditionalPlace,
+		saveOptimizedRoute
+	} from '$lib/component_scripts/routeOptimization.ts';
 	import { isAuthenticated } from '$lib/component_scripts/authentication.ts';
 	import type Path from '$lib/types/Path.ts';
 	import { fade } from 'svelte/transition';
+	import LoaderCircle from '$lib/components/common/LoaderCircle.svelte';
 
 	interface Props {
+		optimizationId: string;
 		route: Route;
 		path: Path;
 	}
-	const { route, path }: Props = $props();
+	const { optimizationId, route, path }: Props = $props();
+	let error = $state('');
+	let loading = $state(false);
+	let isSaved = $state(false);
 
 	console.log(route);
 
 	function getTime(seconds: number) {
 		return seconds / 60;
+	}
+
+	function triggersSavingOptimizedRoute() {
+		if (error.length > 0) {
+			return;
+		}
+		loading = true;
+		saveOptimizedRoute(optimizationId, route.name).then((result) => {
+			loading = false;
+			error = result;
+		});
 	}
 </script>
 
@@ -46,8 +67,17 @@
 				<button
 					type="button"
 					class="rounded-md bg-green-100 py-2 pr-2 pl-1 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
-					onclick={() => {}}
-					><TextWithIcon text="Save to Account" icon={() => Save} />
+					onclick={triggersSavingOptimizedRoute}
+				>
+					{#if loading}
+						<LoaderCircle />
+					{:else if error.length > 0}
+						<TextWithIcon text={error} icon={() => ShieldAlert} />
+					{:else if isSaved}
+						<Check />
+					{:else}
+						<TextWithIcon text="Save to Account" icon={() => Save} />
+					{/if}
 				</button>
 			{/if}
 		</div>

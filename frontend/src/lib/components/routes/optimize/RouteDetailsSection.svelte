@@ -142,7 +142,11 @@
 	{/if}
 	{#if optimizationFinished}
 		<div transition:fade={{ delay: 100, duration: 800 }} class="m-3 flex flex-col gap-3">
-			<RouteDetailsMapSection route={optimizedRoute.route} path={optimizedRoute.path} />
+			<RouteDetailsMapSection
+				optimizationId={optimizedRoute.optimizationId}
+				route={optimizedRoute.route}
+				path={optimizedRoute.path}
+			/>
 			<WeatherSection weatherInfo={optimizedRoute.weatherInfo} />
 		</div>
 	{/if}

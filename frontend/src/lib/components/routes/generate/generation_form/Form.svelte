@@ -48,7 +48,10 @@
 		<span class="text-sm font-medium text-black">Getting latest route data...</span>
 	</div>
 {:else if errorMessage.length !== 0}
-	<div in:fade class="flex h-full w-full flex-col items-center justify-center gap-2">
+	<div
+		in:fade
+		class="flex h-full w-full flex-col items-center justify-center gap-2 overflow-y-scroll"
+	>
 		<Alert message={errorMessage} iconSupplier={() => ShieldAlert} type="danger" />
 		<button
 			type="button"
