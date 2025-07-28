@@ -1,1 +1,2 @@
-// Reexport your entry components here
+import axios from 'axios';
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = window.location.origin;
