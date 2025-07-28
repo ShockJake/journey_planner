@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 import static io.jp.database.entities.user.UserType.USER;
 
 @Service
@@ -27,7 +29,7 @@ public class UserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserType(USER);
-        user.setRoutesCreated(0);
+        user.setCreatedAt(Instant.now());
         userRepository.save(user);
     }
 

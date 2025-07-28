@@ -33,6 +33,7 @@ public class RouteGenerationService {
 
     public RouteGenerationMetadata getRouteGenerationMetadata() {
         if (hasNoCachedMunicipalities()) {
+            log.info("No cached municipalities found, populating from database.");
             putCachedMunicipalities(municipalityRepository.findAll());
         }
 
@@ -65,7 +66,7 @@ public class RouteGenerationService {
         return Route.builder()
                 .name(routeName)
                 .description(description)
-                .imageUrl("")
+                .imageUrl("https://www.adventurouskate.com/wp-content/uploads/2017/01/DSCF9597.jpg")
                 .municipality(municipalityName)
                 .places(places)
                 .center(Point.of(center.getX(), center.getY()))

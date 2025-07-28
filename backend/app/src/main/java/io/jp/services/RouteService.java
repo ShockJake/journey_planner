@@ -8,13 +8,15 @@ import io.jp.database.repositories.place.MunicipalityRepository;
 import io.jp.database.repositories.place.PlaceRepository;
 import io.jp.database.repositories.route.RouteRepository;
 import io.jp.database.repositories.user.UserRouteRepository;
-import io.jp.mapper.PlaceJpaMapper;
-import io.jp.mapper.RouteJpaMapper;
-import io.jp.mapper.RoutePlaceMapper;
-import io.jp.mapper.UserRouteMapper;
+import io.jp.mapper.place.PlaceJpaMapper;
+import io.jp.mapper.route.RouteJpaMapper;
+import io.jp.mapper.route.RoutePlaceMapper;
+import io.jp.mapper.route.UserRouteMapper;
+import io.jp.services.UserService.UserUnauthorizedException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -58,7 +60,12 @@ public class RouteService {
     }
 
     @Transactional
-    public void saveRouteToAccount(Route route, String userName) {
+    public void saveRouteToAccount(Route route, Authentication authentication) {
+        if (authentication == null) {
+            log.error("Cannot save generated route to nonexistent account");
+            throw new UserUnauthorizedException();
+        }
+        var userName = authentication.getName();
         var user = userService.findUserByUsername(userName);
         var savedPlaces = placeRepository.saveAll(route.places()
                 .stream()

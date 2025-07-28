@@ -6,7 +6,7 @@ import io.jp.core.domain.OptimizedRoute;
 import io.jp.database.entities.route.OptimizedRouteJpa;
 import io.jp.database.entities.user.User;
 import io.jp.database.repositories.route.OptimizedRouteRepository;
-import io.jp.mapper.OptimizedRouteMapper;
+import io.jp.mapper.route.OptimizedRouteMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
