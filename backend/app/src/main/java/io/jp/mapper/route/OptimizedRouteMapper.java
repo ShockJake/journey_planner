@@ -40,6 +40,7 @@ public class OptimizedRouteMapper {
         route.updatePlaces(placesOverride);
 
         return OptimizedRoute.builder()
+                .optimizationId(optimizedRouteJpa.getOptimizationId())
                 .route(route)
                 .path(readPath(optimizedRouteJpa.getPath()))
                 .weatherInfo(readWeatherInfo(optimizedRouteJpa.getWeatherInfo()))
