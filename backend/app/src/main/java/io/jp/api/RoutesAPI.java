@@ -96,11 +96,7 @@ public class RoutesAPI {
         log.info("Generating route: {}", routeGenerationRequest);
         var route = routeGenerationService.generateRoute(routeGenerationRequest);
         if (routeGenerationRequest.saveToAccount()) {
-            if (authentication == null) {
-                log.error("Cannot save generated route to nonexistent account");
-                throw new UserService.UserUnauthorizedException();
-            }
-            routeService.saveRouteToAccount(route, authentication.getName());
+            routeService.saveRouteToAccount(route, authentication);
         }
         var response = Map.of(MESSAGE_KEY, "Route is successfully generated", "route", route);
         return ResponseEntity.status(CREATED)

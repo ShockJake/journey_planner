@@ -17,15 +17,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
+import static io.jp.api.WebConstants.CREATED_AT_KEY;
 import static io.jp.api.WebConstants.MESSAGE_KEY;
 import static io.jp.api.WebConstants.OPTIMIZED_ROUTES_KEY;
-import static io.jp.api.WebConstants.ROUTES_CREATED_KEY;
 import static io.jp.api.WebConstants.ROUTES_KEY;
 import static io.jp.api.WebConstants.USERNAME_KEY;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.PASSWORD;
 import static io.jp.api.dto.ChangeUserDataRequestInfoType.USERNAME;
+import static java.time.ZoneId.systemDefault;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -37,6 +39,7 @@ public class UserController {
     private final UserService userService;
     private final UserRouteAssociationService userRouteAssociationService;
     private final RouteOptimizationService routeOptimizationService;
+    private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(systemDefault());
 
     @PatchMapping
     public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
@@ -69,7 +72,7 @@ public class UserController {
         var optimizedRoutes = routeOptimizationService.getOptimizedRoutesByUser(user);
 
         var response = Map.of(USERNAME_KEY, user.getUsername(),
-                ROUTES_CREATED_KEY, user.getRoutesCreated(),
+                CREATED_AT_KEY, dateFormat.format(user.getCreatedAt()),
                 OPTIMIZED_ROUTES_KEY, optimizedRoutes,
                 ROUTES_KEY, routes);
 
