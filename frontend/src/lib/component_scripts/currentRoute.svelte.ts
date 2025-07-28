@@ -24,3 +24,25 @@ export const currentRouteState = {
 export function resetCurrentRouteState() {
     currentRouteState.value = initialRoute;
 }
+
+let savedRoutes = $state<string[]>([]);
+
+export const savedRoutesState = {
+    get value() {
+        return savedRoutes;
+    },
+    set value(newState) {
+        savedRoutes = newState;
+    }
+}
+
+export function updateSavedRoutes(route: Route): void {
+    const routeName = route.name;
+    if (savedRoutesState.value.indexOf(routeName) === -1) {
+        savedRoutesState.value.push(routeName);
+    }
+}
+
+export function isSavedRoute(route: Route): boolean {
+    return savedRoutesState.value.indexOf(route.name) !== -1;
+}

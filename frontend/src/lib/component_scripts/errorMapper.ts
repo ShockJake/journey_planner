@@ -27,5 +27,9 @@ export default function mapError(error: AxiosError | any): string {
     if (!error.response) {
         return mapErrorFromCode(error.status);
     }
+    if (error.response.data === '') {
+        return mapErrorFromCode(error.status);
+    }
     return error.response.data.message;
-} 
+}
+

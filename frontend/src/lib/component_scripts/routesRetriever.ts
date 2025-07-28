@@ -5,6 +5,7 @@ import mapErrorFromCode from './errorMapper.ts';
 
 export async function retrievePredefinedRoutes(): Promise<Route[] | string> {
     try {
+        axios.defaults.headers.common["Access-Control-Allow-Origin"] = window.location.origin;
         const response = await axios.get(`${baseUrl()}/routes/predefined`);
         if (response.status !== 200) {
             return mapErrorFromCode(response.status);
