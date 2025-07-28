@@ -2,7 +2,7 @@ package io.jp.integration.provider.routing;
 
 import io.jp.core.domain.Path;
 import io.jp.core.domain.Place;
-import io.jp.mapper.PathMapper;
+import io.jp.mapper.other.PathMapper;
 import io.jp.integration.provider.DataProvider;
 import io.jp.utils.PropertiesProvider;
 import lombok.RequiredArgsConstructor;
@@ -42,14 +42,13 @@ public class RoutingDataProvider implements DataProvider<Path> {
                 .retrieve()
                 .toEntity(String.class);
         var responseCode = response.getStatusCode();
-        log.info("Routing response is {}", responseCode);
 
         if (responseCode != HttpStatus.OK) {
+            log.error("Routing response is {}", responseCode);
             throw new HttpClientErrorException(responseCode);
         }
-        var responseBody = response.getBody();
-        log.info(responseBody);
-        return pathMapper.map(responseBody);
+
+        return pathMapper.map(response.getBody());
     }
 
     private String resolveParameters(List<Place> places) {

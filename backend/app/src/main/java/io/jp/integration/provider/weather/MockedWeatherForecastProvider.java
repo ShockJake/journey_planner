@@ -1,7 +1,7 @@
 package io.jp.integration.provider.weather;
 
 import io.jp.core.domain.weather.WeatherForecast;
-import io.jp.mapper.WeatherForecastMapper;
+import io.jp.mapper.other.WeatherForecastMapper;
 import io.jp.integration.provider.DataProvider;
 import io.jp.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
