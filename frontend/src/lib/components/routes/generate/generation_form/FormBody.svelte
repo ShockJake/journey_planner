@@ -7,7 +7,8 @@
 		Save,
 		Dot,
 		Ellipsis,
-		GripHorizontal
+		GripHorizontal,
+		CircleAlert
 	} from '$lib/components/common/Icons.ts';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
 	import type ComboboxItem from '$lib/types/ComboboxItem.ts';
@@ -16,6 +17,13 @@
 	import RadioGroup from '$lib/components/common/Form/RadioGroup.svelte';
 	import Toggle from '$lib/components/common/Form/Toggle.svelte';
 	import type RadioGroupItem from '$lib/types/RadioGroupItem.ts';
+	import { generateRoute } from '$lib/component_scripts/routeGeneration.ts';
+	import type RouteGenerationRequest from '$lib/types/RouteGenerationRequest.ts';
+	import { fade } from 'svelte/transition';
+	import Loader from '$lib/components/common/Loader.svelte';
+	import type Route from '$lib/types/Route.ts';
+	import GeneratedRoute from './GeneratedRoute.svelte';
+	import { updateSavedRoutes } from '$lib/component_scripts/currentRoute.svelte.ts';
 
 	interface Props {
 		municipalities: { name: string }[];
@@ -24,8 +32,12 @@
 
 	const { municipalities, placeTypes }: Props = $props();
 	let saveToAccount: boolean = $state(false);
+	let route: Route | undefined = $state();
+	let error = $state('');
+	let loading = $state(false);
 	let chosenMunicipality: string = '';
 	let chosenPlaceTypes: ComboboxItem[] = [];
+	let chosenRouteLongevity = '';
 	const radioGroupItems: RadioGroupItem[] = [
 		{ value: 'Short', description: 'Up to 4 places', iconProvider: () => Dot },
 		{ value: 'Normal', description: 'Up to 8 places', iconProvider: () => Ellipsis },
@@ -36,6 +48,10 @@
 		saveToAccount = !saveToAccount;
 	}
 
+	function changeChosenRouteLongevity(longevity: string) {
+		chosenRouteLongevity = longevity;
+	}
+
 	function changeChosenMunicipality(municipality: string) {
 		chosenMunicipality = municipality;
 	}
@@ -44,49 +60,97 @@
 		chosenPlaceTypes = placeTypes;
 	}
 
+	function reset() {
+		route = undefined;
+		loading = false;
+		error = '';
+	}
+
 	function triggerGeneration() {
-		console.log('Generation triggered');
+		route = undefined;
+		loading = true;
+		const request: RouteGenerationRequest = {
+			municipality: chosenMunicipality,
+			saveToAccount: saveToAccount,
+			places: chosenPlaceTypes.map((item) => item.name.toUpperCase()),
+			routeLongevity: chosenRouteLongevity.toUpperCase(),
+			creationDateTime: ''
+		};
+
+		generateRoute(request)
+			.then((result) => {
+				if (typeof result === 'string') {
+					error = result;
+					return;
+				}
+				route = result;
+				if (saveToAccount === true) {
+					updateSavedRoutes(route);
+				}
+			})
+			.finally(() => (loading = false));
 	}
 </script>
 
 <div
 	class="flex w-full grow flex-col items-center justify-center rounded-lg bg-white/40 text-black"
 >
-	<div class="flex w-full grow flex-col items-center gap-2 p-2">
-		<div class="flex w-full items-center gap-2 rounded-lg bg-white/80 p-2">
-			<div class="flex w-full flex-1/2 flex-row items-center gap-1">
-				<TextWithIcon text="Place" icon={() => MapPinHouse} />
-				<Combobox data={municipalities} callback={changeChosenMunicipality} />
+	{#if loading}
+		<div in:fade class="flex grow items-center justify-center">
+			<Loader />
+		</div>
+	{:else if error.length !== 0}
+		<div in:fade class="flex h-full w-full flex-col items-center justify-center">
+			<div class="my-4 rounded-md bg-red-600 py-2 pr-2 pl-1 font-medium text-white">
+				<TextWithIcon text={error} icon={() => CircleAlert} />
 			</div>
-			{#if $isAuthenticated}
-				<div
-					class="flex flex-row items-center gap-1 rounded-lg p-2 transition {saveToAccount
-						? ''
-						: 'bg-gray-100/60'}"
+			<div class="m-2 flex">
+				<button
+					onclick={reset}
+					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+					>Try again</button
 				>
-					<div class="{saveToAccount ? 'text-black' : 'text-gray-600'} text-sm">
-						<TextWithIcon text="Save to account" icon={() => Save} />
-					</div>
-					<Toggle label="SaveToAccount" toggleFunction={toggleSaveToAccount} />
+			</div>
+		</div>
+	{:else if route !== undefined}
+		<GeneratedRoute {route} />
+	{:else}
+		<div in:fade class="flex w-full grow flex-col items-center gap-2 p-2">
+			<div class="flex w-full items-center gap-2 rounded-lg bg-white/80 p-2">
+				<div class="flex w-full flex-1/2 flex-row items-center gap-1">
+					<TextWithIcon text="Place" icon={() => MapPinHouse} />
+					<Combobox data={municipalities} callback={changeChosenMunicipality} />
 				</div>
-			{/if}
+				{#if $isAuthenticated}
+					<div
+						class="flex flex-row items-center gap-1 rounded-lg p-2 transition {saveToAccount
+							? ''
+							: 'bg-gray-100/60'}"
+					>
+						<div class="{saveToAccount ? 'text-black' : 'text-gray-600'} text-sm">
+							<TextWithIcon text="Save to account" icon={() => Save} />
+						</div>
+						<Toggle label="SaveToAccount" toggleFunction={toggleSaveToAccount} />
+					</div>
+				{/if}
+			</div>
+			<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
+				<TextWithIcon text="Route Longevity" icon={() => Waypoints} />
+				<RadioGroup items={radioGroupItems} callback={changeChosenRouteLongevity} />
+			</div>
+			<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
+				<TextWithIcon text="Attraction Selection" icon={() => LandPlot} />
+				<ComboboxMulti data={placeTypes} callback={changeChosenPlaceTypes} />
+			</div>
 		</div>
-		<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
-			<TextWithIcon text="Route Longevity" icon={() => Waypoints} />
-			<RadioGroup items={radioGroupItems} />
+		<div class="flex w-full">
+			<div class="m-2 flex w-full">
+				<button
+					onclick={triggerGeneration}
+					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+					>Generate</button
+				>
+			</div>
 		</div>
-		<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
-			<TextWithIcon text="Attraction Selection" icon={() => LandPlot} />
-			<ComboboxMulti data={placeTypes} callback={changeChosenPlaceTypes} />
-		</div>
-	</div>
-	<div class="flex w-full">
-		<div class="m-2 flex w-full">
-			<button
-				onclick={triggerGeneration}
-				class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-				>Generate</button
-			>
-		</div>
-	</div>
+	{/if}
 </div>

@@ -40,21 +40,16 @@
 
 	function startOptimization() {
 		optimizationInProgress = true;
-		setTimeout(
-			() =>
-				optimizeRoute(route.name, startDate, startHour).then((r) => {
-					if (typeof r === 'string') {
-						displayError(r);
-					} else {
-						optimizedRoute = r;
-						currentRouteState.value = optimizedRoute.route;
-						currentPathState.value = optimizedRoute.path;
-						console.log(optimizedRoute);
-						finishOptimization();
-					}
-				}),
-			1500
-		);
+		optimizeRoute(route.name, startDate, startHour).then((r) => {
+			if (typeof r === 'string') {
+				displayError(r);
+			} else {
+				optimizedRoute = r;
+				currentRouteState.value = optimizedRoute.route;
+				currentPathState.value = optimizedRoute.path;
+				finishOptimization();
+			}
+		});
 	}
 
 	function restartOptimization() {

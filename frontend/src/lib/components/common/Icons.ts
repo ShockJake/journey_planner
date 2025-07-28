@@ -1,4 +1,6 @@
 import {
+
+    Palette,
     Waypoints,
     Save,
     Dot,
@@ -143,5 +145,7 @@ export {
     Save,
     Dot,
     Ellipsis,
-    GripHorizontal
+    GripHorizontal,
+    Palette,
+
 };

@@ -1,12 +1,18 @@
 <script lang="ts">
 	import type RadioGroupItem from '$lib/types/RadioGroupItem.ts';
 	import TextWithIcon from '../TextWithIcon.svelte';
-	let group = $state('startup');
 
 	interface Props {
 		items: RadioGroupItem[];
+		callback: (value: string) => void;
 	}
-	const { items }: Props = $props();
+
+	let group = $state('');
+	const { items, callback }: Props = $props();
+
+	function onChange(value: string) {
+		callback(value);
+	}
 </script>
 
 {#snippet option(id: string, name: string, description: string, iconProvider: () => any)}
@@ -16,6 +22,7 @@
 			class="peer absolute h-0 w-0 opacity-0"
 			type="radio"
 			bind:group
+			onclick={() => onChange(name)}
 			name="type"
 			value={id}
 		/>

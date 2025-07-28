@@ -1,16 +1,18 @@
 <script lang="ts">
 	import ChangeLoginModal from './change/ChangeLoginModal.svelte';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
-	import { Info, User, Route } from '$lib/components/common/Icons.ts';
+	import { Info, User, Route, CalendarDays } from '$lib/components/common/Icons.ts';
 	import ChangePasswordModal from './change/ChangePasswordModal.svelte';
 	import DeleteUserModal from './delete/DeleteUserModal.svelte';
 
 	interface Props {
 		username: string;
-		routesCreated: number;
+		savedRoutes: number;
+		optimizedRoutes: number;
+		createdAt: string;
 	}
 
-	const { username, routesCreated }: Props = $props();
+	const { username, savedRoutes, optimizedRoutes, createdAt }: Props = $props();
 </script>
 
 <div class="w-full p-3">
@@ -27,7 +29,13 @@
 				<TextWithIcon text="Login: {username}" icon={() => User} />
 			</div>
 			<div class="text-md ml-1 w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 font-medium shadow-2xs">
-				<TextWithIcon text="Routes: {routesCreated}" icon={() => Route} />
+				<TextWithIcon text="Saved routes: {savedRoutes}" icon={() => Route} />
+			</div>
+			<div class="text-md ml-1 w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 font-medium shadow-2xs">
+				<TextWithIcon text="Routes optimized: {optimizedRoutes}" icon={() => Route} />
+			</div>
+			<div class="text-md ml-1 w-auto rounded-lg bg-white/90 py-2 pr-2 pl-1 font-medium shadow-2xs">
+				<TextWithIcon text="Created: {createdAt}" icon={() => CalendarDays} />
 			</div>
 		</div>
 		<div class="flex flex-col justify-items-center gap-2 p-2 text-gray-800 lg:flex-row">

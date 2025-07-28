@@ -10,8 +10,12 @@
 	import type Route from '$lib/types/Route.ts';
 	import type OptimizedRoute from '$lib/types/OptimizedRoute.ts';
 	import OptimizedRoutesSection from './OptimizedRoutesSection.svelte';
+	import { updateSavedRoutes } from '$lib/component_scripts/currentRoute.svelte.ts';
+	import { updateSavedOptimizedRoutes } from '$lib/component_scripts/currentOptimizedRoute.svelte.ts';
 
-	let routesCreated = 0;
+	let accountCreated = '';
+	let routesSaved = 0;
+	let routesOptimized = 0;
 	let errorMsg = '';
 	let routes: Route[] = [];
 	let optimizedRoutes: OptimizedRoute[] = [];
@@ -23,9 +27,15 @@
 			return;
 		}
 		username.set(userdata.username);
-		routesCreated = userdata.routesCreated;
+
 		routes = userdata.routes;
+		routes.forEach((route) => updateSavedRoutes(route));
+		routesSaved = routes.length;
+
 		optimizedRoutes = userdata.optimizedRoutes;
+		optimizedRoutes.forEach((route) => updateSavedOptimizedRoutes(route));
+		routesOptimized = optimizedRoutes.length;
+		accountCreated = userdata.createdAt;
 	});
 </script>
 
@@ -39,8 +49,13 @@
 				</div>
 			</div>
 		{:else}
-			<div class="w-full gap-2 overflow-scroll p-3">
-				<InfoSection username={$username} {routesCreated} />
+			<div class="w-full gap-2 overflow-scroll p-1">
+				<InfoSection
+					username={$username}
+					savedRoutes={routesSaved}
+					optimizedRoutes={routesOptimized}
+					createdAt={accountCreated}
+				/>
 				<div class="flex w-full flex-col space-y-3 px-3 pb-3">
 					<RoutesSection {routes} />
 					<OptimizedRoutesSection {optimizedRoutes} />

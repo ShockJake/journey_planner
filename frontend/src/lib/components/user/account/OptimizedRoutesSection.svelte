@@ -31,7 +31,7 @@
 			class="grid w-full grid-cols-1 gap-2 overflow-scroll p-3 md:grid-cols-2 lg:grid-cols-3"
 		>
 			{#each optimizedRoutes as optimizedRoute}
-				<OptimizedRouteSection route={optimizedRoute.route} />
+				<OptimizedRouteSection route={optimizedRoute} />
 			{/each}
 		</div>
 	{/if}

@@ -21,6 +21,11 @@
 	import type Path from '$lib/types/Path.ts';
 	import { fade } from 'svelte/transition';
 	import LoaderCircle from '$lib/components/common/LoaderCircle.svelte';
+	import goToGoogleMaps from '$lib/component_scripts/googleMaps.ts';
+	import {
+		isSavedOptimizedRoute,
+		updateSavedOptimizedRoutes
+	} from '$lib/component_scripts/currentOptimizedRoute.svelte.ts';
 
 	interface Props {
 		optimizationId: string;
@@ -30,22 +35,22 @@
 	const { optimizationId, route, path }: Props = $props();
 	let error = $state('');
 	let loading = $state(false);
-	let isSaved = $state(false);
-
-	console.log(route);
 
 	function getTime(seconds: number) {
 		return seconds / 60;
 	}
 
 	function triggersSavingOptimizedRoute() {
-		if (error.length > 0) {
+		if (error !== '') {
 			return;
 		}
 		loading = true;
 		saveOptimizedRoute(optimizationId, route.name).then((result) => {
 			loading = false;
 			error = result;
+			if (error === '') {
+				updateSavedOptimizedRoutes(optimizationId);
+			}
 		});
 	}
 </script>
@@ -59,22 +64,24 @@
 			<button
 				type="button"
 				class="rounded-md bg-blue-100 py-2 pr-2 pl-1 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
-				onclick={() => {}}
+				onclick={() => goToGoogleMaps(route)}
 				><TextWithIcon text="Google Maps" icon={() => MapPinPlusInside} />
 			</button>
 
 			{#if $isAuthenticated}
 				<button
 					type="button"
-					class="rounded-md bg-green-100 py-2 pr-2 pl-1 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
+					class=" {error.length > 0
+						? 'bg-red-100 text-red-900 hover:bg-red-200 focus-visible:ring-red-500'
+						: 'bg-green-100 text-green-900 hover:bg-green-200 focus-visible:ring-green-500'} rounded-md py-2 pr-2 pl-1 text-sm font-medium transition focus:outline-hidden focus-visible:ring-2"
 					onclick={triggersSavingOptimizedRoute}
 				>
 					{#if loading}
 						<LoaderCircle />
 					{:else if error.length > 0}
 						<TextWithIcon text={error} icon={() => ShieldAlert} />
-					{:else if isSaved}
-						<Check />
+					{:else if isSavedOptimizedRoute(optimizationId)}
+						<TextWithIcon text="Saved" icon={() => Check} />
 					{:else}
 						<TextWithIcon text="Save to Account" icon={() => Save} />
 					{/if}

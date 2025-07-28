@@ -14,7 +14,10 @@
 	const combobox = createCombobox({ label: 'Data', selected: data[0] });
 
 	function onChange(e: Event) {
-		callback((e as CustomEvent).detail.selected);
+		if ((e as CustomEvent).detail.selected !== undefined) {
+			const value = $state.snapshot((e as CustomEvent).detail.selected).name;
+			callback(value);
+		}
 	}
 
 	let filtered = $derived(
@@ -69,7 +72,8 @@
 						: 'text-gray-900'}"
 					use:combobox.item={{ value }}
 				>
-					<span class="block truncate {selected ? 'font-medium' : 'font-normal'}">{value.name}</span
+					<span class="block truncate text-center {selected ? 'font-medium' : 'font-normal'}"
+						>{value.name}</span
 					>
 					{#if selected}
 						<span
