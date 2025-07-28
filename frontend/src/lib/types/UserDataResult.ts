@@ -3,7 +3,7 @@ import type Route from "./Route.ts";
 
 export default interface UserDataResult {
     username: string,
-    routesCreated: number,
+    createdAt: string,
     routes: Route[],
     optimizedRoutes: OptimizedRoute[],
     error: string | null;
