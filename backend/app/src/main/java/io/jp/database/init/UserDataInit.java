@@ -8,6 +8,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+
 import static io.jp.database.entities.user.UserType.USER;
 
 @Component
@@ -23,7 +25,7 @@ public class UserDataInit implements ApplicationRunner {
            user.setUsername("user");
            user.setPassword(passwordEncoder.encode("1234"));
            user.setUserType(USER);
-           user.setRoutesCreated(0);
+           user.setCreatedAt(Instant.now());
            userRepository.save(user);
        }
     }

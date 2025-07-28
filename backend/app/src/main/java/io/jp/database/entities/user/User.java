@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+import java.time.Instant;
+
 @Entity
 @Data
 @Table(name = "users")
@@ -21,5 +23,5 @@ public class User {
     private String password;
     @Column(nullable = false)
     private UserType userType;
-    private Integer routesCreated;
+    private Instant createdAt;
 }

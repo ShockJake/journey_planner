@@ -10,7 +10,7 @@ import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.repositories.place.MunicipalityRepository;
 import io.jp.database.repositories.place.PlaceRepository;
 import io.jp.database.repositories.route.RouteRepository;
-import io.jp.mapper.RoutePlaceMapper;
+import io.jp.mapper.route.RoutePlaceMapper;
 import io.jp.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -82,7 +82,7 @@ public class RouteDataInit implements ApplicationRunner {
                             .longitude(item.get("lng").asDouble())
                             .build())
                     .toList();
-
+            log.info("Saving municipalities: {}", municipalities);
             var municipalitiesWithId = municipalityRepository.saveAll(municipalities);
 
             return municipalitiesWithId.stream()
