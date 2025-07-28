@@ -1,4 +1,4 @@
-package io.jp.mapper;
+package io.jp.mapper.place;
 
 import io.jp.core.domain.Place;
 import io.jp.core.domain.Point;

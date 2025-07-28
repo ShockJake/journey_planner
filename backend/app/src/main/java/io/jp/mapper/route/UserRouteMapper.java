@@ -1,4 +1,4 @@
-package io.jp.mapper;
+package io.jp.mapper.route;
 
 import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.entities.user.User;

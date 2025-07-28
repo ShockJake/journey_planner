@@ -1,4 +1,4 @@
-package io.jp.mapper;
+package io.jp.mapper.route;
 
 import io.jp.core.domain.Place;
 import io.jp.core.domain.Point;
@@ -6,6 +6,7 @@ import io.jp.core.domain.Route;
 import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RouteJpa;
+import io.jp.mapper.place.PlaceJpaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

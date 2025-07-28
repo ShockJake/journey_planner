@@ -1,4 +1,4 @@
-package io.jp.mapper;
+package io.jp.mapper.route;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +11,7 @@ import io.jp.database.entities.route.OptimizedRouteJpa;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.entities.user.User;
+import io.jp.mapper.place.PlaceJpaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
