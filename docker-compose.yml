@@ -1,0 +1,36 @@
+---
+services:
+  database:
+    image: mysql:latest
+    container_name: jp-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports: [3306:3306]
+    networks: [jp-network]
+    volumes: [mysql_data:/var/lib/mysql]
+  backend:
+    image: journey-planner-backend:latest
+    container_name: jp-backend
+    restart: always
+    depends_on: [database]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://jp-db:3306/mydatabase
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports: [8080:8080]
+    networks: [jp-network]
+  frontend:
+    image: journey-planner-frontend:latest
+    container_name: jp-frontend
+    restart: always
+    depends_on: [backend]
+    ports: [3000:3000]
+volumes:
+  mysql_data:
+networks:
+  jp-network:
+    driver: bridge
