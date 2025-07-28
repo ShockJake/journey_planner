@@ -1,11 +1,13 @@
 package io.jp.cache;
 
 import io.jp.database.entities.route.Municipality;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class CachedMunicipalitiesProvider {
     private static final Map<String, Municipality> cachedMunicipalities = new HashMap<>();
     private static final Object LOCK = new Object();
@@ -19,6 +21,7 @@ public class CachedMunicipalitiesProvider {
     public static Municipality getCachedMunicipality(String name) {
         synchronized (LOCK) {
             if (!cachedMunicipalities.containsKey(name)) {
+                log.error("No cached municipality found with name {}, all municipalities {}", name, cachedMunicipalities.keySet());
                 throw new IllegalStateException("No municipality '%s' found".formatted(name));
             }
             return cachedMunicipalities.get(name);
@@ -29,6 +32,7 @@ public class CachedMunicipalitiesProvider {
         synchronized (LOCK) {
             municipalities.forEach(municipality ->
                     cachedMunicipalities.put(municipality.getName(), municipality));
+            log.info("Saved municipalities: {}", cachedMunicipalities.keySet());
         }
     }
 
