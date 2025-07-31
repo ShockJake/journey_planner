@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
-import { baseUrl } from '$lib/component_scripts/server.ts';
+import { baseUrl, setCORSHeader } from '$lib/component_scripts/server.ts';
 import mapError from './errorMapper.ts';
 
 const storedToken = browser ? localStorage.getItem("token") : null;
@@ -25,6 +25,7 @@ export async function register(username: string, password: string): Promise<stri
     }
 
     try {
+        setCORSHeader()
         await axios.post(`${baseUrl()}/auth/register`, { username, password });
         return "";
     } catch (error: AxiosError | any) {
@@ -38,6 +39,7 @@ export async function login(username: string, password: string): Promise<string>
     }
 
     try {
+        setCORSHeader()
         const response = await axios.post(`${baseUrl()}/auth/login`, { username, password });
         const token = response.data.token;
         if (token !== null || token !== undefined) {
