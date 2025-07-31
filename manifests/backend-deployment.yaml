@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,7 +29,7 @@ spec:
               value: jdbc:mysql://jp-db:3306/mydatabase
             - name: SPRING_DATASOURCE_USERNAME
               value: root
-          image: journey-planner-backend:latest
+          image: europe-central2-docker.pkg.dev/argon-fire-467320-j2/jp-images-registry/journey-planner-backend:latest
           name: jp-backend
           ports:
             - containerPort: 8080
