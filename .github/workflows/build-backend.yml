@@ -42,6 +42,8 @@ jobs:
         uses: google-github-actions/auth@v2.1.11
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Set project ID for gcloud
+        run: gcloud config set project argon-fire-467320-j2
       - name: Configure Docker to use gcloud as a credential helper
         run: |-
           gcloud auth configure-docker europe-central2-docker.pkg.dev
