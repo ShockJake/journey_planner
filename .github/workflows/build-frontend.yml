@@ -5,6 +5,9 @@ on:
     branches: [master]
   pull_request:
     types: [opened, synchronize, reopened]
+env:
+  IMAGE_NAME: gcr.io/${{ secrets.GKE_PROJECT_ID }}/journey-planner-backend
+  IMAGE_TAG: ${{ github.sha }}
 jobs:
   build:
     name: Build and test
@@ -23,4 +26,6 @@ jobs:
           npm install
       - name: Build and test
         run: |-
-          ./scripts/build_frontend.sh ${{ github.sha }}
+          ./scripts/build_backend.sh ${{ env.IMAGE_NAME }} ${{ env.IMAGE_TAG }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3.11.1
