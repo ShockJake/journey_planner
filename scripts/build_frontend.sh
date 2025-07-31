@@ -16,8 +16,11 @@ echo "Building Journey Planner Frontend"
 cd "${FRONTEND_DIR}" || exit 1
 
 echo "- Building distribution packages:"
+if [ -d ./build ]; then
+    rm -rd ./build
+fi
 npm run build
-cp env_vars.env ./build/.env
+cp .env ./build/.env
 
 echo ""
 echo "- Docker image : tag='${IMAGE_TAG}'"

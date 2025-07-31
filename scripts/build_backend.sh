@@ -19,7 +19,7 @@ echo "- Injecting secrets:"
 sed -i -e "s/GEO_API/${GEO_API_KEY}/g" "./app/src/main/resources/properties.json"
 
 echo "- Jar:"
-gradle bootJar
+gradle clean bootJar
 
 echo ""
 echo "- Docker image : tag='${IMAGE_TAG}'"
