@@ -20,7 +20,6 @@ import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Slf4j
-//@Component
 @RequiredArgsConstructor
 public class RoutingDataProvider implements DataProvider<Path> {
     private static final String BASE_URL = "https://api.geoapify.com/v1/routing";

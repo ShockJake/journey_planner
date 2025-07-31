@@ -25,6 +25,7 @@ import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
 @RequiredArgsConstructor
 public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     private static final String BASE_URL = "https://api.geoapify.com/v2/places";
+    private static final String RADIUS_METERS = "1500";
     private final PropertiesProvider propertiesProvider;
     private final PlacesResponseMapper mapper;
 
@@ -33,7 +34,7 @@ public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     @Override
     public PlacesResponse getData(Map<String, Object> input) {
         var finalUrl = BASE_URL + resolveParams(input);
-        log.info("Getting places data for: {}", finalUrl);
+        log.info("Getting places data for: {}", input.get("placeTypes"));
 
         var response = restClient.get()
                 .uri(finalUrl)
@@ -56,13 +57,12 @@ public class PlacesDataProvider implements DataProvider<PlacesResponse> {
         var location = (Point) input.get("location");
         var longevity = (RouteLongevity) input.get("longevity");
 
-        var filter = "filter=circle:%s,%s".formatted(location.lng(), location.lat());
-        var limit = "limit=" + longevity.getNumberOfPlaces() + 4;
+        var filter = "filter=circle:%s,%s,%s".formatted(location.lng(), location.lat(), RADIUS_METERS);
+        var limit = "limit=" + (longevity.getNumberOfPlaces() + 4);
         var categories = "categories=%s".formatted(mapCategories(placeTypes));
-        var key = propertiesProvider.getProperty(ROUTING_API_KEY_PROPERTY_NAME);
+        var key = "apiKey=" + propertiesProvider.getProperty(ROUTING_API_KEY_PROPERTY_NAME);
 
         return "?%s&%s&%s&%s".formatted(categories, filter, limit, key);
-
     }
 
     private String mapCategories(List<PlaceType> placeTypes) {

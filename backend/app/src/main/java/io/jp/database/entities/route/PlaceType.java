@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum PlaceType {
+    DEFAULT(""),
     HOUSE("building.historic"),
     MEMORIAL("tourism.sights.memorial"),
     SQUARE("tourism.sights.square"),

@@ -31,7 +31,7 @@ public class RouteOptimizationService {
         var routeName = request.routeName();
         log.debug("Optimizing route: {}", routeName);
         if (isRouteCached(routeName)) {
-            return routeOptimizer.optimizeRoute(getCachedRoute(routeName).copy(), request.startDateTime());
+            return routeOptimizer.optimizeRoute(getCachedRoute(routeName), request.startDateTime());
         }
         var route = routeService.getRouteByName(routeName);
         putCachedRoute(routeName, route);

@@ -14,12 +14,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static io.jp.cache.CachedMunicipalitiesProvider.getCachedMunicipalities;
 import static io.jp.cache.CachedMunicipalitiesProvider.getCachedMunicipality;
 import static io.jp.cache.CachedMunicipalitiesProvider.hasNoCachedMunicipalities;
 import static io.jp.cache.CachedMunicipalitiesProvider.putCachedMunicipalities;
+import static io.jp.cache.CachedRouteProvider.putCachedRoute;
 import static io.jp.core.GeometricMedian.calculateGeometricMedian;
 import static io.jp.utils.MappingUtils.mapDataToDescription;
 import static io.jp.utils.MappingUtils.mapToPoints;
@@ -63,13 +65,16 @@ public class RouteGenerationService {
         var description = mapDataToDescription(municipalityName, placeTypes);
         var center = calculateGeometricMedian(mapToPoints(places));
 
-        return Route.builder()
+        var result = Route.builder()
                 .name(routeName)
                 .description(description)
                 .imageUrl("https://www.adventurouskate.com/wp-content/uploads/2017/01/DSCF9597.jpg")
                 .municipality(municipalityName)
                 .places(places)
+                .additionalPlaces(List.of())
                 .center(Point.of(center.getX(), center.getY()))
                 .build();
+        putCachedRoute(routeName, result);
+        return result;
     }
 }

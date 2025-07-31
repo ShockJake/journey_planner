@@ -15,7 +15,6 @@ import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Slf4j
-//@Component
 @RequiredArgsConstructor
 public class WeatherForecastProvider implements DataProvider<WeatherForecast> {
     private static final String BASE_URL = "https://api.open-meteo.com/v1/forecast?";

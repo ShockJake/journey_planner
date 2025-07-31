@@ -16,7 +16,6 @@ import java.util.Optional;
 import static java.nio.charset.Charset.defaultCharset;
 
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class MockedPlacesDataProvider implements DataProvider<PlacesResponse> {
     private final PlacesResponseMapper mapper;

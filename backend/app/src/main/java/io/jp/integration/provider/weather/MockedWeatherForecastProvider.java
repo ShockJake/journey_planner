@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-@Component
 @RequiredArgsConstructor
 public class MockedWeatherForecastProvider implements DataProvider<WeatherForecast> {
     private final WeatherForecastMapper weatherForecastMapper;

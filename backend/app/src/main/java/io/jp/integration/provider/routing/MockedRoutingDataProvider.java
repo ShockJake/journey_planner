@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.Map;
 
-@Component
 @RequiredArgsConstructor
 public class MockedRoutingDataProvider implements DataProvider<Path> {
     private final PathMapper pathMapper;
