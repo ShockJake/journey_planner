@@ -32,8 +32,10 @@ jobs:
       - name: Build and test
         env:
           GEO_API_KEY: ${{ secrets.GEO_API_KEY }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
-          ./scripts/build_backend.sh ${{ env.IMAGE_NAME }} ${{ env.IMAGE_TAG }}
+          ./scripts/build_backend.sh
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
       - name: Authenticate to Google Cloud

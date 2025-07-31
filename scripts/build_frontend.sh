@@ -4,16 +4,14 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_DIR=${SCRIPT_DIR%/scripts}
 FRONTEND_DIR="${REPO_DIR}/frontend"
 DOCKERFILE_PATH="${FRONTEND_DIR}/Dockerfile"
-IMAGE_NAME=$1
-IMAGE_TAG=$2
 
 if [ -z "$IMAGE_NAME" ]; then
-    echo "[ERROR] Image name is not specified as first parameter of the scritp..."
+    echo "[ERROR] Image name is not specified"
     exit 1
 fi
 
 if [ -z "$IMAGE_TAG" ]; then
-    echo "[ERROR] IMAGE_TAG is not specified as second parameter of the scritp..."
+    echo "[ERROR] IMAGE_TAG is not specified"
     exit 1
 fi
 

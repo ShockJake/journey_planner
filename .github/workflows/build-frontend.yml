@@ -25,7 +25,10 @@ jobs:
           cd ./frontend
           npm install
       - name: Build and test
+        env:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
-          ./scripts/build_backend.sh ${{ env.IMAGE_NAME }} ${{ env.IMAGE_TAG }}
+          ./scripts/build_frontend.sh
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.11.1
