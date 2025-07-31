@@ -13,7 +13,7 @@ services:
     networks: [jp-network]
     volumes: [mysql_data:/var/lib/mysql]
   backend:
-    image: journey-planner-backend:latest
+    image: journey-planner-backend:1234
     container_name: jp-backend
     restart: always
     depends_on: [database]
@@ -21,10 +21,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://jp-db:3306/mydatabase
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+      SPRING_PROFILES_ACTIVE: prod
     ports: [8080:8080]
     networks: [jp-network]
   frontend:
-    image: journey-planner-frontend:latest
+    image: journey-planner-frontend:1234
     container_name: jp-frontend
     restart: always
     depends_on: [backend]
