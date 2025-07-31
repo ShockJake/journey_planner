@@ -47,6 +47,10 @@ jobs:
       - name: Configure Docker to use gcloud as a credential helper
         run: |-
           gcloud auth configure-docker europe-central2-docker.pkg.dev
+      - name: Install GKE gcloud auth plugin
+        uses: "google-github-actions/setup-gcloud@v2"
+        with:
+          install_components: "gke-gcloud-auth-plugin"
       - name: Push Docker image to Google Container Registry
         run: |-
           docker push "${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
@@ -60,6 +64,6 @@ jobs:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
           # Update the Kubernetes deployment image
-          kubectl set image deployment/jp-backend jp-backend=$IMAGE_NAME:$IMAGE_TAG
+          kubectl set image deployment/backend jp-backend=$IMAGE_NAME:$IMAGE_TAG
           # Optionally, wait for rollout to finish
-          kubectl rollout status deployment/jp-backend
+          kubectl rollout status deployment/backend
