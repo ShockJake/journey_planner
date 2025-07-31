@@ -15,6 +15,9 @@ echo "Building Journey Planner Backend"
 
 cd "${BACKEND_DIR}" || exit 1
 
+echo "- Injecting secrets:"
+sed -i -e "s/GEO_API/${GEO_API_KEY}/g" "./app/src/main/resources/properties.json"
+
 echo "- Jar:"
 gradle bootJar
 
