@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
+      - name: Get dependencies
+        run: |-
+          cd ./frontend
+          npm install
       - name: Build and test
         run: |-
           ./scripts/build_frontend.sh ${{ github.sha }}
