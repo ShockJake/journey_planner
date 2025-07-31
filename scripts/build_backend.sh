@@ -19,5 +19,5 @@ echo "- Jar:"
 gradle bootJar
 
 echo ""
-echo "- Docker image"
+echo "- Docker image : tag='${IMAGE_TAG}'"
 docker build -f "${DOCKERFILE_PATH}" -t journey-planner-backend:"${IMAGE_TAG}" .

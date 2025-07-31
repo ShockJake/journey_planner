@@ -20,5 +20,5 @@ npm run build
 cp env_vars.env ./build/.env
 
 echo ""
-echo "- Docker image"
+echo "- Docker image : tag='${IMAGE_TAG}'"
 docker build -f "${DOCKERFILE_PATH}" -t journey-planner-frontend:"${IMAGE_TAG}" .
