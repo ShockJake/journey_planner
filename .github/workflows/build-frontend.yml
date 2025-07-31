@@ -1,0 +1,22 @@
+---
+name: Build Journey Planner Backend
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+      - name: Build and test
+        run: |-
+          ./scripts/build_frontend.sh ${{ github.sha }}
