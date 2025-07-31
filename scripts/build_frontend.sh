@@ -4,6 +4,12 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 REPO_DIR=${SCRIPT_DIR%/scripts}
 FRONTEND_DIR="${REPO_DIR}/frontend"
 DOCKERFILE_PATH="${FRONTEND_DIR}/Dockerfile"
+IMAGE_TAG=$1
+
+if [ -z "$IMAGE_TAG" ]; then
+    echo "[ERROR] IMAGE_TAG is not specified as first parameter of the scritp..."
+    exit 1
+fi
 
 echo "Building Journey Planner Frontend"
 
@@ -15,4 +21,4 @@ cp env_vars.env ./build/.env
 
 echo ""
 echo "- Docker image"
-docker build -f "${DOCKERFILE_PATH}" -t journey-planner-frontend:latest .
+docker build -f "${DOCKERFILE_PATH}" -t journey-planner-frontend:"${IMAGE_TAG}" .
