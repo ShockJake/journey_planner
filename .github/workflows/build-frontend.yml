@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 env:
-  IMAGE_NAME: europe-central2-docker.pkg.dev/argon-fire-467320-j2/jp-images-registry/journey-planner-backend
+  IMAGE_NAME: europe-central2-docker.pkg.dev/argon-fire-467320-j2/jp-images-registry/journey-planner-frontend
   IMAGE_TAG: ${{ github.sha }}
 jobs:
   build:
