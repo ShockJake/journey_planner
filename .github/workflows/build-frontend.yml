@@ -58,6 +58,6 @@ jobs:
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
           # Update the Kubernetes deployment image
-          kubectl set image deployment/frontend frontend=$IMAGE_NAME:$IMAGE_TAG
+          kubectl set image deployment/frontend jp-frontend=$IMAGE_NAME:$IMAGE_TAG
           # Optionally, wait for rollout to finish
           kubectl rollout status deployment/frontend
