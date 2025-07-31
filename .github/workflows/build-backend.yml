@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 env:
-  IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/journey-planner-backend
+  IMAGE_NAME: gcr.io/argon-fire-467320-j2/journey-planner-backend
   IMAGE_TAG: ${{ github.sha }}
 jobs:
   build:
