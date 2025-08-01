@@ -63,7 +63,9 @@ jobs:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
+          cd ./manifests
+          kubectl apply -f "*.yaml"
           # Update the Kubernetes deployment image
           kubectl set image deployment/backend jp-backend=$IMAGE_NAME:$IMAGE_TAG
-          # Optionally, wait for rollout to finish
+          # Wait for rollout to finish
           kubectl rollout status deployment/backend
