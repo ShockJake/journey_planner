@@ -63,8 +63,8 @@ jobs:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |-
-          cd ./manifests
-          kubectl apply -f backend-load-balancer.yaml
+          #cd ./manifests
+          #kubectl apply -f backend-load-balancer.yaml
           # Update the Kubernetes deployment image
           kubectl set image deployment/backend jp-backend=$IMAGE_NAME:$IMAGE_TAG
           # Wait for rollout to finish
