@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div in:fade class="relative z-10 m-3 flex h-full flex-col items-center">
-	<div class="flex h-9/10 w-9/10 items-center justify-center rounded-lg bg-white/65">
+	<div class="flex h-9/10 w-29/30 items-center justify-center rounded-lg bg-white/65 lg:w-9/10">
 		<UserAccount />
 	</div>
 </div>

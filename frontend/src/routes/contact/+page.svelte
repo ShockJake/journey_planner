@@ -22,10 +22,14 @@
 				<div
 					class="flex w-full grow flex-col items-center space-y-5 sm:flex-col lg:flex-row lg:space-y-0"
 				>
-					<div class="container mx-1 flex items-center justify-center text-3xl text-gray-800">
+					<div
+						class="container mx-1 flex items-center justify-center text-xs text-gray-800 lg:text-3xl"
+					>
 						<Mails />&nbsp;stanislaw.lysunenko@student.uj.edu.pl
 					</div>
-					<div class="container mx-1 flex items-center justify-center text-3xl text-gray-800">
+					<div
+						class="container mx-1 flex items-center justify-center text-xs text-gray-800 lg:text-3xl"
+					>
 						<PhoneCall />&nbsp;+48123456789
 					</div>
 				</div>
