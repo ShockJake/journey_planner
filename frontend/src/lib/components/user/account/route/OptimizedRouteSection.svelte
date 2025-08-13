@@ -7,7 +7,7 @@
 	import type OptimizedRoute from '$lib/types/OptimizedRoute.ts';
 	import { currentOptimizedRouteState } from '$lib/component_scripts/currentOptimizedRoute.svelte.ts';
 	import { currentPathState } from '$lib/component_scripts/currentPath.svelte.ts';
-	import Button from '$lib/components/common/Button.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	interface Props {
 		route: OptimizedRoute;

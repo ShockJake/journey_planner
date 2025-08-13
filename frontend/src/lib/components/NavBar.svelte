@@ -17,12 +17,16 @@
 
 		<div class="hidden md:flex">
 			<UserNavbarComponent />
-			<a href="/contact" class="rounded-lg px-3 py-3 transition hover:bg-white/30"><PhoneCall /></a>
-			<a href="/info" class="rounded-lg px-3 py-3 transition hover:bg-white/30"><Info /></a>
+			<a href="/contact" class="cursor-pointer rounded-lg px-3 py-3 transition hover:bg-white/30"
+				><PhoneCall /></a
+			>
+			<a href="/info" class="cursor-pointer rounded-lg px-3 py-3 transition hover:bg-white/30"
+				><Info /></a
+			>
 		</div>
 
 		<button
-			class="rounded-lg px-3 py-3 transition hover:bg-white/30 md:hidden"
+			class="cursor-pointer rounded-lg px-3 py-3 transition hover:bg-white/30 md:hidden"
 			on:click={() => (isOpen = toggleMenu(isOpen))}
 		>
 			{#if isOpen}
@@ -35,12 +39,12 @@
 
 	{#if isOpen}
 		<div class="animate-slide-in mt-4 flex flex-col space-y-2 p-4 md:hidden">
-			<a href="/info" class="rounded-lg px-2 py-2 transition hover:bg-white/30">
+			<a href="/info" class="cursor-pointer rounded-lg px-2 py-2 transition hover:bg-white/30">
 				<div class="container mx-1 flex items-center">
 					<Info />&nbsp;Info
 				</div>
 			</a>
-			<a href="/contact" class="rounded-lg px-2 py-2 transition hover:bg-white/30">
+			<a href="/contact" class="cursor-pointer rounded-lg px-2 py-2 transition hover:bg-white/30">
 				<div class="container mx-1 flex items-center">
 					<PhoneCall />&nbsp;Contact
 				</div>

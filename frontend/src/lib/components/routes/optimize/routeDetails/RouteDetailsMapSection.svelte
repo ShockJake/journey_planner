@@ -26,7 +26,7 @@
 		isSavedOptimizedRoute,
 		updateSavedOptimizedRoutes
 	} from '$lib/component_scripts/currentOptimizedRoute.svelte.ts';
-	import Button from '$lib/components/common/Button.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	interface Props {
 		optimizationId: string;

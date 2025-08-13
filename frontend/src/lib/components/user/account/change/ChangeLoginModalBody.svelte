@@ -5,6 +5,7 @@
 	import { changeLogin } from '$lib/component_scripts/user.ts';
 	import Alert from '$lib/components/common/Alert.svelte';
 	import { fade } from 'svelte/transition';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 	export let dialog: DialogInterface;
 
 	let newUsername = '';
@@ -47,14 +48,8 @@
 			</div>
 		{/if}
 		<Alert message="You will be logged out" iconSupplier={() => CircleAlert} type="warning" />
-
-		<div class="text-center">
-			<button
-				on:click={confirmLoginChange}
-				class=" inline-flex justify-center rounded-md border border-transparent bg-blue-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-			>
-				<TextWithIcon text="Change" icon={() => UserPen} />
-			</button>
+		<div class="flex w-full items-center justify-center text-center">
+			<Button text="Change" iconProvider={() => UserPen} color="blue" action={confirmLoginChange} />
 		</div>
 	</div>
 </div>

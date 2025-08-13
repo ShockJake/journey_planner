@@ -23,7 +23,7 @@
 	import { associateRouteWithUser } from '$lib/component_scripts/routeAssociation.ts';
 	import LoaderCircle from '$lib/components/common/LoaderCircle.svelte';
 	import { fade } from 'svelte/transition';
-	import Button from '$lib/components/common/Button.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	interface Props {
 		dialog: DialogInterface;

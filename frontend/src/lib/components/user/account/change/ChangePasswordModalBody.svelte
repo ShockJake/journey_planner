@@ -5,6 +5,7 @@
 	import { UserPen, KeyRound, CircleAlert } from '$lib/components/common/Icons.ts';
 	import { changePassword } from '$lib/component_scripts/user.ts';
 	import type DialogInterface from '$lib/components/common/DialogInterface.ts';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 	export let dialog: DialogInterface;
 
 	let newPassword = '';
@@ -65,13 +66,13 @@
 			</div>
 		{/if}
 		<Alert message="You will be logged out" iconSupplier={() => CircleAlert} type="warning" />
-		<div class="text-center">
-			<button
-				on:click={confirmPasswordChange}
-				class="inline-flex justify-center rounded-md border border-transparent bg-cyan-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-cyan-900 transition hover:bg-cyan-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2"
-			>
-				<TextWithIcon text="Change" icon={() => UserPen} />
-			</button>
+		<div class="flex w-full items-center justify-center text-center">
+			<Button
+				text="Change"
+				iconProvider={() => UserPen}
+				color="cyan"
+				action={confirmPasswordChange}
+			/>
 		</div>
 	</div>
 </div>

@@ -2,15 +2,19 @@
 	import { createDialog } from 'svelte-headlessui';
 	import Transition from 'svelte-transition';
 	import { ListTodo, MapPlus, Route } from '$lib/components/common/Icons.ts';
+	import CustomWidthButton from './common/buttons/CustomWidthButton.svelte';
 
 	const dialog = createDialog({ label: 'routeCreationDialog' });
 </script>
 
-<button
-	type="button"
-	class="rounded-md bg-blue-100 px-4 py-2 text-xs font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75 lg:text-sm"
-	onclick={dialog.open}>Start</button
->
+<CustomWidthButton
+	action={dialog.open}
+	color="green"
+	text="Start"
+	iconProvider={undefined}
+	width="w-20"
+/>
+
 <div class="relative z-20">
 	<Transition show={$dialog.expanded}>
 		<Transition

@@ -4,7 +4,7 @@
 	import { currentRouteState } from '$lib/component_scripts/currentRoute.svelte.ts';
 	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
-	import Button from '$lib/components/common/Button.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	let { showDialogAction, route } = $props();
 

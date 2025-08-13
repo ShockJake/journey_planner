@@ -15,7 +15,7 @@
 	import { currentRouteState, isSavedRoute } from '$lib/component_scripts/currentRoute.svelte.ts';
 	import { goto } from '$app/navigation';
 	import SectionHeader from '$lib/components/common/SectionHeader.svelte';
-	import Button from '$lib/components/common/Button.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	interface Props {
 		route: Route;

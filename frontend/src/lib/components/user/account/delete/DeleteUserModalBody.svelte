@@ -4,6 +4,7 @@
 	import { Trash2, CircleAlert } from '$lib/components/common/Icons.ts';
 	import type DialogInterface from '$lib/components/common/DialogInterface.ts';
 	import { deleteAccount } from '$lib/component_scripts/user.ts';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 	export let dialog: DialogInterface;
 
 	function confirmAccountDeletion() {
@@ -23,13 +24,13 @@
 			iconSupplier={() => CircleAlert}
 			type="danger"
 		/>
-		<div class=" text-center">
-			<button
-				on:click={confirmAccountDeletion}
-				class=" inline-flex justify-center rounded-md border border-transparent bg-red-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-red-900 transition hover:bg-red-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-			>
-				<TextWithIcon text="Delete" icon={() => Trash2} />
-			</button>
+		<div class="flex w-full items-center justify-center text-center">
+			<Button
+				text="Delete"
+				iconProvider={() => Trash2}
+				color="red"
+				action={confirmAccountDeletion}
+			/>
 		</div>
 	</div>
 </div>

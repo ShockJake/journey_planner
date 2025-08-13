@@ -3,7 +3,7 @@
 	import ModalRender from '$lib/components/common/ModalRender.svelte';
 	import ChangePasswordModalBody from './ChangePasswordModalBody.svelte';
 	import { createDialog } from 'svelte-headlessui';
-	import ButtonShiftingWidth from '$lib/components/common/ButtonShiftingWidth.svelte';
+	import ButtonShiftingWidth from '$lib/components/common/buttons/ButtonShiftingWidth.svelte';
 
 	const dialog = createDialog({ label: 'authDialog' });
 </script>

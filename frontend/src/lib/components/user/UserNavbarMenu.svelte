@@ -18,7 +18,7 @@
 </script>
 
 <div class="relative inline-block text-left">
-	<button class="rounded-lg px-2 py-3 transition hover:bg-white/30" use:menu.button>
+	<button class="cursor-pointer rounded-lg px-2 py-3 transition hover:bg-white/30" use:menu.button>
 		<div class="container mx-1 flex items-center">
 			<CircleUserRound />
 		</div>

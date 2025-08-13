@@ -48,7 +48,7 @@
 				<TextWithIcon text="Created: {createdAt}" icon={() => CalendarDays} />
 			</div>
 		</div>
-		<div class="flex flex-col justify-items-center gap-2 px-3 pb-2 text-gray-800 lg:flex-row">
+		<div class="flex flex-col justify-items-center gap-2 px-3 pb-3 text-gray-800 lg:flex-row">
 			<div class="w-full items-center justify-items-center lg:w-auto"><ChangeLoginModal /></div>
 			<div class="w-full items-center justify-items-center lg:w-auto">
 				<ChangePasswordModal />

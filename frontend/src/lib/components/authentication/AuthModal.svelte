@@ -14,13 +14,19 @@
 </script>
 
 {#if isWide}
-	<button class="rounded-lg px-2 py-2 transition hover:bg-white/30" onclick={dialog.open}>
+	<button
+		class="cursor-pointer rounded-lg px-2 py-2 transition hover:bg-white/30"
+		onclick={dialog.open}
+	>
 		<div class="container mx-1 flex items-center">
 			<CircleUserRound />&nbsp;Account
 		</div>
 	</button>
 {:else}
-	<button class="rounded-lg px-2 py-2 transition hover:bg-white/30" onclick={dialog.open}>
+	<button
+		class="cursor-pointer rounded-lg px-2 py-2 transition hover:bg-white/30"
+		onclick={dialog.open}
+	>
 		<div class="container mx-1 flex items-center">
 			<CircleUserRound />
 		</div>

@@ -8,7 +8,8 @@
 		Dot,
 		Ellipsis,
 		GripHorizontal,
-		CircleAlert
+		CircleAlert,
+		RefreshCw
 	} from '$lib/components/common/Icons.ts';
 	import TextWithIcon from '$lib/components/common/TextWithIcon.svelte';
 	import type ComboboxItem from '$lib/types/ComboboxItem.ts';
@@ -24,6 +25,8 @@
 	import type Route from '$lib/types/Route.ts';
 	import GeneratedRoute from './GeneratedRoute.svelte';
 	import { updateSavedRoutes } from '$lib/component_scripts/currentRoute.svelte.ts';
+	import CustomWidthButton from '$lib/components/common/buttons/CustomWidthButton.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
 
 	interface Props {
 		municipalities: { name: string }[];
@@ -105,11 +108,7 @@
 				<TextWithIcon text={error} icon={() => CircleAlert} />
 			</div>
 			<div class="m-2 flex">
-				<button
-					onclick={reset}
-					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-					>Try again</button
-				>
+				<Button iconProvider={() => RefreshCw} text="Try again" action={reset} color="green" />
 			</div>
 		</div>
 	{:else if route !== undefined}
@@ -157,11 +156,13 @@
 		</div>
 		<div class="flex w-full">
 			<div class="m-2 flex w-full">
-				<button
-					onclick={triggerGeneration}
-					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-xs font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 lg:text-sm"
-					>Generate</button
-				>
+				<CustomWidthButton
+					width="w-full"
+					action={triggerGeneration}
+					color="green"
+					iconProvider={undefined}
+					text="Generate"
+				/>
 			</div>
 		</div>
 	{/if}

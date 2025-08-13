@@ -19,6 +19,8 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import SectionHeader from '$lib/components/common/SectionHeader.svelte';
+	import Button from '$lib/components/common/buttons/Button.svelte';
+	import CustomWidthButton from '$lib/components/common/buttons/CustomWidthButton.svelte';
 
 	const route = currentRouteState.value;
 	let optimizedRoute: OptimizedRoute;
@@ -101,26 +103,28 @@
 					</div>
 				</div>
 
-				<button
-					type="button"
-					class="w-full rounded-md bg-green-100 px-4 py-2 text-xs font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75 lg:text-sm"
-					onclick={startOptimization}>Start Optimization</button
-				>
+				<CustomWidthButton
+					action={startOptimization}
+					text="Start Optimization"
+					iconProvider={undefined}
+					color="green"
+					width="w-full"
+				/>
 			</div>
 		</div>
 	{/if}
 	{#if error.length !== 0}
 		<div
 			transition:fade={{ delay: 100, duration: 500 }}
-			class="flex h-9/10 w-full flex-col items-center justify-center p-3 text-center text-xl text-gray-800"
+			class="flex h-9/10 w-full flex-col items-center justify-center gap-2 p-3 text-center text-xl text-gray-800"
 		>
 			<Alert message={error} type="danger" iconSupplier={() => CircleAlert} />
-			<button
-				type="button"
-				class="mt-3 rounded-md bg-green-100 px-2 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
-				onclick={restartOptimization}
-				><TextWithIcon text="Try Again" icon={() => RefreshCw} />
-			</button>
+			<Button
+				text="Try Again"
+				iconProvider={() => RefreshCw}
+				action={restartOptimization}
+				color="green"
+			/>
 		</div>
 	{/if}
 
