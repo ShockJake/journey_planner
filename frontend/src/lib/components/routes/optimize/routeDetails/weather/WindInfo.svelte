@@ -25,7 +25,7 @@
 
 <div class="flex flex-col rounded-lg bg-gray-300 p-2">
 	<div class="flex items-center justify-center">
-		<h4 class="text-gray text-md w-auto font-medium">
+		<h4 class="text-gray w-auto text-sm font-medium lg:text-base">
 			<TextWithIcon text="Wind" icon={() => Wind} />
 		</h4>
 	</div>
@@ -33,10 +33,10 @@
 	<div
 		class="flex h-full flex-col items-center justify-center gap-2 rounded-lg bg-gray-500 p-2 text-sm font-medium text-white"
 	>
-		<div class="text-2xl font-bold">
+		<div class="text-lg font-bold lg:text-2xl">
 			<TextWithIcon text="{prepateWindAvgSpeed(windData.averageSpeed)} km/h" icon={() => Wind} />
 		</div>
-		<div class="flex flex-row items-center justify-center text-sm font-medium">
+		<div class="flex flex-row items-center justify-center text-xs font-medium lg:text-sm">
 			<p>Intensity:</p>
 
 			<div class="relative inline-block">
@@ -52,10 +52,10 @@
 				{#if showDescription}
 					<div
 						transition:fade
-						class="absolute right-0 z-20 w-auto origin-top-right rounded-md bg-white text-nowrap shadow-2xl ring-1 ring-black/5 focus:outline-hidden"
+						class="absolute -right-14.5 z-20 w-auto origin-top-right rounded-md bg-white text-nowrap shadow-2xl ring-1 ring-black/5 focus:outline-hidden"
 					>
 						<div>
-							<p class="p-3 text-sm font-extralight text-black">
+							<p class="p-3 text-xs font-extralight text-black lg:text-sm">
 								{windData.description}
 							</p>
 						</div>

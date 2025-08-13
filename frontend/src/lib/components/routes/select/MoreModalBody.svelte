@@ -23,6 +23,7 @@
 	import { associateRouteWithUser } from '$lib/component_scripts/routeAssociation.ts';
 	import LoaderCircle from '$lib/components/common/LoaderCircle.svelte';
 	import { fade } from 'svelte/transition';
+	import Button from '$lib/components/common/Button.svelte';
 
 	interface Props {
 		dialog: DialogInterface;
@@ -54,31 +55,43 @@
 
 <div class="w-full transition">
 	<div class="flex w-full items-center justify-center">
-		<h1 class="text-2xl leading-6 font-bold text-gray-900">
+		<h1 class="text-sm leading-6 font-bold text-gray-900 lg:text-2xl">
 			<span class="flex items-center">{currentRouteState.value.name}</span>
 		</h1>
 	</div>
 	<div class="my-3 border-t border-gray-300"></div>
 	<div class="flex flex-col gap-3 lg:flex-row">
-		<div class="flex rounded-lg bg-gray-50 p-3 lg:flex-auto" style="width: 500px; height: 500px;">
+		<style>
+			#map-container {
+				width: 330px;
+				height: 330px;
+			}
+			@media (width >= 64rem) {
+				#map-container {
+					width: 500px;
+					height: 500px;
+				}
+			}
+		</style>
+		<div id="map-container" class="flex rounded-lg bg-gray-50 p-3 lg:flex-auto">
 			<Map showLine={false} />
 		</div>
 		<div class="flex flex-col pt-1 lg:flex-2/3">
-			<h3 class="text-md py-1 font-bold text-gray-700">
+			<h3 class="py-1 text-sm font-bold text-gray-700 lg:text-base">
 				<TextWithIcon text={currentRouteState.value.municipality} icon={() => MapPinHouse} />
 			</h3>
 			<div class="my-3 border-t border-gray-300"></div>
-			<h3 class="text-md py-1 font-bold text-gray-700">
+			<h3 class="py-1 text-sm font-bold text-gray-700 lg:text-base">
 				<TextWithIcon text="Description" icon={() => FileText} />
 			</h3>
-			<div class="pl-4 text-sm font-medium text-gray-500">
+			<div class="pl-4 text-xs font-medium text-gray-500 lg:text-sm">
 				{currentRouteState.value.description}
 			</div>
 			<div class="my-3 border-t border-gray-300"></div>
-			<h3 class="text-md pt-2 pb-1 font-bold text-gray-700">
+			<h3 class="pt-2 pb-1 text-sm font-bold text-gray-700 lg:text-base">
 				<TextWithIcon text="Key Points" icon={() => List} />
 			</h3>
-			<div class="pl-2 text-sm font-medium text-gray-600">
+			<div class="pl-2 text-xs font-medium text-gray-600 lg:text-sm">
 				<ul class="flex flex-col gap-1">
 					{#each currentRouteState.value.places as place}
 						<li>
@@ -87,13 +100,13 @@
 					{/each}
 				</ul>
 			</div>
-			<div class="flex w-full grow items-end justify-end gap-2">
+			<div class="flex w-full grow items-end justify-end gap-2 pt-2">
 				{#if $isAuthenticated}
 					<button
 						onclick={triggerSaving}
 						class="{error.length > 0
 							? 'bg-red-100 text-red-900 hover:bg-red-200 focus-visible:ring-red-500'
-							: 'bg-blue-100 text-blue-900 hover:bg-blue-200 focus-visible:ring-blue-500'} flex justify-center rounded-md border border-transparent px-1 py-2 text-sm font-medium text-nowrap transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2"
+							: 'bg-blue-100 text-blue-900 hover:bg-blue-200 focus-visible:ring-blue-500'} flex justify-center rounded-md border border-transparent px-1 py-2 text-xs font-medium text-nowrap transition focus:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 lg:text-sm"
 					>
 						{#if isLoading}
 							<div in:fade>
@@ -115,18 +128,13 @@
 					</button>
 				{/if}
 
-				<button
-					onclick={gotoRouteOptimization}
-					class="flex justify-center rounded-md border border-transparent bg-green-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-				>
-					<TextWithIcon text="Select" icon={() => SquareCheck} />
-				</button>
-				<button
-					onclick={dialog.close}
-					class="flex justify-center rounded-md border border-transparent bg-gray-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-gray-900 transition hover:bg-gray-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
-				>
-					<TextWithIcon text="Close" icon={() => CircleX} />
-				</button>
+				<Button
+					text="Select"
+					action={gotoRouteOptimization}
+					iconProvider={() => SquareCheck}
+					color="green"
+				/>
+				<Button text="Close" iconProvider={() => CircleX} action={dialog.close} color="amber" />
 			</div>
 		</div>
 	</div>

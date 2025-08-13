@@ -7,6 +7,7 @@
 	import type OptimizedRoute from '$lib/types/OptimizedRoute.ts';
 	import { currentOptimizedRouteState } from '$lib/component_scripts/currentOptimizedRoute.svelte.ts';
 	import { currentPathState } from '$lib/component_scripts/currentPath.svelte.ts';
+	import Button from '$lib/components/common/Button.svelte';
 
 	interface Props {
 		route: OptimizedRoute;
@@ -26,19 +27,21 @@
 		<img class="h-48 w-full rounded-md object-cover" src={route.route.imageUrl} alt="test-img" />
 	</div>
 	<div class="mx-3 flex min-h-0 grow flex-col">
-		<div class="text-md font-medium text-wrap">
+		<div class="text-sm font-medium text-wrap lg:text-base">
 			<TextWithIcon text={route.route.name} icon={() => RouteIcon} />
 		</div>
 		<div class="my-2 border-t border-gray-300"></div>
-		<div class="text-left text-sm font-medium text-gray-500">{route.route.description}</div>
+		<div class="text-left text-xs font-medium text-gray-500 lg:text-sm">
+			{route.route.description}
+		</div>
 		<div class="mt-2 mb-3 min-h-0 w-full grow">
 			<div class="flex h-full w-full items-end justify-end gap-2">
-				<button
-					onclick={expandOptimizedRoute}
-					class="flex justify-center rounded-md border border-transparent bg-blue-100 py-2 pr-2 pl-1 text-sm font-medium text-nowrap text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-				>
-					<TextWithIcon text="More" icon={() => CircleEllipsis} />
-				</button>
+				<Button
+					action={expandOptimizedRoute}
+					text="More"
+					color="blue"
+					iconProvider={() => CircleEllipsis}
+				/>
 			</div>
 		</div>
 	</div>

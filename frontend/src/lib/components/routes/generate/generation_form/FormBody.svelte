@@ -116,18 +116,22 @@
 		<GeneratedRoute {route} />
 	{:else}
 		<div in:fade class="flex w-full grow flex-col items-center gap-2 p-2">
-			<div class="flex w-full items-center gap-2 rounded-lg bg-white/80 p-2">
-				<div class="flex w-full flex-1/2 flex-row items-center gap-1">
+			<div class="flex w-full flex-col items-center gap-2 rounded-lg bg-white/80 p-2 lg:flex-row">
+				<div class="flex w-full flex-1/2 flex-row items-center gap-1 p-2 text-xs lg:p-0 lg:text-sm">
 					<TextWithIcon text="Place" icon={() => MapPinHouse} />
 					<Combobox data={municipalities} callback={changeChosenMunicipality} />
 				</div>
 				{#if $isAuthenticated}
 					<div
-						class="flex flex-row items-center gap-1 rounded-lg p-2 transition {saveToAccount
+						class="flex w-full flex-row items-center gap-1 rounded-lg p-2 transition lg:max-w-fit {saveToAccount
 							? ''
 							: 'bg-gray-100/60'}"
 					>
-						<div class="{saveToAccount ? 'text-black' : 'text-gray-600'} text-sm">
+						<div
+							class="{saveToAccount
+								? 'text-black'
+								: 'text-gray-600'} w-full text-xs lg:max-w-fit lg:text-sm"
+						>
 							<TextWithIcon text="Save to account" icon={() => Save} />
 						</div>
 						<Toggle label="SaveToAccount" toggleFunction={toggleSaveToAccount} />
@@ -135,19 +139,27 @@
 				{/if}
 			</div>
 			<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
-				<TextWithIcon text="Route Longevity" icon={() => Waypoints} />
-				<RadioGroup items={radioGroupItems} callback={changeChosenRouteLongevity} />
+				<div class="text-sm lg:text-lg">
+					<TextWithIcon text="Route Longevity" icon={() => Waypoints} />
+				</div>
+				<div class="text-xs lg:text-sm">
+					<RadioGroup items={radioGroupItems} callback={changeChosenRouteLongevity} />
+				</div>
 			</div>
 			<div class="flex w-full flex-col gap-1 rounded-lg bg-white/80 p-2">
-				<TextWithIcon text="Attraction Selection" icon={() => LandPlot} />
-				<ComboboxMulti data={placeTypes} callback={changeChosenPlaceTypes} />
+				<div class="text-sm lg:text-lg">
+					<TextWithIcon text="Attraction Selection" icon={() => LandPlot} />
+				</div>
+				<div class="text-xs lg:text-sm">
+					<ComboboxMulti data={placeTypes} callback={changeChosenPlaceTypes} />
+				</div>
 			</div>
 		</div>
 		<div class="flex w-full">
 			<div class="m-2 flex w-full">
 				<button
 					onclick={triggerGeneration}
-					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+					class="inline-flex w-full justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-xs font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 lg:text-sm"
 					>Generate</button
 				>
 			</div>

@@ -14,7 +14,7 @@
 </script>
 
 <div class="flex w-full flex-col gap-2 rounded-lg bg-white/90 p-3">
-	<h3 class="text-2xl font-bold">
+	<h3 class="text-lg font-bold lg:text-2xl">
 		<TextWithIcon text="Weather" icon={() => CloudSun} />
 	</h3>
 	<div class="flex w-full flex-col gap-2 lg:flex-row">

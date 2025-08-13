@@ -32,12 +32,12 @@
 
 <div class="relative">
 	<div
-		class="relative w-full cursor-default overflow-hidden rounded-lg border border-gray-200 bg-white text-left text-sm transition hover:bg-gray-100"
+		class="relative w-full cursor-default overflow-hidden rounded-lg border border-gray-200 bg-white text-left transition hover:bg-gray-100"
 	>
 		<input
 			use:combobox.input
 			onchange={onChange}
-			class="w-full p-2 text-sm leading-5 text-gray-900 focus:outline-hidden"
+			class="w-full p-2 leading-5 text-gray-900 focus:outline-hidden"
 			value={$combobox.selected?.name ?? ''}
 		/>
 		<button
@@ -61,7 +61,7 @@
 	>
 		<ul
 			use:combobox.items
-			class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-sm shadow-lg transition focus:outline-hidden"
+			class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg transition focus:outline-hidden"
 		>
 			{#each filtered as value}
 				{@const active = $combobox.active === value}

@@ -1,14 +1,8 @@
 <script lang="ts">
 	import { toggleMenu } from '$lib/component_scripts/navbar.ts';
-	import {
-		MapPinned,
-		PhoneCall,
-		Info,
-		Menu,
-		CircleX,
-		CircleUserRound
-	} from '$lib/components/common/Icons.ts';
+	import { MapPinned, PhoneCall, Info, Menu, CircleX } from '$lib/components/common/Icons.ts';
 	import UserNavbarComponent from './user/UserNavbarComponent.svelte';
+	import UserNavbarWideComponent from './user/UserNavbarWideComponent.svelte';
 
 	let isOpen: boolean = false;
 </script>
@@ -41,21 +35,17 @@
 
 	{#if isOpen}
 		<div class="animate-slide-in mt-4 flex flex-col space-y-2 p-4 md:hidden">
-			<a href="/info" class="rounded-lg px-3 py-3 transition hover:bg-white/30">
+			<a href="/info" class="rounded-lg px-2 py-2 transition hover:bg-white/30">
 				<div class="container mx-1 flex items-center">
 					<Info />&nbsp;Info
 				</div>
 			</a>
-			<a href="/contact" class="rounded-lg px-3 py-3 transition hover:bg-white/30">
+			<a href="/contact" class="rounded-lg px-2 py-2 transition hover:bg-white/30">
 				<div class="container mx-1 flex items-center">
 					<PhoneCall />&nbsp;Contact
 				</div>
 			</a>
-			<a href="/account" class="rounded-lg px-3 py-3 transition hover:bg-white/30">
-				<div class="container mx-1 flex items-center">
-					<CircleUserRound />&nbsp;Account
-				</div>
-			</a>
+			<UserNavbarWideComponent />
 		</div>
 	{/if}
 </nav>

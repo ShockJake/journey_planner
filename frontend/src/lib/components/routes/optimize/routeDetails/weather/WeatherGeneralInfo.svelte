@@ -17,13 +17,13 @@
 
 <div class="rounded-lg bg-green-300 p-2">
 	<div class="flex w-full items-center justify-center">
-		<h4 class="text-gray text-md w-auto font-medium">
+		<h4 class="text-gray w-auto text-sm font-medium lg:text-base">
 			<TextWithIcon text="General" icon={() => ThermometerSun} />
 		</h4>
 	</div>
 	<div class="border-black-300 mt-1 mb-2 border-t"></div>
 	<div class="flex items-center justify-center rounded-lg bg-emerald-400 p-2">
-		<table class="text-sm font-medium">
+		<table class="text-xs font-medium lg:text-sm">
 			<thead></thead>
 			<tbody>
 				<tr

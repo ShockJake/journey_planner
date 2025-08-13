@@ -13,7 +13,7 @@
 
 <div class="{optimizedRoutes.length > 0 ? '' : 'min-h-0 grow '} rounded-lg bg-white/70">
 	<h2
-		class="flex w-full items-center justify-center rounded-lg bg-white/80 py-2 text-2xl font-bold text-gray-800 drop-shadow-md"
+		class="flex w-full items-center justify-center rounded-lg bg-white/80 py-2 text-lg font-bold text-gray-800 drop-shadow-md lg:text-2xl"
 	>
 		<div class="w-auto">
 			<TextWithIcon text="Optimized Routes" icon={() => RouteIcon} />
@@ -21,9 +21,9 @@
 	</h2>
 	{#if optimizedRoutes.length === 0}
 		<div
-			class="flex h-9/10 w-full items-center justify-center p-3 text-center text-xl text-gray-800"
+			class="flex h-9/10 w-full items-center justify-center p-3 text-center text-sm text-gray-800 lg:text-xl"
 		>
-			Nothing to show.
+			Nothing to show
 		</div>
 	{:else}
 		<div

@@ -8,7 +8,7 @@
 
 <button
 	type="button"
-	class="rounded-md bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75"
+	class="rounded-md bg-blue-100 px-4 py-2 text-xs font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75 lg:text-sm"
 	onclick={dialog.open}>Start</button
 >
 <div class="relative z-20">
@@ -43,7 +43,7 @@
 						use:dialog.modal
 					>
 						<div class="container mx-2 flex items-center justify-center">
-							<h3 class="text-lg leading-6 font-medium text-gray-900">
+							<h3 class="text-sm leading-6 font-medium text-gray-900 lg:text-lg">
 								<span class="container mx-2 flex items-center">
 									Create a Route&nbsp;
 									<Route />
@@ -52,34 +52,38 @@
 						</div>
 						<div class="my-4 border-t border-gray-300"></div>
 						<div class="flex space-x-6">
-							<div class="w-1/2">
-								<h4 class="text-md font-medium text-gray-800">
+							<div class="flex w-1/2 flex-col">
+								<h4 class="text-xs font-medium text-gray-800 lg:text-sm">
 									<span class="container flex items-center"><ListTodo />&nbsp;Predefined Route</span
 									>
 								</h4>
-								<p class="text-sm text-gray-500">
+								<p class="text-xs text-gray-500 lg:text-sm">
 									Select from the list of predefined routes and see the most popular places!
 								</p>
-								<a
-									href="/route/select"
-									class="mt-2 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-									>Select
-								</a>
+								<div class="flex min-h-0 grow items-end">
+									<a
+										href="/route/select"
+										class="mt-2 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-xs font-medium text-blue-900 transition hover:bg-blue-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 lg:text-sm"
+										>Select
+									</a>
+								</div>
 							</div>
 							<div class="h-auto border-l border-gray-300"></div>
-							<div class="w-1/2">
-								<h4 class="text-md font-medium text-gray-800">
+							<div class="flex w-1/2 flex-col">
+								<h4 class="text-xs font-medium text-gray-800 lg:text-sm">
 									<span class="container flex items-center"><MapPlus />&nbsp;Generated Route</span>
 								</h4>
-								<p class="text-sm text-gray-500">
+								<p class="text-xs text-gray-500 lg:text-sm">
 									Generate a Route based on your preferences! Specify types of places, your pace and
 									more!
 								</p>
-								<a
-									href="/route/create"
-									class="mt-2 inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-									>Generate
-								</a>
+								<div class="flex min-h-0 grow items-end">
+									<a
+										href="/route/create"
+										class="mt-2 inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-xs font-medium text-green-900 transition hover:bg-green-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 lg:text-sm"
+										>Generate
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

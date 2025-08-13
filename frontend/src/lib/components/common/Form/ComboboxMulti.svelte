@@ -31,7 +31,7 @@
 		<button
 			use:combobox.button
 			onchange={onChange}
-			class="focus:shadow-outline-teal relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pr-10 pl-2 text-left text-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:border-teal-300 focus:outline-hidden sm:leading-5"
+			class="focus:shadow-outline-teal relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pr-10 pl-2 text-left transition duration-150 ease-in-out hover:bg-gray-50 focus:border-teal-300 focus:outline-hidden sm:leading-5"
 		>
 			<div class="flex flex-wrap gap-2">
 				{#each $combobox.selected as selected (selected.id)}
@@ -51,7 +51,7 @@
 					use:combobox.input
 					onchange={onChange}
 					placeholder="Search&hellip;"
-					class="w-auto border-none py-1 text-sm leading-5 text-gray-900 focus:ring-0 focus:outline-hidden"
+					class="w-auto border-none py-1 leading-5 text-gray-900 focus:ring-0 focus:outline-hidden"
 				/>
 			</div>
 			<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -71,7 +71,7 @@
 	>
 		<ul
 			use:combobox.items
-			class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-sm shadow-lg ring-1 ring-black/5 focus:outline-hidden"
+			class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden"
 		>
 			{#each filtered as value}
 				{@const active = $combobox.active === value}

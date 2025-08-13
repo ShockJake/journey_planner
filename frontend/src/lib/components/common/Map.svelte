@@ -40,7 +40,7 @@
 	}
 </script>
 
-<Map bind:instance={mapRef} options={{ center, zoom }} style="height: 500px; width: 500px">
+<Map bind:instance={mapRef} options={{ center, zoom }}>
 	<TileLayer
 		url={'https://tile.openstreetmap.org/{z}/{x}/{y}.png'}
 		options={{

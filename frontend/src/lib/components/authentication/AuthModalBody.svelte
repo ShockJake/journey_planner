@@ -42,7 +42,7 @@
 	</div>
 	<div class="grid w-full items-center justify-center">
 		<div class="mb-1">
-			<label for="Login" class="text-md mb-1 block font-medium text-[#07074D]">
+			<label for="Login" class="mb-1 block text-base font-medium text-[#07074D]">
 				<TextWithIcon text="Login" icon={() => User} />
 			</label>
 			<input
@@ -55,7 +55,7 @@
 			/>
 		</div>
 		<div class="mb-2">
-			<label for="Password" class="text-md mt-3 mb-1 block font-medium text-[#07074D]">
+			<label for="Password" class="mt-3 mb-1 block text-base font-medium text-[#07074D]">
 				<TextWithIcon text="Password" icon={() => KeyRound} />
 			</label>
 			<input
@@ -69,7 +69,7 @@
 		</div>
 		{#if isRegistering}
 			<div in:fade class="mb-2">
-				<label for="ConfirmPassword" class="text-md mt-3 mb-1 block font-medium text-[#07074D]">
+				<label for="ConfirmPassword" class="mt-3 mb-1 block text-base font-medium text-[#07074D]">
 					<TextWithIcon text="Confirm Password" icon={() => KeyRound} />
 				</label>
 				<input

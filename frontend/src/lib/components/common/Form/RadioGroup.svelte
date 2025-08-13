@@ -32,7 +32,7 @@
 		>
 			<div class="flex w-full items-center justify-between">
 				<div class="flex items-center justify-start">
-					<div class="text-sm">
+					<div>
 						<p class="flex justify-start font-medium">
 							<TextWithIcon text={name} icon={iconProvider} />
 						</p>

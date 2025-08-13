@@ -7,5 +7,5 @@
 {#if $isAuthenticated}
 	<UserNavbarMenu />
 {:else}
-	<AuthModal />
+	<AuthModal isWide={false} />
 {/if}

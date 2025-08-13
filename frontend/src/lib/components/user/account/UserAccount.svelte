@@ -33,7 +33,7 @@
 		routesSaved = routes.length;
 
 		optimizedRoutes = userdata.optimizedRoutes;
-		optimizedRoutes.forEach((route) => updateSavedOptimizedRoutes(route));
+		optimizedRoutes.forEach((route) => updateSavedOptimizedRoutes(route.optimizationId));
 		routesOptimized = optimizedRoutes.length;
 		accountCreated = userdata.createdAt;
 	});

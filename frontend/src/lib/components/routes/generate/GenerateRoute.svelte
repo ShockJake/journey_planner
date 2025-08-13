@@ -5,7 +5,7 @@
 
 <div class="flex h-full w-full flex-col">
 	<Header />
-	<div class="flex min-h-0 w-full grow flex-row space-y-3 overflow-y-scroll p-2">
+	<div class="flex min-h-0 w-full grow flex-row space-y-3 p-2">
 		<Form />
 	</div>
 </div>

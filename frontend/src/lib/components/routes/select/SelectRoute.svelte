@@ -53,7 +53,7 @@
 				</div>
 			{:else}
 				<div in:fade class="flex h-full w-full flex-col items-center justify-center">
-					<h1 class="mb-6 text-3xl font-bold text-gray-800">Nothing to show</h1>
+					<h1 class="mb-6 text-sm font-bold text-gray-800 lg:text-3xl">Nothing to show</h1>
 				</div>
 			{/if}
 		{:else}
@@ -64,4 +64,4 @@
 	</div>
 </div>
 
-<ModalRenderSized body={() => MoreModalBody} {dialog} height="h-full" width="w-8/10" />
+<ModalRenderSized body={() => MoreModalBody} {dialog} height="h-full" width="lg:w-8/10 w-99/100" />
