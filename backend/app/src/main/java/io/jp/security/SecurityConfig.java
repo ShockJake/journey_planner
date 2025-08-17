@@ -27,7 +27,7 @@ public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
-    private final List<String> allowedOrigins = List.of("http://34.116.217.24", "http://127.0.0.1:3000", "http://localhost:3000", "http://localhost:5173");
+    private final List<String> allowedOrigins = List.of("http://34.116.163.198", "http://127.0.0.1:3000", "http://localhost:3000", "http://localhost:5173");
     private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
     private final String[] publicEndpoints = {"/routes/predefined", "/routes/optimize", "/routes/generate/**"};
 
