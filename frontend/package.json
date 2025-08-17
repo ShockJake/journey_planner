@@ -68,6 +68,7 @@
 		"leaflet": "^1.9.4",
 		"sveaflet": "^0.1.4",
 		"svelte-headlessui": "^0.0.46",
+		"svelte-kit": "^1.2.0",
 		"svelte-transition": "^0.0.17"
 	}
 }

@@ -1,8 +1,8 @@
-FROM node:22-alpine
+FROM node:24-alpine
 
 RUN mkdir /app
-COPY ./build /app
-
+COPY ./package.json ./build ./package-lock.json /app/
+RUN cd /app; npm ci --omit dev
 EXPOSE 3000
 
 ENTRYPOINT [ "node", "/app" ]
