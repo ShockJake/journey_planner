@@ -10,7 +10,7 @@
 
 <ButtonShiftingWidth
 	action={dialog.open}
-	color="cyan"
+	color="amber"
 	text="Change password"
 	iconProvider={() => KeyRound}
 />

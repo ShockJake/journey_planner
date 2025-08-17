@@ -11,7 +11,7 @@
 		firstIcon={() => Route}
 		secondIcon={() => MapPinPlusInside}
 	/>
-	<div class="flex min-h-0 w-full grow flex-col gap-3 px-3 pb-3">
+	<div class="flex min-h-0 w-full grow flex-col gap-3 overflow-y-scroll px-3 pb-3">
 		<RouteInfoSection />
 		<RouteDetailsSection />
 	</div>

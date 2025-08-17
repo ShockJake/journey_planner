@@ -13,7 +13,7 @@
 
 <button
 	onclick={action}
-	class="flex w-full cursor-pointer justify-center rounded-md border border-transparent lg:max-w-fit bg-{color}-100 py-2 pr-2 pl-1 text-xs font-medium text-nowrap lg:text-sm text-{color}-900 transition hover:bg-{color}-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-{color}-500 focus-visible:ring-offset-2"
+	class="flex w-full cursor-pointer justify-center rounded-md lg:max-w-fit bg-{color}-100 py-2 pr-2 pl-1 text-xs font-medium text-nowrap lg:text-sm text-{color}-900 transition hover:bg-{color}-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-{color}-500 focus-visible:ring-offset-2"
 >
 	<TextWithIcon {text} icon={iconProvider} />
 </button>

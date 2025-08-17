@@ -13,6 +13,7 @@
 	text="Start"
 	iconProvider={undefined}
 	width="w-20"
+	style="animate-glow"
 />
 
 <div class="relative z-20">

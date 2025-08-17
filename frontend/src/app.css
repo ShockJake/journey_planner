@@ -29,3 +29,47 @@
 .animate-slide-out {
   animation: slideOut 0.3s ease-in-out;
 }
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow:
+      0 0 8px #dcfce7,
+      0 0 20px #dcfce7,
+      0 0 30px #dcfce7;
+  }
+  15% {
+    box-shadow:
+      0 0 10px #dcfce7,
+      0 0 26px #dcfce7,
+      0 0 36px #dcfce7;
+  }
+  25% {
+    box-shadow:
+      0 0 12px #dcfce7,
+      0 0 28px #dcfce7,
+      0 0 40px #dcfce7;
+  }
+  35% {
+    box-shadow:
+      0 0 14px #dcfce7,
+      0 0 36px #dcfce7,
+      0 0 50px #dcfce7;
+  }
+  50% {
+    box-shadow:
+      0 0 16px #dcfce7,
+      0 0 40px #dcfce7,
+      0 0 60px #dcfce7;
+  }
+  75% {
+    box-shadow:
+      0 0 12px #dcfce7,
+      0 0 28px #dcfce7,
+      0 0 40px #dcfce7;
+  }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+  box-shadow: 0 0 8px #dcfce7;
+}

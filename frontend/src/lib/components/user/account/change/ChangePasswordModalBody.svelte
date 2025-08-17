@@ -70,7 +70,7 @@
 			<Button
 				text="Change"
 				iconProvider={() => UserPen}
-				color="cyan"
+				color="amber"
 				action={confirmPasswordChange}
 			/>
 		</div>

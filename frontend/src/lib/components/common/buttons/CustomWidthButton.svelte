@@ -8,15 +8,16 @@
 		text: string;
 		action: () => void;
 		width: string | undefined;
+		style?: string;
 	}
-	const { color, iconProvider, text, action, width }: Props = $props();
+	const { style = '', color, iconProvider, text, action, width }: Props = $props();
 </script>
 
 <button
 	onclick={action}
 	class="{width !== undefined
 		? width
-		: ''} flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-{color}-100 text-xs font-medium text-nowrap lg:text-sm text-{color}-900 transition hover:bg-{color}-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-{color}-500 focus-visible:ring-offset-2"
+		: ''} flex {style} cursor-pointer items-center justify-center rounded-md border border-transparent duration-300 ease-in-out bg-{color}-100 text-xs font-medium text-nowrap lg:text-sm text-{color}-900 transition hover:bg-{color}-200 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-{color}-500 focus-visible:ring-offset-2"
 >
 	{#if iconProvider === undefined}
 		<div class="w-full items-center justify-center p-2 text-center">

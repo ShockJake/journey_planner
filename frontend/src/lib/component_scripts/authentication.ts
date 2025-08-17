@@ -4,6 +4,7 @@ import { writable } from 'svelte/store';
 import { goto } from '$app/navigation';
 import { baseUrl, setCORSHeader } from '$lib/component_scripts/server.ts';
 import mapError from './errorMapper.ts';
+import { currentAccountErrorState } from './accountErrorState.svelte.ts';
 
 const storedToken = browser ? localStorage.getItem("token") : null;
 export const authToken = writable(storedToken);
@@ -45,6 +46,10 @@ export async function login(username: string, password: string): Promise<string>
         if (token !== null || token !== undefined) {
             authToken.set(token);
             axios.defaults.headers.common = { "Authorization": `Bearer ${token}` }
+            if (currentAccountErrorState.value) {
+                currentAccountErrorState.value = false;
+                window.location.href = "/";
+            }
             goto("/account");
         }
         return "";
@@ -53,7 +58,11 @@ export async function login(username: string, password: string): Promise<string>
     }
 }
 
-export function logout() {
+export function logout(gotoMainPage = true) {
     localStorage.removeItem("token");
-    window.location.href = "/"
+    authToken.set("");
+    delete axios.defaults.headers.common['Authorization']
+    if (gotoMainPage) {
+        window.location.href = "/"
+    }
 }

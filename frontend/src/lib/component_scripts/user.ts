@@ -4,6 +4,8 @@ import { baseUrl, setCORSHeader } from "./server.ts";
 import { logout } from "./authentication.ts";
 import type UserDataResult from "$lib/types/UserDataResult.ts";
 import mapErrorFromCode from "./errorMapper.ts";
+import mapError from "./errorMapper.ts";
+import { currentAccountErrorState } from "./accountErrorState.svelte.ts";
 
 export const username = writable("");
 
@@ -25,7 +27,13 @@ export async function getUserData(): Promise<UserDataResult> {
             optimizedRoutes: result.optimizedRoutes
         }
     } catch (error: AxiosError | any) {
-        return { username: "", createdAt: '', error: error.message, routes: [], optimizedRoutes: [] }
+        const errorMessage = mapError(error);
+        if (errorMessage === 'Authentication Error') {
+            currentAccountErrorState.value = true;
+            logout(false);
+            return { username: "", createdAt: '', error: "Session expired, please login again.", routes: [], optimizedRoutes: [] }
+        }
+        return { username: "", createdAt: '', error: errorMessage, routes: [], optimizedRoutes: [] }
     }
 }
 

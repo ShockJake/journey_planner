@@ -23,7 +23,7 @@
 			</div>
 			<div class="grow rounded-lg bg-white px-1 py-2 text-sm font-medium lg:text-base">
 				<TextWithIcon text="Description:" icon={() => FileText} />
-				<p class="ml-2 pt-1 text-xs font-medium text-gray-700 lg:text-xs">{route.description}</p>
+				<p class="ml-2 pt-1 text-xs font-medium text-gray-700 lg:text-sm">{route.description}</p>
 			</div>
 		</div>
 	</div>

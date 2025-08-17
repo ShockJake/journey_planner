@@ -22,7 +22,7 @@
 
 <div transition:fade class="flex w-full flex-col rounded-lg bg-white/70 transition hover:bg-white">
 	<div class="p-3">
-		<img class="h-48 w-full rounded-md object-cover" src={route.imageUrl} alt="test-img" />
+		<img class="h-48 w-full rounded-md object-cover" src={route.imageUrl} alt={route.name} />
 	</div>
 	<div class="mr-3 ml-5 flex min-h-0 grow flex-col">
 		<div class="lg:text-2sm text-sm font-medium text-wrap">

@@ -14,6 +14,7 @@
 	let placeTypes: ComboboxItem[] = $state([]);
 	let errorMessage = $state('');
 	let loading = $state(false);
+	const unwantedAttractionTypes = ['DEFAULT', 'HOUSE'];
 
 	async function fetchData() {
 		loading = true;
@@ -32,6 +33,9 @@
 
 		for (let index = 0; index < response.placeTypes.length; index++) {
 			const element = response.placeTypes[index];
+			if (unwantedAttractionTypes.indexOf(element) !== -1) {
+				continue;
+			}
 			placeTypes.push({ id: index + 1, name: element.charAt(0) + element.slice(1).toLowerCase() });
 		}
 		loading = false;
