@@ -1,14 +1,15 @@
 package io.jp.core.optimizer.weather
 
-import io.jp.core.domain.weather.RainData
+import io.jp.core.domain.weather.rain.RainDataBoxed
+import io.jp.core.optimization.weather.rain.RainInfoProviderNoOpt
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static io.jp.core.domain.weather.RainIntensity.LIGHT
-import static io.jp.core.domain.weather.RainIntensity.MODERATE
+import static io.jp.core.domain.weather.rain.RainIntensity.LIGHT
+import static io.jp.core.domain.weather.rain.RainIntensity.MODERATE
 
 class RainInfoProviderTest extends Specification {
-    RainInfoProvider rainInfoProvider = new RainInfoProvider()
+    RainInfoProviderNoOpt rainInfoProvider = new RainInfoProviderNoOpt()
 
     @Unroll
     def 'should calculate rain data correctly'(List<BigDecimal> inputData) {
@@ -16,7 +17,7 @@ class RainInfoProviderTest extends Specification {
         List<Double> data = inputData.collect { it as Double }
 
         when:
-        List<RainData> result = rainInfoProvider.getRainStartEnd(data)
+        List<RainDataBoxed> result = rainInfoProvider.getRainStartEnd(data)
 
         then:
         result.size() == 2

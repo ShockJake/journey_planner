@@ -1,11 +1,14 @@
 package io.jp.mapper.route;
 
-import io.jp.core.domain.Place;
-import io.jp.core.domain.Point;
-import io.jp.core.domain.Route;
+import io.jp.core.domain.place.Place;
+import io.jp.core.domain.place.PlaceBoxed;
+import io.jp.core.domain.point.PointBoxed;
+import io.jp.core.domain.route.Route;
+import io.jp.core.domain.route.RouteBoxed;
 import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RouteJpa;
+import io.jp.mapper.place.BoxedPlaceJpaMapper;
 import io.jp.mapper.place.PlaceJpaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -34,10 +37,11 @@ public class RouteJpaMapper {
                 .name(routeJpa.getName())
                 .municipality(routeJpa.getMunicipality().getName())
                 .description(routeJpa.getDescription())
-                .center(Point.of(routeJpa.getCenterLatitude(), routeJpa.getCenterLongitude()))
+                .centerLatitude(routeJpa.getCenterLatitude())
+                .centerLongitude(routeJpa.getCenterLongitude())
                 .imageUrl(routeJpa.getImageUrl())
-                .places(places)
-                .additionalPlaces(additionalPlaces)
+                .places(places.toArray(new Place[0]))
+                .additionalPlaces(additionalPlaces.toArray(new Place[0]))
                 .build();
     }
 
@@ -45,8 +49,8 @@ public class RouteJpaMapper {
         return RouteJpa.builder()
                 .name(route.name())
                 .description(route.description())
-                .centerLatitude(route.center().lat())
-                .centerLongitude(route.center().lng())
+                .centerLatitude(route.centerLatitude())
+                .centerLongitude(route.centerLongitude())
                 .imageUrl(route.imageUrl())
                 .routeType(CREATED)
                 .municipality(municipality)

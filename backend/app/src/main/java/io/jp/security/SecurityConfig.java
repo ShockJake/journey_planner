@@ -1,5 +1,7 @@
 package io.jp.security;
 
+import io.jp.security.jwt.CustomUserDetailsService;
+import io.jp.security.jwt.JwtAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

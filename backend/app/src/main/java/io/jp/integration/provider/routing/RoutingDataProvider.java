@@ -1,19 +1,22 @@
 package io.jp.integration.provider.routing;
 
-import io.jp.core.domain.Path;
-import io.jp.core.domain.Place;
-import io.jp.mapper.other.PathMapper;
+import io.jp.core.domain.path.Path;
+import io.jp.core.domain.place.Place;
+import io.jp.core.domain.place.PlaceBoxed;
 import io.jp.integration.provider.DataProvider;
+import io.jp.mapper.path.PathMapper;
 import io.jp.utils.PropertiesProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;
 
 import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
@@ -30,9 +33,8 @@ public class RoutingDataProvider implements DataProvider<Path> {
     private final RestClient restClient = getRestClient();
 
     @Override
-    @SuppressWarnings("unchecked")
     public Path getData(Map<String, Object> input) {
-        var params = resolveParameters((List<Place>) input.get("places"));
+        var params = resolveParameters((Place[]) input.get("places"));
         var finalUrl = BASE_URL + params;
         log.info("Getting routing");
         var response = restClient.get()
@@ -50,11 +52,10 @@ public class RoutingDataProvider implements DataProvider<Path> {
         return pathMapper.map(response.getBody());
     }
 
-    private String resolveParameters(List<Place> places) {
+    private String resolveParameters(Place[] places) {
         var key = propertiesProvider.getProperty(ROUTING_API_KEY_PROPERTY_NAME);
-        var waypoints = places.stream()
-                .map(Place::position)
-                .map(position -> "%s,%s".formatted(position.lat(), position.lng()))
+        var waypoints = Stream.of(places)
+                .map(place -> "%s,%s".formatted(place.latitude(), place.longitude()))
                 .collect(Collectors.joining("|"));
         log.info(waypoints);
         return "?waypoints=%s&mode=walk&apiKey=%s".formatted(waypoints, key);

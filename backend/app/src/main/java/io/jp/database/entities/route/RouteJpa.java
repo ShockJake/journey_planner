@@ -20,6 +20,7 @@ import java.util.List;
 import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.AUTO;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "routes")
@@ -31,7 +32,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @ToString
 public class RouteJpa {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long routeId;
     private String name;
 

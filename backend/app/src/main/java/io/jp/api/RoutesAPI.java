@@ -7,15 +7,18 @@ import io.jp.api.dto.RouteGenerationMetadata;
 import io.jp.api.dto.RouteGenerationRequest;
 import io.jp.api.dto.RouteOptimizationRequest;
 import io.jp.api.dto.UserRouteAssociationRequest;
-import io.jp.core.domain.OptimizedRoute;
-import io.jp.core.domain.Route;
-import io.jp.services.RouteGenerationService;
-import io.jp.services.RouteOptimizationService;
-import io.jp.services.RouteService;
-import io.jp.services.UserRouteAssociationService;
-import io.jp.services.UserService;
+import io.jp.core.domain.optimizedroute.OptimizedRoute;
+import io.jp.core.domain.route.Route;
+import io.jp.core.domain.route.RouteBoxed;
+import io.jp.services.route.generation.RouteGenerationService;
+import io.jp.services.route.optimization.RouteOptimizationPersister;
+import io.jp.services.route.optimization.RouteOptimizationService;
+import io.jp.services.route.persistence.RouteService;
+import io.jp.services.user.association.UserRouteAssociationService;
+import io.jp.services.user.persistence.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,16 +42,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @RestController
 @RequestMapping("/routes")
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "service.implementation.route.optimization", havingValue = "opt")
 public class RoutesAPI {
     private final RouteService routeService;
-    private final RouteOptimizationService routeOptimizationService;
-    private final RouteGenerationService routeGenerationService;
+    private final RouteOptimizationService<OptimizedRoute> routeOptimizationService;
+    private final RouteGenerationService<Route> routeGenerationService;
+    private final RouteOptimizationPersister routeOptimizationPersister;
     private final ObjectMapper objectMapper;
     private final UserRouteAssociationService userRouteAssociationService;
     private final UserService userService;
 
     @GetMapping("/predefined")
-    public ResponseEntity<List<Route>> getPredefinedRoutes() {
+    public ResponseEntity<List<RouteBoxed>> getPredefinedRoutes() {
         return ResponseEntity.status(OK)
                 .contentType(APPLICATION_JSON)
                 .body(routeService.getPredefinedRoutes());
@@ -74,7 +79,7 @@ public class RoutesAPI {
         var user = userService.findUserByUsername(authentication.getName());
         log.info("Saving optimized route '{}' for user {}", optimizedRoutePersistenceRequest.routeName(), user.getUsername());
         var optimizedRoute = getOptimizedRouteFromCache(optimizedRoutePersistenceRequest.optimizationId());
-        var result = routeOptimizationService.saveOptimizedRoute(optimizedRoute, user);
+        var result = routeOptimizationPersister.saveOptimizedRoute(optimizedRoute, user);
 
         var response = Map.of(MESSAGE_KEY, "Optimized route saved successfully", OPTIMIZED_ROUTE_ID, result.getId());
         return ResponseEntity.status(CREATED)

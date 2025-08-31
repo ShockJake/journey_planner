@@ -1,7 +1,7 @@
 package io.jp.security;
 
-import io.jp.services.UserService.UserAlreadyRegisteredException;
-import io.jp.services.UserService.UserUnauthorizedException;
+import io.jp.services.user.persistence.UserService.UserAlreadyRegisteredException;
+import io.jp.services.user.persistence.UserService.UserUnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

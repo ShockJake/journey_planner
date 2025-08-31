@@ -3,9 +3,9 @@ package io.jp.api;
 import io.jp.api.dto.ChangeUserDataRequest;
 import io.jp.api.dto.ChangeUserDataRequestInfoType;
 import io.jp.security.GlobalExceptionsHandler.BadDataException;
-import io.jp.services.RouteOptimizationService;
-import io.jp.services.UserRouteAssociationService;
-import io.jp.services.UserService;
+import io.jp.services.route.optimization.RouteOptimizationRetriever;
+import io.jp.services.user.association.UserRouteAssociationService;
+import io.jp.services.user.persistence.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 public class UserController {
     private final UserService userService;
     private final UserRouteAssociationService userRouteAssociationService;
-    private final RouteOptimizationService routeOptimizationService;
+    private final RouteOptimizationRetriever routeOptimizationRetriever;
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(systemDefault());
 
     @PatchMapping
@@ -69,7 +69,7 @@ public class UserController {
         log.debug("Getting user info for user {}", user.getUsername());
 
         var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
-        var optimizedRoutes = routeOptimizationService.getOptimizedRoutesByUser(user);
+        var optimizedRoutes = routeOptimizationRetriever.getOptimizedRoutesByUser(user);
 
         var response = Map.of(USERNAME_KEY, user.getUsername(),
                 CREATED_AT_KEY, dateFormat.format(user.getCreatedAt()),

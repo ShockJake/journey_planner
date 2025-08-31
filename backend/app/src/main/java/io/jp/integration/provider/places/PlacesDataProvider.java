@@ -1,7 +1,6 @@
 package io.jp.integration.provider.places;
 
-import io.jp.core.domain.Point;
-import io.jp.core.domain.RouteLongevity;
+import io.jp.core.domain.route.RouteLongevity;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.integration.provider.DataProvider;
 import io.jp.integration.response.PlacesResponse;
@@ -11,23 +10,29 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import static io.jp.database.entities.route.PlaceType.coveredPlaceTypes;
 import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     private static final String BASE_URL = "https://api.geoapify.com/v2/places";
     private static final String RADIUS_METERS = "1500";
     private final PropertiesProvider propertiesProvider;
     private final PlacesResponseMapper mapper;
+    private final List<PlaceType> coveredPlaceTypes = coveredPlaceTypes();
 
     private final RestClient restClient = getRestClient();
 
@@ -54,12 +59,15 @@ public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     @SuppressWarnings("unchecked")
     private String resolveParams(Map<String, Object> input) {
         var placeTypes = (List<PlaceType>) input.get("placeTypes");
-        var location = (Point) input.get("location");
+        var placeTypeSet = new HashSet<>(placeTypes);
+        placeTypeSet.addAll(coveredPlaceTypes);
+        var latitude = (double) input.get("latitude");
+        var longitude = (double) input.get("longitude");
         var longevity = (RouteLongevity) input.get("longevity");
 
-        var filter = "filter=circle:%s,%s,%s".formatted(location.lng(), location.lat(), RADIUS_METERS);
+        var filter = "filter=circle:%s,%s,%s".formatted(longitude, latitude, RADIUS_METERS);
         var limit = "limit=" + (longevity.getNumberOfPlaces() + 4);
-        var categories = "categories=%s".formatted(mapCategories(placeTypes));
+        var categories = "categories=%s".formatted(mapCategories(placeTypeSet.stream().toList()));
         var key = "apiKey=" + propertiesProvider.getProperty(ROUTING_API_KEY_PROPERTY_NAME);
 
         return "?%s&%s&%s&%s".formatted(categories, filter, limit, key);

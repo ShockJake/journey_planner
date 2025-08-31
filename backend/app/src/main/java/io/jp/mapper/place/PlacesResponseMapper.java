@@ -3,16 +3,19 @@ package io.jp.mapper.place;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.core.domain.Place;
-import io.jp.core.domain.Point;
+import io.jp.core.domain.place.Place;
+import io.jp.core.domain.place.PlaceBoxed;
+import io.jp.core.domain.point.PointBoxed;
 import io.jp.database.entities.route.PlaceType;
 import io.jp.integration.response.PlacesResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toCollection;
 import static java.util.stream.StreamSupport.stream;
 
 @Slf4j
@@ -31,7 +34,7 @@ public class PlacesResponseMapper {
             }
             var result = stream(root.spliterator(), false)
                     .map(this::mapToPlace)
-                    .toList();
+                    .collect(toCollection(ArrayList::new));
             return PlacesResponse.builder()
                     .places(result)
                     .build();
@@ -45,11 +48,11 @@ public class PlacesResponseMapper {
         var name = properties.get("name").asText();
         var longitude = properties.get("lon").asDouble();
         var latitude = properties.get("lat").asDouble();
-        var position = Point.of(latitude, longitude);
         String type = mapPlaceType(properties, name);
         return Place.builder()
                 .name(name)
-                .position(position)
+                .latitude(latitude)
+                .longitude(longitude)
                 .placeType(PlaceType.valueOf(type))
                 .build();
     }

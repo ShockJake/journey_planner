@@ -2,9 +2,6 @@ package io.jp.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.core.GeometricMedian;
-import io.jp.core.domain.Place;
-import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,24 +10,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class MappingUtils {
-    public static List<GeometricMedian.Point> mapToPointsFromJpa(List<PlaceJpa> places) {
-        return places.stream()
-                .map(place -> new GeometricMedian.Point(place.getLatitude(), place.getLongitude()))
-                .toList();
-    }
-
-    public static List<GeometricMedian.Point> mapToPoints(List<Place> places) {
-        return places.stream()
-                .map(place -> new GeometricMedian.Point(place.position().lat(), place.position().lng()))
-                .toList();
-    }
-
     public static String mapDataToDescription(String municipality, List<PlaceType> placeTypes) {
         var placesDescription = placeTypes.stream()
                 .map(PlaceType::name)
                 .map(String::toLowerCase)
                 .collect(Collectors.joining(","));
-        return "Discover %s by visiting %s".formatted(municipality, placesDescription);
+        return "Discover %s by visiting %s.".formatted(municipality, placesDescription);
     }
 
     public static <T> T readObjectFromString(ObjectMapper mapper, String input, Class<T> clazz) {

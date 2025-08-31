@@ -1,6 +1,6 @@
 package io.jp.api.dto;
 
-import io.jp.core.domain.RouteLongevity;
+import io.jp.core.domain.route.RouteLongevity;
 import io.jp.database.entities.route.PlaceType;
 
 import java.util.List;

@@ -1,7 +1,8 @@
 package io.jp.mapper.place;
 
-import io.jp.core.domain.Place;
-import io.jp.core.domain.Point;
+import io.jp.core.domain.place.Place;
+import io.jp.core.domain.place.PlaceBoxed;
+import io.jp.core.domain.point.PointBoxed;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RoutePlace;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,8 @@ public class PlaceJpaMapper {
         return Place.builder()
                 .name(placeJpa.getName())
                 .placeType(placeJpa.getType())
-                .position(Point.of(placeJpa.getLatitude(), placeJpa.getLongitude()))
+                .latitude(placeJpa.getLatitude())
+                .longitude(placeJpa.getLongitude())
                 .build();
     }
 
@@ -23,8 +25,8 @@ public class PlaceJpaMapper {
         return PlaceJpa.builder()
                 .name(place.name())
                 .type(place.placeType())
-                .latitude(place.position().lat())
-                .longitude(place.position().lng())
+                .latitude(place.latitude())
+                .longitude(place.longitude())
                 .build();
     }
 

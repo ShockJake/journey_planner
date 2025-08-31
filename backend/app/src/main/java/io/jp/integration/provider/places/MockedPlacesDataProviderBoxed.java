@@ -1,0 +1,40 @@
+package io.jp.integration.provider.places;
+
+import io.jp.mapper.place.PlacesResponseMapperBoxed;
+import io.jp.integration.provider.DataProvider;
+import io.jp.integration.response.PlacesResponseBoxed;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Optional;
+
+
+import static java.nio.charset.Charset.defaultCharset;
+
+@Slf4j
+@RequiredArgsConstructor
+public class MockedPlacesDataProviderBoxed implements DataProvider<PlacesResponseBoxed> {
+    private final PlacesResponseMapperBoxed mapper;
+
+    @Override
+    public PlacesResponseBoxed getData(Map<String, Object> input) {
+        log.info("Getting PlacesAPI data for {}", input);
+
+        String data = Optional.ofNullable(this.getClass().getResourceAsStream("/data/mocked/PlacesAPI_response.json"))
+                .flatMap(this::readDataFromResource)
+                .orElseThrow(() -> new RuntimeException("No response from Places API "));
+        return mapper.map(data);
+    }
+
+    private Optional<String> readDataFromResource(InputStream inputStream) {
+        try {
+            return Optional.of(IOUtils.toString(inputStream, defaultCharset()));
+        } catch (IOException exception) {
+            return Optional.empty();
+        }
+    }
+}

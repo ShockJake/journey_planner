@@ -1,11 +1,11 @@
 package io.jp.integration.provider.routing;
 
-import io.jp.core.domain.Path;
-import io.jp.mapper.other.PathMapper;
+import io.jp.core.domain.path.Path;
 import io.jp.integration.provider.DataProvider;
+import io.jp.mapper.path.PathMapper;
 import io.jp.utils.FileUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+
 import java.util.Map;
 
 @RequiredArgsConstructor

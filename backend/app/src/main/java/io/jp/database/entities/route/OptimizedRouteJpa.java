@@ -18,9 +18,10 @@ import lombok.ToString;
 
 import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.AUTO;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "optimizedRoutes")
+@Table(name = "optimized_routes")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -29,7 +30,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @ToString
 public class OptimizedRouteJpa {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String optimizationId;
 

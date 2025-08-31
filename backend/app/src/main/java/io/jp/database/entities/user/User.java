@@ -22,6 +22,6 @@ public class User {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private UserType userType;
+    private String userType;
     private Instant createdAt;
 }

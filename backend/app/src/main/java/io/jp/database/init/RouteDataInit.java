@@ -2,7 +2,7 @@ package io.jp.database.init;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jp.core.GeometricMedian;
+import io.jp.core.geometricmedian.Point;
 import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.PlaceType;
@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static io.jp.core.GeometricMedian.calculateGeometricMedian;
+import static io.jp.core.geometricmedian.GeometricMedian.calculateGeometricMedian;
 import static io.jp.database.entities.route.RouteType.PREDEFINED;
-import static io.jp.utils.MappingUtils.mapToPointsFromJpa;
+import static io.jp.mapper.point.PointMapper.mapToPointsFromJpa;
 import static java.util.stream.IntStream.range;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.StreamSupport.stream;
@@ -120,14 +120,14 @@ public class RouteDataInit implements ApplicationRunner {
         return route;
     }
 
-    private RouteJpa mapRoute(JsonNode routeNode, GeometricMedian.Point centerData, Municipality municipality) {
+    private RouteJpa mapRoute(JsonNode routeNode, Point centerData, Municipality municipality) {
         return RouteJpa.builder()
                 .name(routeNode.get("name").asText())
                 .municipality(municipality)
                 .description(routeNode.get("description").asText())
                 .imageUrl(routeNode.get("imageUrl").asText())
-                .centerLatitude(centerData.getX())
-                .centerLongitude(centerData.getY())
+                .centerLatitude(centerData.x)
+                .centerLongitude(centerData.y)
                 .routeType(PREDEFINED)
                 .build();
     }

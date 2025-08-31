@@ -24,7 +24,7 @@ public class UserDataInit implements ApplicationRunner {
            var user = new User();
            user.setUsername("user");
            user.setPassword(passwordEncoder.encode("1234"));
-           user.setUserType(USER);
+           user.setUserType(USER.name());
            user.setCreatedAt(Instant.now());
            userRepository.save(user);
        }

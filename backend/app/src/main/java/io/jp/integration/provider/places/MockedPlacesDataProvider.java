@@ -1,17 +1,18 @@
 package io.jp.integration.provider.places;
 
-import io.jp.mapper.place.PlacesResponseMapper;
 import io.jp.integration.provider.DataProvider;
 import io.jp.integration.response.PlacesResponse;
+import io.jp.integration.response.PlacesResponseBoxed;
+import io.jp.mapper.place.PlacesResponseMapper;
+import io.jp.mapper.place.PlacesResponseMapperBoxed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Optional;
-
 
 import static java.nio.charset.Charset.defaultCharset;
 

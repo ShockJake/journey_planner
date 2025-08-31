@@ -1,6 +1,6 @@
 package io.jp.integration.response;
 
-import io.jp.core.domain.Place;
+import io.jp.core.domain.place.Place;
 import lombok.Builder;
 import lombok.Getter;
 

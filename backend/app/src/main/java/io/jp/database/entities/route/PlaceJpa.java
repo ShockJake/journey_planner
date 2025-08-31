@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.util.List;
 import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.AUTO;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Builder
@@ -24,9 +26,10 @@ import static jakarta.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @ToString
 @Getter
+@Table(name = "places")
 public class PlaceJpa {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = IDENTITY)
     private Long placeId;
     @Column(nullable = false, unique = true)
     private String name;
@@ -34,6 +37,7 @@ public class PlaceJpa {
     private Double latitude;
     @Enumerated(STRING)
     private PlaceType type;
+    @Column(name = "is_additional", columnDefinition = "TINYINT(4)")
     private boolean isAdditional;
 
     @ToString.Exclude

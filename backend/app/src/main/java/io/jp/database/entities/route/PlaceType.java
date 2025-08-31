@@ -2,6 +2,8 @@ package io.jp.database.entities.route;
 
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public enum PlaceType {
     DEFAULT(""),
@@ -31,5 +33,13 @@ public enum PlaceType {
 
     PlaceType(String category) {
         this.category = category;
+    }
+
+    public static List<PlaceType> coveredPlaceTypes() {
+        return List.of(CHURCH, MUSEUM, COFFEE, GALLERY, THEATRE, UNIVERSITY);
+    }
+
+    public static List<PlaceType> additionalPlaceTypes() {
+        return List.of(CHURCH, MUSEUM, COFFEE, GALLERY, THEATRE, UNIVERSITY, BUILDING);
     }
 }
