@@ -4,7 +4,7 @@ plugins {
     id 'groovy'
     id 'application'
     id 'org.springframework.boot' version "3.4.3"
-    id("me.champeau.jmh") version "0.7.2"
+    id("me.champeau.jmh") version "0.7.3"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -28,15 +28,23 @@ dependencies {
     implementation "commons-io:commons-io:${apacheCommonsIOVersion}"
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
     implementation "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
-
-    jmh 'org.openjdk.jmh:jmh-core'
     runtimeOnly("io.jsonwebtoken:jjwt-impl:${jjwtVersion}")
     runtimeOnly("io.jsonwebtoken:jjwt-orgjson:${jjwtVersion}")
+    runtimeOnly("org.liquibase:liquibase-core:4.31.1")
 
+    jmh 'org.openjdk.jmh:jmh-core'
+    jmh libs.groovy
+    jmh libs.spock.core
+    jmh libs.junit
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation libs.groovy
     testImplementation libs.spock.core
-    testImplementation libs.junit
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation "org.testcontainers:mysql:1.21.3"
+    testImplementation('org.springframework.boot:spring-boot-starter-test:3.5.5') {
+        exclude group: 'junit', module: 'junit'
+    }
+    testImplementation("org.spockframework:spock-spring:2.2-groovy-3.0")
 }
 
 java {
@@ -45,10 +53,31 @@ java {
     }
 }
 
+compileJava {
+    options.compilerArgs << "--add-modules=jdk.incubator.vector"
+}
+
+compileGroovy {
+    options.compilerArgs << "--add-modules=jdk.incubator.vector"
+}
+
+compileTestGroovy {
+    options.compilerArgs << "--add-modules=jdk.incubator.vector"
+}
+
+compileJmhGroovy {
+    options.compilerArgs << "--add-modules=jdk.incubator.vector"
+}
+
 application {
     mainClass = 'io.jp.Main'
 }
 
 test {
+    jvmArgs.add("--add-modules=jdk.incubator.vector")
     useJUnitPlatform()
+}
+
+jmh {
+    jvmArgs.add("--add-modules=jdk.incubator.vector")
 }
