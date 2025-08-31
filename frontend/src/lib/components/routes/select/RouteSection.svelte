@@ -25,7 +25,7 @@
 		<img class="h-48 w-full rounded-md object-cover" src={route.imageUrl} alt={route.name} />
 	</div>
 	<div class="mr-3 ml-5 flex min-h-0 grow flex-col">
-		<div class="lg:text-2sm text-sm font-medium text-wrap">
+		<div class="text-sm font-medium text-wrap lg:text-base">
 			<TextWithIcon text={route.name} icon={() => Route} />
 		</div>
 		<div class="my-2 border-t border-gray-300"></div>

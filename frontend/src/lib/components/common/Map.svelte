@@ -15,20 +15,30 @@
 	const { showLine }: Props = $props();
 
 	let mapRef: any = $state();
-	let center: LatLngExpression = $state([0.0, 0, 0]);
+	let center: LatLngExpression = $state([0.0, 0.0]);
 	let places: Place[] = $state([]);
 	let initialPath: Path = { time: 0, distance: 0, points: [] };
 	let path: Path = $state(initialPath);
 
 	$effect(() => {
-		center = [currentRouteState.value.center.lat, currentRouteState.value.center.lng];
+		const value = currentRouteState.value;
+		if (value.center !== undefined) {
+			center = [value.center.lat, value.center.lng];
+		} else if (value.centerLatitude !== undefined && value.centerLongitude !== undefined) {
+			center = [value.centerLatitude, value.centerLongitude];
+		}
 		places = currentRouteState.value.places;
 		path = currentPathState.value;
 	});
 	const zoom = 13;
 
 	function getLatLng(place: Place): LatLngExpression {
-		return [place.position.lat, place.position.lng];
+		if (place.position !== undefined) {
+			return [place.position.lat, place.position.lng];
+		} else if (place.latitude !== undefined && place.longitude !== undefined) {
+			return [place.latitude, place.longitude];
+		}
+		return [0, 0];
 	}
 
 	function getLatLngFromPath(point: Point): LatLngExpression {

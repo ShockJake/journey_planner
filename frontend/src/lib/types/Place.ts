@@ -4,5 +4,7 @@ export default interface Place {
     position: {
         lat: number,
         lng: number
-    }
+    } | undefined,
+    latitude: number | undefined,
+    longitude: number | undefined
 }
