@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-municipality
+      author: jp
+      changes:
+        - createTable:
+            tableName: municipality
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: latitude
+                  type: DOUBLE
+              - column:
+                  name: longitude
+                  type: DOUBLE

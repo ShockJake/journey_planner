@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-optimized-route
+      author: jp
+      changes:
+        - createTable:
+            tableName: optimized_routes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: optimization_id
+                  type: VARCHAR(255)
+              - column:
+                  name: route_route_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_optimizedroute_route
+                    references: routes(route_id)
+              - column:
+                  name: places_overrides
+                  type: JSON
+              - column:
+                  name: path
+                  type: JSON
+              - column:
+                  name: weather_info
+                  type: JSON
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_optimizedroute_user
+                    references: users(id)

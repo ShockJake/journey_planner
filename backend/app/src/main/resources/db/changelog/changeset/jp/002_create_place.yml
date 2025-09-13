@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-place
+      author: jp
+      changes:
+        - createTable:
+            tableName: places
+            columns:
+              - column:
+                  name: place_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: longitude
+                  type: DOUBLE
+              - column:
+                  name: latitude
+                  type: DOUBLE
+              - column:
+                  name: type
+                  type: VARCHAR(50)
+              - column:
+                  name: is_additional
+                  type: BOOL

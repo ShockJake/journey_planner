@@ -1,10 +1,17 @@
 package io.jp.core
 
+import io.jp.core.domain.place.Place
 import io.jp.core.domain.place.PlaceBoxed
 import io.jp.core.domain.point.PointBoxed
 import io.jp.core.domain.benchmark.PlacePrimitivePoint
 import io.jp.core.domain.benchmark.PlacePrimitives
 import io.jp.core.domain.point.Point
+import io.jp.core.placeresolver.NearestPlaceResolverPointBase
+import io.jp.core.placeresolver.NearestPlaceResolverPointBoxed
+import io.jp.core.placeresolver.NearestPlaceResolverPointPrimitive
+import io.jp.core.placeresolver.NearestPlaceResolverPrimitiveArrays
+import io.jp.core.placeresolver.NearestPlaceResolverPrimitiveArraysSplit
+import io.jp.core.placeresolver.NearestPlaceResolverPrimitives
 import org.openjdk.jmh.annotations.*
 import spock.lang.Specification
 
@@ -37,6 +44,12 @@ class NearestPlaceResolverBenchmark extends Specification {
             .lng(19.0)
             .placeType(BUILDING)
             .build()
+    static Place startBest = Place.builder()
+            .name("start")
+            .latitude(50.0)
+            .longitude(19.0)
+            .placeType(BUILDING)
+            .build()
     static List<PlaceBoxed> places_boxed_100 = generatePlaces(100, start)
     static List<PlaceBoxed> places_boxed_1k = generatePlaces(1000, start)
     static List<PlaceBoxed> places_boxed_10k = generatePlaces(10000, start)
@@ -62,28 +75,28 @@ class NearestPlaceResolverBenchmark extends Specification {
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_A_base() {
-        NearestPlaceResolverPointBase.findClosestAdditionalPlace(start, places_boxed_100)
+        NearestPlaceResolverPointBase.findClosestPlace(start, places_boxed_100)
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_A_base() {
-        NearestPlaceResolverPointBase.findClosestAdditionalPlace(start, places_boxed_1k)
+        NearestPlaceResolverPointBase.findClosestPlace(start, places_boxed_1k)
     }
 
     @Benchmark
     void C_10k_places_A_base() {
-        NearestPlaceResolverPointBase.findClosestAdditionalPlace(start, places_boxed_10k)
+        NearestPlaceResolverPointBase.findClosestPlace(start, places_boxed_10k)
     }
 
     @Benchmark
     void D_100k_places_A_base() {
-        NearestPlaceResolverPointBase.findClosestAdditionalPlace(start, places_boxed_100k)
+        NearestPlaceResolverPointBase.findClosestPlace(start, places_boxed_100k)
     }
 
     @Benchmark
     void E_1m_places_A_base() {
-        NearestPlaceResolverPointBase.findClosestAdditionalPlace(start, places_boxed_1m)
+        NearestPlaceResolverPointBase.findClosestPlace(start, places_boxed_1m)
     }
 
 
@@ -91,112 +104,112 @@ class NearestPlaceResolverBenchmark extends Specification {
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_A_boxed() {
-        NearestPlaceResolverPointBoxed.findClosestAdditionalPlace(start, places_boxed_100)
+        NearestPlaceResolverPointBoxed.findClosestPlace(start, places_boxed_100)
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_A_boxed() {
-        NearestPlaceResolverPointBoxed.findClosestAdditionalPlace(start, places_boxed_1k)
+        NearestPlaceResolverPointBoxed.findClosestPlace(start, places_boxed_1k)
     }
 
     @Benchmark
     void C_10k_places_A_boxed() {
-        NearestPlaceResolverPointBoxed.findClosestAdditionalPlace(start, places_boxed_10k)
+        NearestPlaceResolverPointBoxed.findClosestPlace(start, places_boxed_10k)
     }
 
     @Benchmark
     void D_100k_places_A_boxed() {
-        NearestPlaceResolverPointBoxed.findClosestAdditionalPlace(start, places_boxed_100k)
+        NearestPlaceResolverPointBoxed.findClosestPlace(start, places_boxed_100k)
     }
 
     @Benchmark
     void E_1m_places_A_boxed() {
-        NearestPlaceResolverPointBoxed.findClosestAdditionalPlace(start, places_boxed_1m)
+        NearestPlaceResolverPointBoxed.findClosestPlace(start, places_boxed_1m)
     }
 
     // --- Point Primitive ---
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_A_point_primitive() {
-        NearestPlaceResolverPointPrimitive.findClosestAdditionalPlace(startPrimitivePoint, places_point_primitive_100)
+        NearestPlaceResolverPointPrimitive.findClosestPlace(startPrimitivePoint, places_point_primitive_100)
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_A_point_primitive() {
-        NearestPlaceResolverPointPrimitive.findClosestAdditionalPlace(startPrimitivePoint, places_point_primitive_1k)
+        NearestPlaceResolverPointPrimitive.findClosestPlace(startPrimitivePoint, places_point_primitive_1k)
     }
 
     @Benchmark
     void C_10k_places_A_point_primitive() {
-        NearestPlaceResolverPointPrimitive.findClosestAdditionalPlace(startPrimitivePoint, places_point_primitive_10k)
+        NearestPlaceResolverPointPrimitive.findClosestPlace(startPrimitivePoint, places_point_primitive_10k)
     }
 
     @Benchmark
     void D_100k_places_A_point_primitive() {
-        NearestPlaceResolverPointPrimitive.findClosestAdditionalPlace(startPrimitivePoint, places_point_primitive_100k)
+        NearestPlaceResolverPointPrimitive.findClosestPlace(startPrimitivePoint, places_point_primitive_100k)
     }
 
     @Benchmark
     void E_1m_places_A_point_primitive() {
-        NearestPlaceResolverPointPrimitive.findClosestAdditionalPlace(startPrimitivePoint, places_point_primitive_1m)
+        NearestPlaceResolverPointPrimitive.findClosestPlace(startPrimitivePoint, places_point_primitive_1m)
     }
 
     // --- Primitives ---
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_B_primitives() {
-        NearestPlaceResolverPrimitives.findClosestAdditionalPlace(startPrimitives, places_primitives_100)
+        NearestPlaceResolverPrimitives.findClosestPlace(startPrimitives, places_primitives_100)
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_B_primitives() {
-        NearestPlaceResolverPrimitives.findClosestAdditionalPlace(startPrimitives, places_primitives_1k)
+        NearestPlaceResolverPrimitives.findClosestPlace(startPrimitives, places_primitives_1k)
     }
 
     @Benchmark
     void C_10k_places_B_primitives() {
-        NearestPlaceResolverPrimitives.findClosestAdditionalPlace(startPrimitives, places_primitives_10k)
+        NearestPlaceResolverPrimitives.findClosestPlace(startPrimitives, places_primitives_10k)
     }
 
     @Benchmark
     void D_100k_places_B_primitives() {
-        NearestPlaceResolverPrimitives.findClosestAdditionalPlace(startPrimitives, places_primitives_100k)
+        NearestPlaceResolverPrimitives.findClosestPlace(startPrimitives, places_primitives_100k)
     }
 
     @Benchmark
     void E_1m_places_B_primitives() {
-        NearestPlaceResolverPrimitives.findClosestAdditionalPlace(startPrimitives, places_primitives_1m)
+        NearestPlaceResolverPrimitives.findClosestPlace(startPrimitives, places_primitives_1m)
     }
 
     // --- Primitive Arrays ---
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_C_primitive_arrays() {
-        NearestPlaceResolverPrimitiveArrays.findClosestAdditionalPlace(startPrimitives, places_array_100[0], places_array_100[1])
+        NearestPlaceResolverPrimitiveArrays.findClosestPlace(startPrimitives, places_array_100[0], places_array_100[1])
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_C_primitive_arrays() {
-        NearestPlaceResolverPrimitiveArrays.findClosestAdditionalPlace(startPrimitives, places_array_1k[0], places_array_1k[1])
+        NearestPlaceResolverPrimitiveArrays.findClosestPlace(startPrimitives, places_array_1k[0], places_array_1k[1])
     }
 
     @Benchmark
     void C_10k_places_C_primitive_arrays() {
-        NearestPlaceResolverPrimitiveArrays.findClosestAdditionalPlace(startPrimitives, places_array_10k[0], places_array_10k[1])
+        NearestPlaceResolverPrimitiveArrays.findClosestPlace(startPrimitives, places_array_10k[0], places_array_10k[1])
     }
 
     @Benchmark
     void D_100k_places_C_primitive_arrays() {
-        NearestPlaceResolverPrimitiveArrays.findClosestAdditionalPlace(startPrimitives, places_array_100k[0], places_array_100k[1])
+        NearestPlaceResolverPrimitiveArrays.findClosestPlace(startPrimitives, places_array_100k[0], places_array_100k[1])
     }
 
     @Benchmark
     void E_1m_places_C_primitive_arrays() {
-        NearestPlaceResolverPrimitiveArrays.findClosestAdditionalPlace(startPrimitives, places_array_1m[0], places_array_1m[1])
+        NearestPlaceResolverPrimitiveArrays.findClosestPlace(startPrimitives, places_array_1m[0], places_array_1m[1])
     }
 
 
@@ -204,27 +217,27 @@ class NearestPlaceResolverBenchmark extends Specification {
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void A_100_places_C_primitive_arrays_split() {
-        NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace(startPrimitives, places_array_100[0], places_array_100[1])
+        NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace(startBest, places_array_100[0], places_array_100[1])
     }
 
     @Benchmark
     @OutputTimeUnit(NANOSECONDS)
     void B_1k_places_C_primitive_arrays_split() {
-        NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace(startPrimitives, places_array_1k[0], places_array_1k[1])
+        NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace(startBest, places_array_1k[0], places_array_1k[1])
     }
 
     @Benchmark
     void C_10k_places_C_primitive_arrays_split() {
-        NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace(startPrimitives, places_array_10k[0], places_array_10k[1])
+        NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace(startBest, places_array_10k[0], places_array_10k[1])
     }
 
     @Benchmark
     void D_100k_places_C_primitive_arrays_split() {
-        NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace(startPrimitives, places_array_100k[0], places_array_100k[1])
+        NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace(startBest, places_array_100k[0], places_array_100k[1])
     }
 
     @Benchmark
     void E_1m_places_C_primitive_arrays_split() {
-        NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace(startPrimitives, places_array_1m[0], places_array_1m[1])
+        NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace(startBest, places_array_1m[0], places_array_1m[1])
     }
 }

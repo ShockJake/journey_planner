@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-route-place
+      author: jp
+      changes:
+        - createTable:
+            tableName: route_place
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: route_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_routeplace_route
+                    references: routes(route_id)
+              - column:
+                  name: place_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_routeplace_place
+                    references: places(place_id)
+              - column:
+                  name: place_index
+                  type: INT
