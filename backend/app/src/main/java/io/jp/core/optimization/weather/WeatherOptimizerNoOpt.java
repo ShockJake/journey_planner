@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static io.jp.core.placeresolver.NearestPlaceResolverPointBoxed.findClosestAdditionalPlace;
+import static io.jp.core.placeresolver.NearestPlaceResolverPointBoxed.findClosestPlace;
 import static io.jp.database.entities.route.PlaceType.coveredPlaceTypes;
 import static io.jp.utils.DateTimeUtils.getDate;
 
@@ -81,7 +81,7 @@ public class WeatherOptimizerNoOpt implements WeatherOptimizer<RouteBoxed, RainD
 
             if (shouldLookForClosestPlace(rainData, i, optimizedPlaces.get(placeIndex).placeType())) {
                 var place = optimizedPlaces.get(placeIndex);
-                var closestPlace = findClosestAdditionalPlace(place, additionalPlaces);
+                var closestPlace = findClosestPlace(place, additionalPlaces);
 
                 if (closestPlace == null) continue;
 

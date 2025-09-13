@@ -1,5 +1,6 @@
 package io.jp.services.configuration;
 
+import io.jp.cache.CachedRouteProvider;
 import io.jp.core.domain.optimizedroute.OptimizedRoute;
 import io.jp.core.domain.optimizedroute.OptimizedRouteBoxed;
 import io.jp.core.domain.route.Route;
@@ -20,9 +21,10 @@ public class RouteOptimizationConfiguration {
 
     @Bean
     @ConditionalOnProperty(name = "service.implementation.route.optimization", havingValue = "opt")
-    public RouteOptimizationService<OptimizedRoute> routeOptimizationServiceOpt(RouteService routeService, RouteOptimizer<Route, OptimizedRoute> routeOptimizer) {
+    public RouteOptimizationService<OptimizedRoute> routeOptimizationServiceOpt(RouteService routeService, RouteOptimizer<Route,
+            OptimizedRoute> routeOptimizer, CachedRouteProvider cachedRouteProvider) {
         log.info("Route optimization is used with optimization");
-        return new RouteOptimizationServiceOpt(routeOptimizer, routeService);
+        return new RouteOptimizationServiceOpt(routeOptimizer, routeService, cachedRouteProvider);
     }
 
     @Bean

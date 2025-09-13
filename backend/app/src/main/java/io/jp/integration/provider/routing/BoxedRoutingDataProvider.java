@@ -2,19 +2,18 @@ package io.jp.integration.provider.routing;
 
 import io.jp.core.domain.path.PathBoxed;
 import io.jp.core.domain.place.PlaceBoxed;
-import io.jp.mapper.path.PathBoxedMapper;
 import io.jp.integration.provider.DataProvider;
+import io.jp.mapper.path.PathBoxedMapper;
 import io.jp.utils.PropertiesProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;

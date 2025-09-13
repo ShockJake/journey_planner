@@ -1,50 +1,41 @@
 package io.jp.cache;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import io.jp.database.entities.route.Municipality;
+import io.jp.database.repositories.place.MunicipalityRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class CachedMunicipalitiesProvider {
-    private static final Map<String, Municipality> cachedMunicipalities = new HashMap<>();
-    private static final Object LOCK = new Object();
+    private static final Cache<String, Municipality> CACHED_MUNICIPALITIES = Caffeine.newBuilder()
+            .expireAfterWrite(Duration.ofDays(365))
+            .build();
+    private final MunicipalityRepository municipalityRepository;
 
-    public static Collection<Municipality> getCachedMunicipalities() {
-        synchronized (LOCK) {
-            return cachedMunicipalities.values();
-        }
+    public Collection<Municipality> getCachedMunicipalities() {
+        return CACHED_MUNICIPALITIES.asMap().values();
     }
 
-    public static Municipality getCachedMunicipality(String name) {
-        synchronized (LOCK) {
-            if (!cachedMunicipalities.containsKey(name)) {
-                log.error("No cached municipality found with name {}, all municipalities {}", name, cachedMunicipalities.keySet());
-                throw new IllegalStateException("No municipality '%s' found".formatted(name));
-            }
-            return cachedMunicipalities.get(name);
-        }
+    public Municipality getCachedMunicipality(String name) {
+        return CACHED_MUNICIPALITIES.get(name, (key) ->
+                municipalityRepository.findByName(key)
+                        .orElseThrow(() -> new IllegalStateException("No municipality '%s' found".formatted(name))));
     }
 
-    public static void putCachedMunicipalities(Collection<Municipality> municipalities) {
-        synchronized (LOCK) {
-            municipalities.forEach(municipality ->
-                    cachedMunicipalities.put(municipality.getName(), municipality));
-            log.info("Saved municipalities: {}", cachedMunicipalities.keySet());
-        }
-    }
-
-    public static void putCachedMunicipality(Municipality municipality) {
-        synchronized (LOCK) {
-            cachedMunicipalities.put(municipality.getName(), municipality);
-        }
-    }
-
-    public static boolean hasNoCachedMunicipalities() {
-        synchronized (LOCK) {
-            return cachedMunicipalities.isEmpty();
-        }
+    public void putCachedMunicipalities(Collection<Municipality> municipalities) {
+        municipalities.forEach(municipality ->
+                CACHED_MUNICIPALITIES.put(municipality.getName(), municipality));
     }
 }

@@ -1,11 +1,11 @@
 package io.jp.services.route.persistence;
 
+import io.jp.cache.CachedMunicipalitiesProvider;
 import io.jp.core.domain.route.Route;
 import io.jp.core.domain.route.RouteBoxed;
 import io.jp.database.entities.route.PlaceJpa;
 import io.jp.database.entities.route.RouteJpa;
 import io.jp.database.entities.route.RoutePlace;
-import io.jp.database.repositories.place.MunicipalityRepository;
 import io.jp.database.repositories.place.PlaceRepository;
 import io.jp.database.repositories.route.RouteRepository;
 import io.jp.database.repositories.user.UserRouteRepository;
@@ -28,9 +28,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static io.jp.cache.CachedMunicipalitiesProvider.getCachedMunicipality;
-import static io.jp.cache.CachedMunicipalitiesProvider.hasNoCachedMunicipalities;
-import static io.jp.cache.CachedMunicipalitiesProvider.putCachedMunicipalities;
 import static io.jp.database.entities.route.RouteType.PREDEFINED;
 import static java.util.Comparator.comparing;
 import static java.util.stream.IntStream.range;
@@ -42,8 +39,8 @@ import static java.util.stream.Stream.concat;
 public class RouteService {
     private final RouteRepository routeRepository;
     private final PlaceRepository placeRepository;
-    private final MunicipalityRepository municipalityRepository;
     private final UserRouteRepository userRouteRepository;
+    private final CachedMunicipalitiesProvider cachedMunicipalitiesProvider;
     private final BoxedRouteJpaMapper boxedRouteJpaMapper;
     private final RouteJpaMapper routeJpaMapper;
     private final BoxedPlaceJpaMapper boxedPlaceJpaMapper;
@@ -84,10 +81,7 @@ public class RouteService {
                 .toList());
         var allSavedPlaces = concat(savedPlaces.stream(), savedAdditionalPlaces.stream()).toList();
 
-        if (hasNoCachedMunicipalities()) {
-            putCachedMunicipalities(municipalityRepository.findAll());
-        }
-        var municipality = getCachedMunicipality(route.municipality());
+        var municipality = cachedMunicipalitiesProvider.getCachedMunicipality(route.municipality());
 
         var jpaRoute = boxedRouteJpaMapper.mapToJpa(route, municipality);
         var routePlaces = range(0, allSavedPlaces.size()).mapToObj(index ->
@@ -108,10 +102,7 @@ public class RouteService {
                 .map(placeJpaMapper::mapToJpa)
                 .toList());
 
-        if (hasNoCachedMunicipalities()) {
-            putCachedMunicipalities(municipalityRepository.findAll());
-        }
-        var municipality = getCachedMunicipality(route.municipality());
+        var municipality = cachedMunicipalitiesProvider.getCachedMunicipality(route.municipality());
 
         var jpaRoute = routeJpaMapper.mapToJpa(route, municipality);
         var routePlaces = range(0, savedPlaces.size()).mapToObj(index ->

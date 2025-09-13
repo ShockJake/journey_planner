@@ -56,9 +56,7 @@ public class WeatherForecastMapperOpt {
         }
         var size = dataArray.size();
         var result = new double[size];
-        range(0, size).forEach(i -> {
-            result[i] = dataArray.get(i).asDouble();
-        });
+        range(0, size).forEach(i -> result[i] = dataArray.get(i).asDouble());
 
         return result;
     }
@@ -70,9 +68,7 @@ public class WeatherForecastMapperOpt {
         }
         var size = dataArray.size();
         var result = new int[size];
-        range(0, size).forEach(i -> {
-            result[i] = dataArray.get(i).asInt();
-        });
+        range(0, size).forEach(i -> result[i] = dataArray.get(i).asInt());
 
         return result;
     }

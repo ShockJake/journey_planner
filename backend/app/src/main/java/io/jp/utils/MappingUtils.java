@@ -5,11 +5,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jp.database.entities.route.PlaceType;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 public class MappingUtils {
+    public static String mapDataToDescription(String municipalityName, PlaceType[] placeTypes) {
+        var placesDescription = Arrays.stream(placeTypes)
+                .map(PlaceType::name)
+                .map(String::toLowerCase)
+                .collect(Collectors.joining(","));
+        return "Discover %s by visiting %s.".formatted(municipalityName, placesDescription);
+    }
+
     public static String mapDataToDescription(String municipality, List<PlaceType> placeTypes) {
         var placesDescription = placeTypes.stream()
                 .map(PlaceType::name)

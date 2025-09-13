@@ -9,7 +9,7 @@ import static java.lang.Double.MAX_VALUE;
 
 public class NearestPlaceResolverPointBoxed {
 
-    public static PlaceBoxed findClosestAdditionalPlace(PlaceBoxed start, List<PlaceBoxed> places) {
+    public static PlaceBoxed findClosestPlace(PlaceBoxed start, List<PlaceBoxed> places) {
         var startPoint = new Point2D.Double(start.position().lat(), start.position().lng());
         PlaceBoxed closestPlace = null;
         double minDistance = MAX_VALUE;

@@ -10,14 +10,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static io.jp.database.entities.route.PlaceType.coveredPlaceTypes;
@@ -25,7 +23,6 @@ import static io.jp.integration.common.RestClientProvider.getRestClient;
 import static io.jp.utils.PropertiesProvider.ROUTING_API_KEY_PROPERTY_NAME;
 
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class PlacesDataProvider implements DataProvider<PlacesResponse> {
     private static final String BASE_URL = "https://api.geoapify.com/v2/places";

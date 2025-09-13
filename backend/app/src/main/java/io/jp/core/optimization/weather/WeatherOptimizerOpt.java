@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static io.jp.core.placeresolver.NearestPlaceResolverPrimitiveArraysSplit.findClosestAdditionalPlace;
+import static io.jp.core.placeresolver.NearestPlaceResolverPrimitiveArraysSplit.findClosestPlace;
 import static io.jp.database.entities.route.PlaceType.BUILDING;
 import static io.jp.database.entities.route.PlaceType.CHURCH;
 import static io.jp.database.entities.route.PlaceType.COFFEE;
@@ -91,7 +91,7 @@ public class WeatherOptimizerOpt implements WeatherOptimizer<Route, RainData, We
             if (shouldLookForClosestPlace(rainData, i, optimizedPlaces.get(placeIndex).placeType())) {
                 var place = optimizedPlaces.get(placeIndex);
                 var xys = mapTo2DArray(additionalPlaces);
-                var closestPlaceIndex = findClosestAdditionalPlace(place, xys[0], xys[1]);
+                var closestPlaceIndex = findClosestPlace(place, xys[0], xys[1]);
 
                 if (closestPlaceIndex == -1) continue;
                 var closestPlace = additionalPlaces.get(closestPlaceIndex);

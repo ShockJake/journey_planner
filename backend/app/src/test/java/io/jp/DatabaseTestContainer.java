@@ -1,6 +1,5 @@
 package io.jp;
 
-import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.util.TestPropertyValues;
@@ -10,7 +9,8 @@ import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.lifecycle.Startables;
 
 public class DatabaseTestContainer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-    private static final MySQLContainer DB_CONTAINER = new MySQLContainer("mysql:5.7.34");
+    private static final MySQLContainer DB_CONTAINER = new MySQLContainer("mysql:latest")
+            .withDatabaseName("mydatabase");
     private static final Logger log = LoggerFactory.getLogger(DatabaseTestContainer.class);
 
     static {

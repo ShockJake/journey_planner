@@ -35,6 +35,18 @@ public class PointMapper {
         return new double[][]{xs, ys};
     }
 
+    public static double[][] mapTo2DArray(Place[] places) {
+        var size = places.length;
+        double[] xs = new double[size];
+        double[] ys = new double[size];
+        range(0, size).forEach(i -> {
+            var place = places[i];
+            xs[i] = place.latitude();
+            ys[i] = place.longitude();
+        });
+        return new double[][]{xs, ys};
+    }
+
     public static List<Point> mapToPointsFromJpa(List<PlaceJpa> places) {
         return places.stream()
                 .map(place -> new Point(place.getLatitude(), place.getLongitude()))

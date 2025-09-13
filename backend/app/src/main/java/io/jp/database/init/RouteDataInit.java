@@ -2,6 +2,7 @@ package io.jp.database.init;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jp.cache.CachedMunicipalitiesProvider;
 import io.jp.core.geometricmedian.Point;
 import io.jp.database.entities.route.Municipality;
 import io.jp.database.entities.route.PlaceJpa;
@@ -36,6 +37,7 @@ public class RouteDataInit implements ApplicationRunner {
     private final RouteRepository routeRepository;
     private final PlaceRepository placeRepository;
     private final MunicipalityRepository municipalityRepository;
+    private final CachedMunicipalitiesProvider cachedMunicipalitiesProvider;
     private final ObjectMapper objectMapper;
     private final FileUtils fileUtils = new FileUtils();
     private final RoutePlaceMapper routePlaceMapper;
@@ -45,6 +47,7 @@ public class RouteDataInit implements ApplicationRunner {
         if (routeRepository.count() == 0) {
             log.info("Populating routes");
             Map<String, Municipality> municipalities = prepareMunicipalities();
+            cachedMunicipalitiesProvider.putCachedMunicipalities(municipalities.values());
             routeRepository.saveAll(prepareRoutes(municipalities));
             log.info("{} Routes populated", routeRepository.count());
         }

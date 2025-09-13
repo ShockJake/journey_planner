@@ -9,7 +9,7 @@ import static java.lang.Double.MAX_VALUE;
 
 public class NearestPlaceResolverPointPrimitive {
 
-    public static PlacePrimitivePoint findClosestAdditionalPlace(PlacePrimitivePoint start, List<PlacePrimitivePoint> places) {
+    public static PlacePrimitivePoint findClosestPlace(PlacePrimitivePoint start, List<PlacePrimitivePoint> places) {
         var startPoint = new Point2D.Double(start.position().lat(), start.position().lng());
         PlacePrimitivePoint closest = null;
         double minDistance = MAX_VALUE;

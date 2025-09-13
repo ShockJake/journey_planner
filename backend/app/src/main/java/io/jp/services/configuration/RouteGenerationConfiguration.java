@@ -1,5 +1,7 @@
 package io.jp.services.configuration;
 
+import io.jp.cache.CachedMunicipalitiesProvider;
+import io.jp.cache.CachedRouteProvider;
 import io.jp.core.domain.route.Route;
 import io.jp.core.domain.route.RouteBoxed;
 import io.jp.core.organizer.PlaceOrganizer;
@@ -21,10 +23,11 @@ import org.springframework.context.annotation.Configuration;
 public class RouteGenerationConfiguration {
     @Bean
     @ConditionalOnProperty(name = "service.implementation.route.generation", havingValue = "opt")
-    public RouteGenerationService<Route> routeGenerationServiceOpt(MunicipalityRepository municipalityRepository,
+    public RouteGenerationService<Route> routeGenerationServiceOpt(CachedMunicipalitiesProvider municipalitiesProvider,
+                                                                   CachedRouteProvider routeProvider,
                                                                    DataProvider<PlacesResponse> placesDataProvider,
                                                                    PlaceOrganizer placeOrganizer) {
-        return new RouteGenerationServiceOpt(municipalityRepository, placesDataProvider, placeOrganizer);
+        return new RouteGenerationServiceOpt(municipalitiesProvider, routeProvider, placesDataProvider, placeOrganizer);
     }
 
     @Bean

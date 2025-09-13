@@ -31,7 +31,7 @@ import java.util.Map;
 
 import static io.jp.api.WebConstants.MESSAGE_KEY;
 import static io.jp.api.WebConstants.OPTIMIZED_ROUTE_ID;
-import static io.jp.cache.CachedOptimizedRouteProvider.getOptimizedRouteFromCache;
+import static io.jp.cache.CachedOptimizedRouteProvider.getOptimizedRouteBoxedFromCache;
 import static io.jp.cache.CachedOptimizedRouteProvider.putOptimizedRouteToCache;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -77,7 +77,7 @@ public class BoxedRoutesAPI {
         }
         var user = userService.findUserByUsername(authentication.getName());
         log.info("Saving optimized route '{}' for user {}", optimizedRoutePersistenceRequest.routeName(), user.getUsername());
-        var optimizedRoute = getOptimizedRouteFromCache(optimizedRoutePersistenceRequest.optimizationId());
+        var optimizedRoute = getOptimizedRouteBoxedFromCache(optimizedRoutePersistenceRequest.optimizationId());
         var result = routeOptimizationPersister.saveOptimizedRoute(optimizedRoute, user);
 
         var response = Map.of(MESSAGE_KEY, "Optimized route saved successfully", OPTIMIZED_ROUTE_ID, result.getId());

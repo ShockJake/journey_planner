@@ -34,7 +34,7 @@ public class PlacesResponseMapper {
             }
             var result = stream(root.spliterator(), false)
                     .map(this::mapToPlace)
-                    .collect(toCollection(ArrayList::new));
+                    .toArray(Place[]::new);
             return PlacesResponse.builder()
                     .places(result)
                     .build();

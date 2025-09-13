@@ -9,5 +9,5 @@ import java.util.List;
 @Builder
 @Getter
 public class PlacesResponse {
-    private List<Place> places;
+    private Place[] places;
 }

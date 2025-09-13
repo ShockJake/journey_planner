@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static io.jp.core.placeresolver.NearestPlaceResolverPointBoxed.findClosestAdditionalPlace;
+import static io.jp.core.placeresolver.NearestPlaceResolverPointBoxed.findClosestPlace;
 
 @Slf4j
 @Component
@@ -18,7 +18,7 @@ public class PlaceOrganizerBoxed {
         IntStream.range(0, size - 2)
                 .forEach(i -> {
                     var currentPlace = places.get(i);
-                    var closestPlace = findClosestAdditionalPlace(currentPlace, places.subList(i + 1, size));
+                    var closestPlace = findClosestPlace(currentPlace, places.subList(i + 1, size));
                     var nextPlace = places.get(i + 1);
 
                     if (!closestPlace.equals(nextPlace)) {

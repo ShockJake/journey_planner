@@ -24,16 +24,16 @@ public class PlacesApiConfiguration {
             "'${integrations.api.places.enabled}'.equals('false') and '${service.implementation.route.generation}'.equals('no-opt')"
     )
     public DataProvider<PlacesResponseBoxed> mockedPlacesDataProviderBoxed(PlacesResponseMapperBoxed placesResponseMapper) {
-        log.info("Using mocked implementation of boxed Routing Data Provider");
+        log.info("Using mocked implementation of boxed Places Data Provider");
         return new MockedPlacesDataProviderBoxed(placesResponseMapper);
     }
 
     @Bean
     @ConditionalOnExpression(
-            "${integrations.api.places.enabled} and '${service.implementation.route.generation}'.equals('no-opt')"
+            "'${integrations.api.places.enabled}'.equals('false') and '${service.implementation.route.generation}'.equals('opt')"
     )
     public DataProvider<PlacesResponse> mockedPlacesDataProvider(PlacesResponseMapper placesResponseMapper) {
-        log.info("Using mocked implementation of Routing Data Provider");
+        log.info("Using mocked implementation of Places Data Provider");
         return new MockedPlacesDataProvider(placesResponseMapper);
     }
 

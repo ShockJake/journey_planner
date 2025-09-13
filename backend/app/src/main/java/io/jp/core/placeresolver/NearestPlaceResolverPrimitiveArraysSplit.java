@@ -10,7 +10,7 @@ import static java.lang.Double.MAX_VALUE;
 
 public class NearestPlaceResolverPrimitiveArraysSplit {
 
-    public static int findClosestAdditionalPlace(Place start, double[] xs, double[] ys) {
+    public static int findClosestPlace(Place start, double[] xs, double[] ys) {
         var startPoint = new Point2D.Double(start.latitude(), start.longitude());
         double minDistance = MAX_VALUE;
         int index = -1;
