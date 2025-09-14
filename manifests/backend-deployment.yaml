@@ -29,6 +29,8 @@ spec:
               value: jdbc:mysql://database:3306/mydatabase
             - name: SPRING_DATASOURCE_USERNAME
               value: root
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
           image: europe-central2-docker.pkg.dev/argon-fire-467320-j2/jp-images-registry/journey-planner-backend:latest
           name: jp-backend
           ports:
