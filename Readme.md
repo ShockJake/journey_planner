@@ -9,7 +9,7 @@ external factors (like weather, health and safety warnings, transport issues, et
 ## Tech Stack
 
 - Frontend
-  - Svelte (may change)
+  - Svelte
 - Backend
   - Java
   - Spring
