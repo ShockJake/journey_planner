@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <timestamp key="logFilename" datePattern="yyyy-MM-dd_HH-mm-ss"/>
+    <appender class="com.google.cloud.logging.logback.LoggingAppender" name="CLOUD"></appender>
+    <timestamp datePattern="yyyy-MM-dd_HH-mm-ss" key="logFilename"></timestamp>
 
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
         <encoder>
-            <pattern>
-                %d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %logger{36} - %msg%n
-            </pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="CONSOLE"></appender-ref>
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="CLOUD"></appender-ref>
+        </root>
+    </springProfile>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/jp-${logFilename}.log</file>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <root level="info">
-        <appender-ref ref="CONSOLE"/>
-<!--        <appender-ref ref="FILE"/>-->
-    </root>
 </configuration>
