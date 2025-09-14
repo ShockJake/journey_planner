@@ -5,4 +5,4 @@ COPY ./app/build/libs/app.jar /app/app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java", "-jar", "/app/app.jar" ]
+ENTRYPOINT [ "java", "--add-modules jdk.incubator.vector", "-jar", "/app/app.jar" ]
