@@ -1,5 +1,6 @@
 package io.jp.services.route.optimization;
 
+import io.jp.core.domain.optimizedroute.OptimizedRoute;
 import io.jp.core.domain.optimizedroute.OptimizedRouteBoxed;
 import io.jp.database.entities.user.User;
 import io.jp.database.repositories.route.OptimizedRouteRepository;
@@ -18,8 +19,15 @@ public class RouteOptimizationRetriever {
     private final OptimizedRouteMapper optimizedRouteMapper;
     private final OptimizedRouteRepository optimizedRouteRepository;
 
-    public List<OptimizedRouteBoxed> getOptimizedRoutesByUser(User user) {
-        log.debug("Getting optimized routes connected to user {}", user.getUsername());
+    public List<OptimizedRouteBoxed> getBoxedOptimizedRoutesByUser(User user) {
+        log.debug("Getting boxed optimized routes connected to user '{}'", user.getUsername());
+        return optimizedRouteRepository.findAllByUser(user).stream()
+                .map(optimizedRouteMapper::mapFromJpaBoxed)
+                .collect(Collectors.toList());
+    }
+
+    public List<OptimizedRoute> getOptimizedRoutesByUser(User user) {
+        log.debug("Getting optimized routes connected to user '{}'", user.getUsername());
         return optimizedRouteRepository.findAllByUser(user).stream()
                 .map(optimizedRouteMapper::mapFromJpa)
                 .collect(Collectors.toList());

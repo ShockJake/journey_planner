@@ -8,6 +8,7 @@ import io.jp.services.user.association.UserRouteAssociationService;
 import io.jp.services.user.persistence.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 import static io.jp.api.WebConstants.CREATED_AT_KEY;
@@ -40,6 +42,8 @@ public class UserController {
     private final UserRouteAssociationService userRouteAssociationService;
     private final RouteOptimizationRetriever routeOptimizationRetriever;
     private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(systemDefault());
+    @Value("${service.implementation.route.optimization}")
+    private String optimizationEnabled;
 
     @PatchMapping
     public ResponseEntity<?> changeUserInfo(Authentication authentication, @RequestBody ChangeUserDataRequest changeUserDataRequest) {
@@ -69,7 +73,12 @@ public class UserController {
         log.debug("Getting user info for user {}", user.getUsername());
 
         var routes = userRouteAssociationService.getRoutesConnectedToUser(user);
-        var optimizedRoutes = routeOptimizationRetriever.getOptimizedRoutesByUser(user);
+        List<?> optimizedRoutes;
+        if ("no-opt".equals(optimizationEnabled)) {
+            optimizedRoutes = routeOptimizationRetriever.getBoxedOptimizedRoutesByUser(user);
+        } else {
+            optimizedRoutes = routeOptimizationRetriever.getOptimizedRoutesByUser(user);
+        }
 
         var response = Map.of(USERNAME_KEY, user.getUsername(),
                 CREATED_AT_KEY, dateFormat.format(user.getCreatedAt()),

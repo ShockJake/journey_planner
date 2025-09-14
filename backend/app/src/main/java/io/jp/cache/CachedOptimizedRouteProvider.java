@@ -4,11 +4,13 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import io.jp.core.domain.optimizedroute.OptimizedRoute;
 import io.jp.core.domain.optimizedroute.OptimizedRouteBoxed;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class CachedOptimizedRouteProvider {
     private static final Map<String, OptimizedRouteBoxed> cachedOptimizedBoxedRoutes = new HashMap<>();
     private static final Object LOCK = new Object();
@@ -21,7 +23,8 @@ public class CachedOptimizedRouteProvider {
     }
 
     public static void putOptimizedRouteToCache(OptimizedRoute optimizedRoute) {
-        CACHE.put(optimizedRoute.route().name(), optimizedRoute);
+        log.info("Caching optimized route {}", optimizedRoute.optimizationId());
+        CACHE.put(optimizedRoute.optimizationId(), optimizedRoute);
     }
 
     public static OptimizedRouteBoxed getOptimizedRouteBoxedFromCache(String routeId) {

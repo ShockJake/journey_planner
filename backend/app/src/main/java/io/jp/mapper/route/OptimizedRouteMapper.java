@@ -1,12 +1,16 @@
 package io.jp.mapper.route;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jp.core.domain.optimizedroute.OptimizedRoute;
 import io.jp.core.domain.optimizedroute.OptimizedRouteBoxed;
+import io.jp.core.domain.path.Path;
 import io.jp.core.domain.path.PathBoxed;
+import io.jp.core.domain.place.Place;
 import io.jp.core.domain.place.PlaceBoxed;
 import io.jp.core.domain.point.PointBoxed;
+import io.jp.core.domain.weather.info.WeatherInfo;
 import io.jp.core.domain.weather.info.WeatherInfoBoxed;
 import io.jp.database.entities.route.OptimizedRouteJpa;
 import io.jp.database.entities.route.PlaceType;
@@ -17,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static io.jp.utils.MappingUtils.readObjectFromString;
@@ -27,21 +32,41 @@ import static java.util.stream.StreamSupport.stream;
 @Component
 @RequiredArgsConstructor
 public class OptimizedRouteMapper {
-    private final BoxedRouteJpaMapper routeJpaMapper;
+    private final BoxedRouteJpaMapper boxedRouteJpaMapper;
     private final BoxedPlaceJpaMapper placeJpaMapper;
+    private final RouteJpaMapper routeJpaMapper;
     private final ObjectMapper mapper;
 
-    public OptimizedRouteBoxed mapFromJpa(OptimizedRouteJpa optimizedRouteJpa) {
+    public OptimizedRouteBoxed mapFromJpaBoxed(OptimizedRouteJpa optimizedRouteJpa) {
+        log.debug("Mapping to boxed optimized route '{}'", optimizedRouteJpa.getRoute().getName());
+        var jpaRoute = optimizedRouteJpa.getRoute();
+        var jpaPlaces = placeJpaMapper.mapJpaFromRoutePlaces(jpaRoute.getPlaces());
+        var route = boxedRouteJpaMapper.mapFromJpa(jpaRoute, jpaPlaces);
+
+        var placesOverride = readBoxedPlacesOverrides(optimizedRouteJpa.getPlacesOverrides());
+        log.debug("{}", placesOverride);
+        route.updatePlaces(placesOverride);
+
+        return OptimizedRouteBoxed.builder()
+                .optimizationId(optimizedRouteJpa.getOptimizationId())
+                .route(route)
+                .path(readBoxedPath(optimizedRouteJpa.getPath()))
+                .weatherInfo(readBoxedWeatherInfo(optimizedRouteJpa.getWeatherInfo()))
+                .build();
+    }
+
+
+    public OptimizedRoute mapFromJpa(OptimizedRouteJpa optimizedRouteJpa) {
         log.debug("Mapping optimized route '{}'", optimizedRouteJpa.getRoute().getName());
         var jpaRoute = optimizedRouteJpa.getRoute();
         var jpaPlaces = placeJpaMapper.mapJpaFromRoutePlaces(jpaRoute.getPlaces());
         var route = routeJpaMapper.mapFromJpa(jpaRoute, jpaPlaces);
 
         var placesOverride = readPlacesOverrides(optimizedRouteJpa.getPlacesOverrides());
-        log.debug("{}", placesOverride);
+        log.debug("{}", Arrays.toString(placesOverride));
         route.updatePlaces(placesOverride);
 
-        return OptimizedRouteBoxed.builder()
+        return OptimizedRoute.builder()
                 .optimizationId(optimizedRouteJpa.getOptimizationId())
                 .route(route)
                 .path(readPath(optimizedRouteJpa.getPath()))
@@ -77,7 +102,7 @@ public class OptimizedRouteMapper {
                 .build();
     }
 
-    private List<PlaceBoxed> readPlacesOverrides(String placesOverrides) {
+    private List<PlaceBoxed> readBoxedPlacesOverrides(String placesOverrides) {
         try {
             var rootNode = mapper.readTree(placesOverrides);
             return stream(rootNode.spliterator(), false)
@@ -95,11 +120,44 @@ public class OptimizedRouteMapper {
         }
     }
 
-    private PathBoxed readPath(String path) {
+
+    private Place[] readPlacesOverrides(String placesOverrides) {
+        try {
+            var rootNode = mapper.readTree(placesOverrides);
+            return stream(rootNode.spliterator(), false)
+                    .map(this::buildPlace)
+                    .toArray(Place[]::new);
+        } catch (JsonProcessingException | NullPointerException e) {
+            log.error("Cannot parse place overrides", e);
+            throw new IllegalArgumentException("Cannot parse place overrides");
+        }
+    }
+
+    private Place buildPlace(JsonNode node) {
+        var latitude = node.get("latitude").asDouble();
+        var longitude = node.get("longitude").asDouble();
+
+        return Place.builder()
+                .name(node.get("name").asText())
+                .placeType(PlaceType.valueOf(node.get("placeType").asText()))
+                .latitude(latitude)
+                .longitude(longitude)
+                .build();
+    }
+
+    private PathBoxed readBoxedPath(String path) {
         return readObjectFromString(mapper, path, PathBoxed.class);
     }
 
-    private WeatherInfoBoxed readWeatherInfo(String weatherInfo) {
+    private Path  readPath(String path) {
+        return readObjectFromString(mapper, path, Path.class);
+    }
+
+    private WeatherInfoBoxed readBoxedWeatherInfo(String weatherInfo) {
         return readObjectFromString(mapper, weatherInfo, WeatherInfoBoxed.class);
+    }
+
+    private WeatherInfo readWeatherInfo(String weatherInfo) {
+        return readObjectFromString(mapper, weatherInfo, WeatherInfo.class);
     }
 }
