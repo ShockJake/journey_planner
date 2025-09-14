@@ -34,7 +34,6 @@ dependencies {
     runtimeOnly("org.liquibase:liquibase-core:4.31.1")
     implementation("net.lbruun.springboot:preliquibase-spring-boot-starter:1.6.0")
     implementation("com.github.ben-manes.caffeine:caffeine:3.2.2")
-    implementation "com.google.cloud:google-cloud-logging-logback:0.132.15-alpha"
 
     jmh 'org.openjdk.jmh:jmh-core'
     jmh libs.groovy
